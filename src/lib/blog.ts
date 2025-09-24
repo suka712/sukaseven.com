@@ -2,8 +2,8 @@ import { BlogPost, BlogConfig } from '@/types/blog';
 
 // Demo configuration - users can customize this
 const config: BlogConfig = {
-  githubOwner: 'octocat', // Replace with your GitHub username
-  githubRepo: 'blog-posts', // Replace with your blog posts repo
+  githubOwner: 'suka712', // Replace with your GitHub username
+  githubRepo: 'sukaseven.com', // Replace with your blog posts repo
   postsPath: 'posts' // Path to posts in the repo
 };
 
