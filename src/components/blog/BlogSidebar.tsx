@@ -14,9 +14,9 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-border">
+      <div className="p-5 pt-6 border-b border-border whitespace-nowrap">
         <h1 className="text-xl font-semibold text-foreground">sukaseven</h1>
-        <p className="text-sm text-blog-meta mt-1">Thoughts & Ideas</p>
+        <p className="text-sm text-blog-meta pb-3">Menu, links and things</p>
       </div>
 
       {/* Navigation */}
@@ -28,17 +28,18 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
             className="w-full justify-start text-left hover:bg-secondary/50"
           >
             <Home className="mr-3 h-4 w-4" />
-            Home
+            Super
           </Button>
 
           <Button variant="ghost" className="w-full justify-start text-left hover:bg-secondary/50">
             <User className="mr-3 h-4 w-4" />
-            About
+            Meta
           </Button>
 
           <Button variant="ghost" className="w-full justify-start text-left hover:bg-secondary/50">
             <Tags className="mr-3 h-4 w-4" />
-            Categories
+            Tags
+            {/* TODO: Implement tags */}
           </Button>
         </div>
       </nav>
@@ -46,7 +47,7 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
       {/* Footer */}
       <div className="p-4 border-t border-border">
         <p className="text-xs text-blog-meta">
-          The entire thing is in{" "}
+          This entire thing is in{" "}
           <a href="https://github.com/suka712/sukaseven.com" target="_blank"
             className="text-blue-400 hover:text-blue-500">
             this Github

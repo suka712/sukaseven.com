@@ -19,13 +19,10 @@ export function BlogHighlights({ posts, onSelectPost }: BlogHighlightsProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-border">
+      <div className="p-5 pt-9 whitespace-nowrap">
         <h2 className="text-lg font-semibold text-foreground">
-          Recent Posts
+          Highlights
         </h2>
-        <p className="text-sm text-blog-meta mt-1">
-          Latest updates
-        </p>
       </div>
 
       {/* Highlights list */}
