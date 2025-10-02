@@ -1,6 +1,6 @@
-import { Home, User, Tags, Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { BlogPost } from '@/types/blog';
+import { Home, User, Tags, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { BlogPost } from "@/types/blog";
 
 interface BlogSidebarProps {
   onSelectPost: (post: BlogPost | null) => void;
@@ -15,12 +15,8 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
     <div className="h-full flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-border">
-        <h1 className="text-xl font-semibold text-foreground">
-          sukaseven
-        </h1>
-        <p className="text-sm text-blog-meta mt-1">
-          Thoughts & Ideas
-        </p>
+        <h1 className="text-xl font-semibold text-foreground">sukaseven</h1>
+        <p className="text-sm text-blog-meta mt-1">Thoughts & Ideas</p>
       </div>
 
       {/* Navigation */}
@@ -34,19 +30,13 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
             <Home className="mr-3 h-4 w-4" />
             Home
           </Button>
-          
-          <Button
-            variant="ghost"
-            className="w-full justify-start text-left hover:bg-secondary/50"
-          >
+
+          <Button variant="ghost" className="w-full justify-start text-left hover:bg-secondary/50">
             <User className="mr-3 h-4 w-4" />
             About
           </Button>
-          
-          <Button
-            variant="ghost"
-            className="w-full justify-start text-left hover:bg-secondary/50"
-          >
+
+          <Button variant="ghost" className="w-full justify-start text-left hover:bg-secondary/50">
             <Tags className="mr-3 h-4 w-4" />
             Categories
           </Button>
@@ -56,7 +46,12 @@ export function BlogSidebar({ onSelectPost }: BlogSidebarProps) {
       {/* Footer */}
       <div className="p-4 border-t border-border">
         <p className="text-xs text-blog-meta">
-          Built with React & Markdown
+          The entire thing is in{" "}
+          <a href="https://github.com/suka712/sukaseven.com" target="_blank"
+            className="text-blue-400 hover:text-blue-500">
+            this Github
+          </a>
+          .
         </p>
       </div>
     </div>
