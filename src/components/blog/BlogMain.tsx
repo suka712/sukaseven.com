@@ -16,7 +16,7 @@ export function BlogMain({ posts, selectedPost, onSelectPost, isMobile = false }
     return (
       <div className="h-full flex flex-col">
         {/* Header with back button */}
-        <div className="border-b border-border p-4 flex items-center gap-4">
+        <div className="border-b border-border p-8 pt-9 pl-4 flex items-center gap-4">
           <Button
             variant="ghost"
             size="sm"
@@ -40,12 +40,12 @@ export function BlogMain({ posts, selectedPost, onSelectPost, isMobile = false }
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="border-b border-border p-6">
-        <h1 className="text-2xl font-bold text-foreground">
-          Latest Posts
+      <div className="border-b border-border p-6 whitespace-nowrap">
+        <h1 className="text-xl font-bold text-foreground">
+          Suka's Journal of super advanced tech
         </h1>
         <p className="text-blog-meta mt-1">
-          Discover thoughts, ideas, and insights
+          Guides to building missles and such.
         </p>
       </div>
 
