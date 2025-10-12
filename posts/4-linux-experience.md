@@ -26,7 +26,7 @@ I installed a version (or distro) of `Linux` called `Linux Mint` at first. What 
 
 ### The Manjaro experience
 
-![alt text](4-linux-experience.png)
+![alt text](https://github.com/suka712/sukaseven.com/blob/master/posts/4-linux-experience.png?raw=true)
 
 After playing with Mint for 18 hours, I got the suggestion of installing a version of `Arch Linux` called `Manjaro`. It is like Arch with training wheels where you are forced to learn a lot about computer and apps but you have everything working out the box.
 
