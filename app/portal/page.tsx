@@ -16,10 +16,12 @@ const Portal = () => {
   const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+
   const sendOtp = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/auth/email', {
+      const res = await fetch(`${API_URL}/auth/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -36,7 +38,7 @@ const Portal = () => {
   const verifyOtp = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/auth/verify', {
+      const res = await fetch(`${API_URL}/auth/otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp }),
@@ -51,7 +53,7 @@ const Portal = () => {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault()
     if (toggle === 'email') sendOtp()
     else if (toggle === 'otp') verifyOtp()
