@@ -23,6 +23,7 @@ const Portal = () => {
     try {
       const res = await fetch(`${API_URL}/auth/email`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
@@ -40,6 +41,7 @@ const Portal = () => {
     try {
       const res = await fetch(`${API_URL}/auth/otp`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp }),
       })
