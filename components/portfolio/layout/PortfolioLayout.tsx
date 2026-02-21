@@ -9,8 +9,8 @@ import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
 import { PingPhone } from "../sidebar/right/PingPhone";
-import { Login } from "../sidebar/right/Login";
-import { NavigationTerminal } from "../sidebar/terminal/NavigationTerminal";
+import { Login } from "../sidebar/ri../sidebar/bottom/NavigationTerminal
+import { NavigationTerminal } f../sidebar/bottom/StatsTerminalonTerminal";
 import { LeftHealthPanel } from "../sidebar/left/LeftHealthPanel";
 import { StatsTerminal } from "../sidebar/terminal/StatsTerminal";
 
