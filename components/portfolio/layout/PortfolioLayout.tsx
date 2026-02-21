@@ -3,15 +3,16 @@
 import { useState } from "react";
 import { GridLayout } from "./GridLayout";
 import { TopTabs } from "../sidebar/top/TopTabs";
+import { LastActive } from "../sidebar/top/LastActive";
 import { LeftFileTree } from "../sidebar/left/LeftFileTree";
-import { LeftHealthPanel } from "../sidebar/left/LeftHealthPanel";
+import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
 import { PingPhone } from "../sidebar/right/PingPhone";
-import { Links } from "../sidebar/right/Links";
-import { NavigationTerminal } from "../terminal/NavigationTerminal";
-import { StatsTerminal } from "../terminal/StatsTerminal";
-import { LastActive } from "../sidebar/top/LastActive";
+import { Login } from "../sidebar/right/Login";
+import { NavigationTerminal } from "../sidebar/terminal/NavigationTerminal";
+import { LeftHealthPanel } from "../sidebar/left/LeftHealthPanel";
+import { StatsTerminal } from "../sidebar/terminal/StatsTerminal";
 
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
@@ -29,12 +30,13 @@ export const PortfolioLayout = () => {
       tabs={<TopTabs />}
       lastActive={<LastActive />}
       leftFileTree={<LeftFileTree onFileSelect={handleFileSelect} activePath={activePath} />}
-      leftHealthPanel={<LeftHealthPanel />}
+      leftLinks={<Links />}
       central={<CentralPanel contentPath={activePath} />}
       rightListening={<ListeningTo />}
       rightPing={<PingPhone />}
-      rightLinks={<Links />}
+      rightLogin={<Login />}
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
+      healthPanel={<LeftHealthPanel />}
       statsTerminal={<StatsTerminal />}
     />
   );

@@ -5,9 +5,6 @@ import { ExternalLink } from "lucide-react";
 const links = [
   { label: "github", url: "https://github.com/suka712" },
   { label: "katanaid", url: "https://katanaid.com" },
-  { label: "caphne", url: "https://caphne.co" },
-  { label: "anyu", url: "https://anyu.sukaseven.com" },
-  { label: "tldraw", url: "https://tldraw.sukaseven.com" },
 ];
 
 export function Links() {
@@ -16,7 +13,7 @@ export function Links() {
       <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
         Links
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex gap-2">
         {links.map((link) => (
           <a
             key={link.label}
