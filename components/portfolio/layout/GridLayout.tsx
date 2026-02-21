@@ -1,6 +1,7 @@
 interface GridLayoutProps {
   tabs: React.ReactNode;
-  leftSidebar: React.ReactNode;
+  leftFileTree: React.ReactNode;
+  leftHealthPanel: React.ReactNode;
   central: React.ReactNode;
   rightSidebar: React.ReactNode;
   navTerminal: React.ReactNode;
@@ -9,7 +10,8 @@ interface GridLayoutProps {
 
 export const GridLayout = ({
   tabs,
-  leftSidebar,
+  leftFileTree,
+  leftHealthPanel,
   central,
   rightSidebar,
   navTerminal,
@@ -23,8 +25,13 @@ export const GridLayout = ({
       {/* Main Grid */}
       <div className="flex-1 grid grid-cols-[270px_1fr_280px] gap-2 min-h-0">
         {/* Left Sidebar */}
-        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
-          {leftSidebar}
+        <div className="flex flex-col gap-2">
+          <div className="overflow-hidden rounded-xl border border-border bg-card h-full">
+            {leftFileTree}
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
+            {leftHealthPanel}
+          </div>
         </div>
 
         {/* Central Panel */}

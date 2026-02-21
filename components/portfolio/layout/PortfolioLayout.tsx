@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { GridLayout } from "./GridLayout";
 import { TopTabs } from "../tabs/TopTabs";
-import { LeftSidebar } from "../sidebar/LeftSidebar";
+import { LeftFileTree } from "../sidebar/LeftFileTree";
 import { CentralPanel } from "../central/CentralPanel";
 import { RightSidebar } from "../sidebar/RightSidebar";
 import { NavigationTerminal } from "../terminal/NavigationTerminal";
 import { StatsTerminal } from "../terminal/StatsTerminal";
+import { LeftHealthPanel } from "../sidebar/LeftHealthPanel";
 
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
@@ -23,7 +24,9 @@ export const PortfolioLayout = () => {
   return (
     <GridLayout
       tabs={<TopTabs />}
-      leftSidebar={<LeftSidebar onFileSelect={handleFileSelect} activePath={activePath} />}
+      leftFileTree={<LeftFileTree onFileSelect={handleFileSelect} activePath={activePath} />}
+      // leftHealthPanel={}
+      leftHealthPanel={<LeftHealthPanel/>}
       central={<CentralPanel contentPath={activePath} />}
       rightSidebar={<RightSidebar />}
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
