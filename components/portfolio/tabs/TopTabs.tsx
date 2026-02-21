@@ -3,7 +3,7 @@
 import { tabs } from "@/lib/mock-data";
 import type { Tab } from "@/types/portfolio";
 
-export function TopTabs() {
+export const TopTabs = () => {
   return (
     <div className="flex items-center border-b border-border bg-card overflow-x-auto">
       {tabs.map((tab) => (
@@ -16,7 +16,7 @@ export function TopTabs() {
   );
 }
 
-function TabItem({ tab }: { tab: Tab }) {
+const TabItem = ({ tab }: { tab: Tab }) => {
   if (tab.isActive) {
     return (
       <div className="flex items-center gap-1.5 border-r border-border bg-background px-4 py-2 text-sm text-foreground">

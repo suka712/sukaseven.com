@@ -9,7 +9,7 @@ import { RightSidebar } from "../sidebar/RightSidebar";
 import { NavigationTerminal } from "../terminal/NavigationTerminal";
 import { StatsTerminal } from "../terminal/StatsTerminal";
 
-export function PortfolioLayout() {
+export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
 
   const handleFileSelect = (path: string) => {
@@ -23,14 +23,10 @@ export function PortfolioLayout() {
   return (
     <GridLayout
       tabs={<TopTabs />}
-      leftSidebar={
-        <LeftSidebar onFileSelect={handleFileSelect} activePath={activePath} />
-      }
+      leftSidebar={<LeftSidebar onFileSelect={handleFileSelect} activePath={activePath} />}
       central={<CentralPanel contentPath={activePath} />}
       rightSidebar={<RightSidebar />}
-      navTerminal={
-        <NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />
-      }
+      navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
       statsTerminal={<StatsTerminal />}
     />
   );
