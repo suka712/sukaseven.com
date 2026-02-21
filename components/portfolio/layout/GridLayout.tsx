@@ -65,14 +65,14 @@ export const GridLayout = ({
       </div>
 
       {/* Bottom — 3 cards */}
-      <div className="grid grid-cols-3 gap-2 max-h-3/12">
-        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
-          {navTerminal}
-        </div>
-        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
+      <div className="flex gap-2 max-h-3/12">
+        <div className="w-67.5 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
           {healthPanel}
         </div>
-        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
+        <div className="w-1/4 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+          {navTerminal}
+        </div>
+        <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
           {statsTerminal}
         </div>
       </div>
