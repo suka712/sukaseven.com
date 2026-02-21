@@ -1,0 +1,33 @@
+---
+title: "caphne"
+description: "real-time collaboration tool"
+status: "live"
+displayExtension: ".co"
+url: "https://caphne.co"
+github: "https://github.com/suka712/caphne"
+tech: ["Next.js", "WebSockets", "Go", "Postgres"]
+---
+
+## what it is
+
+caphne is a real-time collaboration tool. think shared workspace — documents, cursors, presence. multiple people editing the same thing at the same time.
+
+## why i built it
+
+wanted to understand CRDTs and operational transforms from the ground up. reading papers is one thing — building a system that handles concurrent edits at scale is another.
+
+## how it works
+
+- **WebSocket server** in Go handles real-time message broadcasting
+- **CRDT-based** conflict resolution for concurrent edits
+- **Presence system** shows who's online and where their cursor is
+- **Next.js frontend** with a custom editor component
+
+## technical challenges
+
+getting cursor positions to stay accurate across concurrent edits was brutal. character offsets shift when someone inserts text before your cursor. solved it by treating cursor positions as CRDT references rather than raw indices.
+
+## links
+
+- [live site](https://caphne.co)
+- [github](https://github.com/suka712/caphne)

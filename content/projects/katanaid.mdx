@@ -1,0 +1,35 @@
+---
+title: "katanaid"
+description: "identity & auth platform"
+status: "live"
+displayExtension: ".com"
+url: "https://katanaid.com"
+github: "https://github.com/suka712/katanaid"
+tech: ["Go", "Postgres", "Redis", "Next.js"]
+---
+
+## what it is
+
+katanaid is an identity and authentication platform. email OTP, session management, API key provisioning — the auth layer i use across all my projects.
+
+## why i built it
+
+every side project needed auth. copy-pasting auth code between projects was a nightmare. katanaid centralizes it — one service handles identity for everything.
+
+## how it works
+
+- **Go backend** handles OTP generation, verification, session tokens
+- **Postgres** stores users, sessions, API keys
+- **Redis** for OTP temp storage and rate limiting
+- **Next.js** frontend for the management dashboard
+
+auth flow: user enters email → backend generates OTP → sends via SMTP → user verifies → session token issued.
+
+## technical challenges
+
+the hardest part was getting token refresh right without race conditions. multiple tabs could trigger simultaneous refresh requests, invalidating each other's tokens. solved it with a mutex-style lock using Redis.
+
+## links
+
+- [live site](https://katanaid.com)
+- [github](https://github.com/suka712/katanaid)
