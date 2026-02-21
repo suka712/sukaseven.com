@@ -16,8 +16,8 @@ export function StatsTerminal() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full bg-background font-mono">
-      <div className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground border-b border-border">
+    <div className="flex flex-col h-full font-mono">
+      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         Stats
       </div>
       <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2 text-xs">

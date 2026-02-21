@@ -6,7 +6,7 @@ import { PingPhone } from "./PingPhone";
 
 export function RightSidebar() {
   return (
-    <div className="flex flex-col h-full border-l border-border bg-card overflow-y-auto">
+    <div className="flex flex-col h-full overflow-y-auto">
       <LastActive />
       <ContactForm />
       <PingPhone />

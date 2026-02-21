@@ -16,31 +16,36 @@ export const GridLayout = ({
   statsTerminal,
 }: GridLayoutProps) => {
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-background">
+    <div className="h-screen w-screen flex flex-col overflow-hidden bg-background p-2 gap-2">
       {/* Top Tabs */}
       <div className="shrink-0">{tabs}</div>
 
       {/* Main Grid */}
-      <div className="flex-1 grid grid-cols-[270px_1fr_280px] min-h-0">
+      <div className="flex-1 grid grid-cols-[270px_1fr_280px] gap-2 min-h-0">
         {/* Left Sidebar */}
-        <div className="row-span-1 min-h-0 overflow-hidden">{leftSidebar}</div>
+        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
+          {leftSidebar}
+        </div>
 
         {/* Central Panel */}
-        <div className="row-span-1 min-h-0 overflow-hidden border-x border-border">
+        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
           {central}
         </div>
 
         {/* Right Sidebar */}
-        <div className="row-span-1 min-h-0 overflow-hidden">{rightSidebar}</div>
+        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
+          {rightSidebar}
+        </div>
       </div>
 
-      <div className="flex-1 grid grid-cols-[0.3fr_0.7fr] max-h-3/12">
+      {/* Terminals */}
+      <div className="grid grid-cols-[0.3fr_0.7fr] gap-2 max-h-3/12">
         {/* Navigation Terminal */}
-        <div className="col-span-1 min-h-0 overflow-hidden border-t border-border">
+        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
           {navTerminal}
         </div>
         {/* Stats Terminal */}
-        <div className="col-span-1 min-h-0 overflow-hidden border-t border-l border-border">
+        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
           {statsTerminal}
         </div>
       </div>

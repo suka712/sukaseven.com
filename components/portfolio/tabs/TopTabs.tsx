@@ -5,12 +5,13 @@ import type { Tab } from "@/types/portfolio";
 
 export const TopTabs = () => {
   return (
-    <div className="flex items-center border-b border-border bg-card overflow-x-auto">
+    <div className="flex items-center gap-1 rounded-xl border border-border bg-card overflow-x-auto px-1 py-1">
       {tabs.map((tab) => (
         <TabItem key={tab.label} tab={tab} />
       ))}
+
       <button className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-        +
+        ...
       </button>
     </div>
   );
@@ -19,7 +20,7 @@ export const TopTabs = () => {
 const TabItem = ({ tab }: { tab: Tab }) => {
   if (tab.isActive) {
     return (
-      <div className="flex items-center gap-1.5 border-r border-border bg-background px-4 py-2 text-sm text-foreground">
+      <div className="flex items-center gap-1.5 rounded-lg bg-accent/60 px-4 py-1.5 text-sm text-foreground">
         <span className="size-2 rounded-full bg-emerald-500" />
         {tab.label}
       </div>
@@ -31,7 +32,7 @@ const TabItem = ({ tab }: { tab: Tab }) => {
       href={tab.url}
       target={tab.isExternal ? "_blank" : undefined}
       rel={tab.isExternal ? "noopener noreferrer" : undefined}
-      className="flex items-center gap-1.5 border-r border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+      className="flex items-center gap-2 rounded-lg px-4 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
     >
       {tab.label}
       {tab.isExternal && (

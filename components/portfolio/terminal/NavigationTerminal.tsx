@@ -211,10 +211,10 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
 
   return (
     <div
-      className="flex flex-col h-full bg-background font-mono cursor-text"
+      className="flex flex-col h-full font-mono cursor-text"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground border-b border-border">
+      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         Terminal
       </div>
       <div className="flex-1 overflow-y-auto px-3 py-2 space-y-0.5">

@@ -9,7 +9,7 @@ interface LeftSidebarProps {
 
 export function LeftSidebar({ onFileSelect, activePath }: LeftSidebarProps) {
   return (
-    <div className="flex flex-col h-full border-r border-border bg-card overflow-y-auto">
+    <div className="flex flex-col h-full overflow-y-auto">
       <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         Explorer
       </div>

@@ -10,7 +10,7 @@ export function LastActive() {
   });
 
   return (
-    <div className="border-b border-border p-3">
+    <div className="p-3 pb-2">
       <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
         Last Active
       </div>
