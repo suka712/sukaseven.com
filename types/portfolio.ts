@@ -39,3 +39,9 @@ export interface StatsData {
   openPRs: number;
   openIssues: number;
 }
+
+export interface HealthPing {
+  name: string;
+  isUp: boolean;
+  latency: number;
+}

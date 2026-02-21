@@ -9,7 +9,7 @@ import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
 import { PingPhone } from "../sidebar/right/PingPhone";
-import { LeftHealthPanel } from "../sidebar/left/LeftHealthPanel";
+import { LeftHealthPanel } from "../sidebar/bottom/HealthPanel";
 import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
 import { Login } from "../sidebar/right/Login";
