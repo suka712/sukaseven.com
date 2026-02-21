@@ -20,7 +20,7 @@ export function Login() {
   };
 
   return (
-    <div className="p-3 h-full flex flex-col">
+    <div className="p-4 h-full flex flex-col">
       <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
         Login
       </div>

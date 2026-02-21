@@ -15,10 +15,10 @@ export const LeftHealthPanel = () => {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto p-4">
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        HEALTH
+      <div className="text-xs font-semibold tracking-wider text-muted-foreground pb-2">
+        Health
       </div>
-      <div className="font-mono text-xs tracking-wider leading-loose">
+      <div className="font-mono text-xs tracking-wider leading-loose px-3">
         {healthPings.map((svc) => (
           <div key={svc.name} className="flex items-center gap-2 pt-2">
             <span
