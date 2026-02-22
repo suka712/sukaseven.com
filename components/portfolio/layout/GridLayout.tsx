@@ -149,7 +149,7 @@ export const GridLayout = ({
           <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
             {leftLinks}
           </div>
-          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+          <div className="h-60 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
             {healthPanel}
           </div>
           {/* Resize handle overlaid on the right edge */}
@@ -195,7 +195,7 @@ export const GridLayout = ({
       )}
 
       {/* Bottom Bar (row 3, cols 2-3) */}
-      <div className="flex gap-2 max-h-60 col-span-2">
+      <div className="flex gap-2 h-60 col-span-2">
         <div className="w-1/3 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
           {navTerminal}
         </div>
