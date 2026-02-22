@@ -28,7 +28,7 @@ export const LastActive = () => {
       <span className="size-2 shrink-0 rounded-full bg-blue-500 animate-pulse" />
       {error ? error : <>
         <span className="text-foreground whitespace-nowrap">
-          {isLoading || !event ? 'Hold on...' : `[${formatTimeAgo(event.timeAgo)}]`}
+          {isLoading || !event ? 'Hold on...' : `[${formatTimeAgo(event.time)}]`}
         </span>
         <span className="text-muted-foreground whitespace-nowrap">
           {isLoading || !event ? null :

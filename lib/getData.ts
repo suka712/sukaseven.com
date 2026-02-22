@@ -21,7 +21,7 @@ export type GithubEvent = {
   action: string,
   repoName: string,
   repoUrl: string,
-  timeAgo: Date
+  time: Date
 }
 
 export const getLatestGithubEvent = async (): Promise<GithubEvent> => {
@@ -32,13 +32,13 @@ export const getLatestGithubEvent = async (): Promise<GithubEvent> => {
   const event = events[0]
   const action = GITHUB_EVENT_LABELS[event.type]
   const repoName = event.repo.name
-  const repoUrl = event.repo.url
-  const timeAgo = new Date(event.created_at)
+  const repoUrl = `https://github.com/${repoName}`
+  const time = new Date(event.created_at)
 
   return {
     action,
     repoName,
     repoUrl,
-    timeAgo
+    time
   }
 }
