@@ -11,7 +11,7 @@ export const LastActive = () => {
 
   return (
     <div className="flex rounded-xl border border-border bg-card items-center gap-3 px-4 py-3 overflow-hidden">
-      <span className="size-2 shrink-0 rounded-full bg-emerald-500 animate-pulse" />
+      <span className="size-2 shrink-0 rounded-full bg-blue-500 animate-pulse" />
       <div className="text-sm text-foreground whitespace-nowrap">{timeAgo}</div>
       <div className="text-xs text-muted-foreground whitespace-nowrap">
         pushed to {stats.lastPushedRepo}: {"Add migration for preferences"}
