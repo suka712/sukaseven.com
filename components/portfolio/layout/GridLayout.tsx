@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type CollapsibleSection = "left" | "right";
@@ -79,77 +80,123 @@ export const GridLayout = ({
   const leftCollapsed = collapsedSections.has("left");
   const rightCollapsed = collapsedSections.has("right");
 
-  const leftCol = leftCollapsed ? "36px" : "270px";
+  const [leftWidth, setLeftWidth] = useState(270);
+  const isResizing = useRef(false);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    isResizing.current = true;
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing.current) return;
+      const newWidth = e.clientX - 8;
+      setLeftWidth(Math.max(200, Math.min(450, newWidth)));
+    };
+
+    const handleMouseUp = () => {
+      if (!isResizing.current) return;
+      isResizing.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  const leftCol = leftCollapsed ? "36px" : `${leftWidth}px`;
   const rightCol = rightCollapsed ? "36px" : "280px";
 
+  // 3-row, 3-col grid. Left sidebar spans all 3 rows.
+  // Rows: top(auto) | middle(1fr) | bottom(auto)
+  // Cols: left | center(1fr) | right
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-background p-2 gap-2">
-      {/* Top Bar: Uptime + Tabs + Last Active */}
-      <div className="shrink-0 h-11 flex gap-2">
-        <div>{uptime}</div>
-        <div className="w-full">{tabs}</div>
-        <div>{lastActive}</div>
-      </div>
-
-      {/* Main Grid */}
-      <div
-        className="flex-1 grid gap-2 min-h-0 transition-all duration-200"
-        style={{ gridTemplateColumns: `${leftCol} 1fr ${rightCol}` }}
-      >
-        {/* Left Sidebar */}
-        {leftCollapsed ? (
+    <div
+      className="h-screen w-screen overflow-hidden bg-background p-2 grid gap-2"
+      style={{
+        gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
+        gridTemplateRows: "auto 1fr auto",
+      }}
+    >
+      {/* Left Sidebar — spans all 3 rows */}
+      {leftCollapsed ? (
+        <div className="row-span-3">
           <CollapsedBar
             section="left"
             label="Explorer"
             onExpand={() => onToggleSection("left")}
           />
-        ) : (
-          <div className="flex flex-col gap-2">
-            <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
-              {leftFileTree}
-            </div>
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {leftListening}
-            </div>
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {leftLinks}
-            </div>
-          </div>
-        )}
-
-        {/* Central Panel */}
-        <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
-          {central}
         </div>
-
-        {/* Right Sidebar */}
-        {rightCollapsed ? (
-          <CollapsedBar
-            section="right"
-            label="Sidebar"
-            onExpand={() => onToggleSection("right")}
-          />
-        ) : (
-          <div className="flex flex-col gap-2 min-h-0">
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {rightLogin}
-            </div>
-            <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
-              {rightTaskBoard}
-            </div>
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {rightPing}
-            </div>
+      ) : (
+        <div className="row-span-3 relative flex flex-col gap-2 min-h-0">
+          <div className="shrink-0">
+            {uptime}
           </div>
-        )}
+          <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card min-h-0">
+            {leftFileTree}
+          </div>
+          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+            {leftListening}
+          </div>
+          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+            {leftLinks}
+          </div>
+          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+            {healthPanel}
+          </div>
+          {/* Resize handle overlaid on the right edge */}
+          <div
+            onMouseDown={handleMouseDown}
+            className="absolute top-0 -right-1.5 w-3 h-full cursor-col-resize flex items-center justify-center group z-10"
+          >
+            <div className="w-0.5 h-8 rounded-full bg-transparent group-hover:bg-muted-foreground transition-colors" />
+          </div>
+        </div>
+      )}
+
+      {/* Top Bar: Tabs + Last Active (row 1, cols 2-3) */}
+      <div className="h-11 flex gap-2 col-span-2">
+        <div className="w-full">{tabs}</div>
+        <div>{lastActive}</div>
       </div>
 
-      {/* Bottom */}
-      <div className="flex gap-2 max-h-3/12">
-        <div className="w-67.5 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
-          {healthPanel}
+      {/* Central Panel (row 2, col 2) */}
+      <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
+        {central}
+      </div>
+
+      {/* Right Sidebar (row 2, col 3) */}
+      {rightCollapsed ? (
+        <CollapsedBar
+          section="right"
+          label="Sidebar"
+          onExpand={() => onToggleSection("right")}
+        />
+      ) : (
+        <div className="flex flex-col gap-2 min-h-0">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
+            {rightLogin}
+          </div>
+          <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
+            {rightTaskBoard}
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
+            {rightPing}
+          </div>
         </div>
-        <div className="w-1/4 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
+      )}
+
+      {/* Bottom Bar (row 3, cols 2-3) */}
+      <div className="flex gap-2 max-h-60 col-span-2">
+        <div className="w-1/3 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
           {navTerminal}
         </div>
         <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
