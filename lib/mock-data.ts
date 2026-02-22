@@ -1,4 +1,4 @@
-import type { Tab, FileNode, StatsData } from "@/types/portfolio";
+import type { Tab, FileNode, StatsData, RoadmapTask, GuestbookEntry } from "@/types/portfolio";
 
 export const tabs: Tab[] = [
   { label: "sukaseven", url: "/", isActive: true, isExternal: false },
@@ -133,3 +133,19 @@ export function getMockStats(): StatsData {
     openIssues: 7,
   };
 }
+
+export const roadmapTasks: RoadmapTask[] = [
+  { project: "katanaid", task: "OAuth2 PKCE flow", status: "in-progress" },
+  { project: "caphne", task: "Real-time cursor sync", status: "done" },
+  { project: "sukaseven", task: "Portfolio v2 layout", status: "in-progress" },
+  { project: "hasaki-go", task: "WebSocket reconnect", status: "todo" },
+  { project: "katanaid", task: "Rate limiter middleware", status: "done" },
+  { project: "anyu-s3", task: "Presigned URL expiry config", status: "todo" },
+  { project: "caphne", task: "Export to PDF", status: "todo" },
+];
+
+export const guestbookEntries: GuestbookEntry[] = [
+  { name: "alex@dev.io", message: "clean portfolio, love the terminal vibe", timestamp: "2025-02-20T14:30:00Z" },
+  { name: "jenny", message: "the ping phone feature is hilarious", timestamp: "2025-02-18T09:15:00Z" },
+  { name: "kai.m", message: "sick layout. what stack is this?", timestamp: "2025-02-15T22:45:00Z" },
+];

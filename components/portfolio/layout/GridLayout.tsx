@@ -8,16 +8,20 @@ interface GridLayoutProps {
   tabs: React.ReactNode;
   lastActive: React.ReactNode;
   leftFileTree: React.ReactNode;
+  leftListening: React.ReactNode;
   leftLinks: React.ReactNode;
   central: React.ReactNode;
-  rightListening: React.ReactNode;
-  rightPing: React.ReactNode;
   rightLogin: React.ReactNode;
+  rightTaskBoard: React.ReactNode;
+  rightPing: React.ReactNode;
   navTerminal: React.ReactNode;
   healthPanel: React.ReactNode;
   statsTerminal: React.ReactNode;
+  bottomGuide: React.ReactNode;
   collapsedSections: Set<CollapsibleSection>;
   onToggleSection: (section: CollapsibleSection) => void;
+  bottomGuideCollapsed: boolean;
+  onToggleBottomGuide: () => void;
 }
 
 function CollapsedBar({
@@ -55,16 +59,20 @@ export const GridLayout = ({
   tabs,
   lastActive,
   leftFileTree,
+  leftListening,
   leftLinks,
   central,
-  rightListening,
-  rightPing,
   rightLogin,
+  rightTaskBoard,
+  rightPing,
   navTerminal,
   healthPanel,
   statsTerminal,
+  bottomGuide,
   collapsedSections,
   onToggleSection,
+  bottomGuideCollapsed,
+  onToggleBottomGuide,
 }: GridLayoutProps) => {
   const leftCollapsed = collapsedSections.has("left");
   const rightCollapsed = collapsedSections.has("right");
@@ -98,6 +106,9 @@ export const GridLayout = ({
               {leftFileTree}
             </div>
             <div className="overflow-hidden rounded-xl border border-border bg-card">
+              {leftListening}
+            </div>
+            <div className="overflow-hidden rounded-xl border border-border bg-card">
               {leftLinks}
             </div>
           </div>
@@ -118,13 +129,13 @@ export const GridLayout = ({
         ) : (
           <div className="flex flex-col gap-2 min-h-0">
             <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {rightListening}
+              {rightLogin}
             </div>
-            <div className="flex-2 overflow-hidden rounded-xl border border-border bg-card">
-              {rightPing}
+            <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
+              {rightTaskBoard}
             </div>
             <div className="overflow-hidden rounded-xl border border-border bg-card">
-              {rightLogin}
+              {rightPing}
             </div>
           </div>
         )}
@@ -141,6 +152,30 @@ export const GridLayout = ({
         <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
           {statsTerminal}
         </div>
+        {bottomGuideCollapsed ? (
+          <div
+            onClick={onToggleBottomGuide}
+            className="w-9 shrink-0 flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card cursor-pointer hover:bg-accent/30 transition-colors"
+          >
+            <ChevronLeft className="size-3 text-muted-foreground" />
+            <span
+              className="text-xs text-muted-foreground uppercase tracking-wider font-semibold"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              Guide
+            </span>
+          </div>
+        ) : (
+          <div className="w-72 shrink-0 overflow-hidden rounded-xl border border-border bg-card relative">
+            <button
+              onClick={onToggleBottomGuide}
+              className="absolute top-1 right-1 text-muted-foreground hover:text-foreground transition-colors p-0.5"
+            >
+              <ChevronRight className="size-3" />
+            </button>
+            {bottomGuide}
+          </div>
+        )}
       </div>
     </div>
   );

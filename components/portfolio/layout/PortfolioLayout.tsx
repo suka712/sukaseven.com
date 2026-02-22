@@ -9,9 +9,11 @@ import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
 import { PingPhone } from "../sidebar/right/PingPhone";
+import { TaskBoard } from "../sidebar/right/TaskBoard";
 import { LeftHealthPanel } from "../sidebar/bottom/HealthPanel";
 import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
+import { NavigationGuide } from "../sidebar/bottom/NavigationGuide";
 import { Login } from "../sidebar/right/Login";
 
 type CollapsibleSection = "left" | "right";
@@ -19,6 +21,7 @@ type CollapsibleSection = "left" | "right";
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
   const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
+  const [bottomGuideCollapsed, setBottomGuideCollapsed] = useState(false);
 
   const handleFileSelect = (path: string) => {
     setActivePath(path);
@@ -40,21 +43,29 @@ export const PortfolioLayout = () => {
     });
   }, []);
 
+  const toggleBottomGuide = useCallback(() => {
+    setBottomGuideCollapsed((prev) => !prev);
+  }, []);
+
   return (
     <GridLayout
       tabs={<TopTabs />}
       lastActive={<LastActive />}
       leftFileTree={<Explorer onFileSelect={handleFileSelect} activePath={activePath} />}
+      leftListening={<ListeningTo />}
       leftLinks={<Links />}
       central={<CentralPanel contentPath={activePath} />}
-      rightListening={<ListeningTo />}
-      rightPing={<PingPhone />}
       rightLogin={<Login />}
+      rightTaskBoard={<TaskBoard />}
+      rightPing={<PingPhone />}
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
       healthPanel={<LeftHealthPanel />}
       statsTerminal={<StatsTerminal />}
+      bottomGuide={<NavigationGuide />}
       collapsedSections={collapsedSections}
       onToggleSection={toggleSection}
+      bottomGuideCollapsed={bottomGuideCollapsed}
+      onToggleBottomGuide={toggleBottomGuide}
     />
   );
 };

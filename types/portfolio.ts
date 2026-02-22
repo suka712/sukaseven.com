@@ -45,3 +45,15 @@ export interface HealthPing {
   isUp: boolean;
   latency: number;
 }
+
+export interface RoadmapTask {
+  project: string;
+  task: string;
+  status: "todo" | "in-progress" | "done";
+}
+
+export interface GuestbookEntry {
+  name: string;
+  message: string;
+  timestamp: string;
+}
