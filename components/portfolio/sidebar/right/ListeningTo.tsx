@@ -58,7 +58,7 @@ export function ListeningTo() {
     fetchNowPlaying();
     const interval = setInterval(fetchNowPlaying, UPDATE_INTERVAL)
     return () => clearInterval(interval)
-  }, [data]);
+  }, []);
 
   return (
     <div className="p-4">
