@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { GridLayout } from "./GridLayout";
 import { TopTabs } from "../sidebar/top/TopTabs";
 import { LastActive } from "../sidebar/top/LastActive";
@@ -14,8 +14,11 @@ import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
 import { Login } from "../sidebar/right/Login";
 
+type CollapsibleSection = "left" | "right";
+
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
+  const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
 
   const handleFileSelect = (path: string) => {
     setActivePath(path);
@@ -24,6 +27,18 @@ export const PortfolioLayout = () => {
   const handlePing = () => {
     // Mock ping - would POST to backend in production
   };
+
+  const toggleSection = useCallback((section: CollapsibleSection) => {
+    setCollapsedSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(section)) {
+        next.delete(section);
+      } else {
+        next.add(section);
+      }
+      return next;
+    });
+  }, []);
 
   return (
     <GridLayout
@@ -38,6 +53,8 @@ export const PortfolioLayout = () => {
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
       healthPanel={<LeftHealthPanel />}
       statsTerminal={<StatsTerminal />}
+      collapsedSections={collapsedSections}
+      onToggleSection={toggleSection}
     />
   );
-}
+};

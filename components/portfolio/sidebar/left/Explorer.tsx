@@ -16,4 +16,4 @@ export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
       <FileTree onFileSelect={onFileSelect} activePath={activePath} />
     </div>
   );
-}
+};
