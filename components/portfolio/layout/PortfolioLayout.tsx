@@ -15,6 +15,7 @@ import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
 import { NavigationGuide } from "../sidebar/bottom/NavigationGuide";
 import { Login } from "../sidebar/right/Login";
+import { Uptime } from "../sidebar/top/Uptime";
 
 type CollapsibleSection = "left" | "right";
 
@@ -49,6 +50,7 @@ export const PortfolioLayout = () => {
 
   return (
     <GridLayout
+      uptime={<Uptime />}
       tabs={<TopTabs />}
       lastActive={<LastActive />}
       leftFileTree={<Explorer onFileSelect={handleFileSelect} activePath={activePath} />}

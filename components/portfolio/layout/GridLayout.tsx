@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 type CollapsibleSection = "left" | "right";
 
 interface GridLayoutProps {
+  uptime: React.ReactNode;
   tabs: React.ReactNode;
   lastActive: React.ReactNode;
   leftFileTree: React.ReactNode;
@@ -56,6 +57,7 @@ function CollapsedBar({
 }
 
 export const GridLayout = ({
+  uptime,
   tabs,
   lastActive,
   leftFileTree,
@@ -82,8 +84,9 @@ export const GridLayout = ({
 
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-background p-2 gap-2">
-      {/* Top Bar: Tabs + Last Active */}
-      <div className="shrink-0 flex gap-2">
+      {/* Top Bar: Uptime + Tabs + Last Active */}
+      <div className="shrink-0 h-11 flex gap-2">
+        <div>{uptime}</div>
         <div className="w-full">{tabs}</div>
         <div>{lastActive}</div>
       </div>
