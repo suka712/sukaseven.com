@@ -52,7 +52,7 @@ export const GridLayout = ({
 
         {/* Right Sidebar — 3 separate cards */}
         <div className="flex flex-col gap-2 min-h-0">
-          <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
             {rightListening}
           </div>
           <div className="flex-2 overflow-hidden rounded-xl border border-border bg-card">

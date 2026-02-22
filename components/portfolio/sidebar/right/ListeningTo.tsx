@@ -90,19 +90,19 @@ export function ListeningTo() {
             {(data.track + + " — " + data.artist).length > 20 ?
               <div className="flex items-center text-sm text-foreground truncate gap-1">
                 <span className="hover:underline">{truncateWords(data.track, 3)}</span>
-                <span className="text-muted-foreground">{data.album && `— ${truncateText(data.artist, 8)}`}</span>
+                <span className="text-muted-foreground/80">{data.album && `${truncateText(data.artist, 8)}`}</span>
               </div>
-              : 
+              :
               <div className="flex items-center text-sm text-foreground truncate gap-1">
                 <span className="hover:underline">{data.track}</span>
-                <span className="text-muted-foreground">{data.artist}</span>
+                <span className="text-muted-foreground/80">{data.artist}</span>
               </div>}
 
 
-            <div className="mt-1 flex items-center gap-2 w-11/12">
-              <span className="text-[10px] text-muted-foreground tabular-nums">
-                {formatMsToSecond(progress)} / {formatMsToSecond(data.duration_ms)}
-              </span>
+            <div className="mt-1 flex items-center w-11/12 text-[10px] gap-1">
+            <div>
+              {formatMsToSecond(progress) + "\u00A0"}<span className="text-muted-foreground">/{"\u00A0" + formatMsToSecond(data.duration_ms)}</span>
+            </div>
               <div className="flex-1 h-0.5 rounded-full bg-accent-foreground/20 overflow-hidden">
                 <div
                   className="h-full bg-blue-500 rounded-full"
