@@ -1,3 +1,5 @@
+import { userConfig } from "@/config/userContent";
+
 const GITHUB_EVENT_LABELS: Record<string, string> = {
   CommitCommentEvent: "commented on a commit",
   CreateEvent: "created a branch or tag",
@@ -25,7 +27,7 @@ export type GithubEvent = {
 }
 
 export const getLatestGithubEvent = async (): Promise<GithubEvent> => {
-  const events = await fetch('https://api.github.com/users/suka712/events', {
+  const events = await fetch(`https://api.github.com/users/${userConfig.GITHUB_USERNAME}/events`, {
     method: "GET"
   }).then(r => r.json())
 
