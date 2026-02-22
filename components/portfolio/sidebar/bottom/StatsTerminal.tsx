@@ -16,11 +16,11 @@ export function StatsTerminal() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full font-mono p-4">
-      <div className="text-xs font-semiboldtracking-wider text-muted-foreground pb-2">
+    <div className="flex flex-col h-full p-4">
+      <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
         Stats
       </div>
-      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2 text-xs">
+      <div className="flex-1 font-mono overflow-y-auto px-3 py-2 space-y-2 text-xs">
         <div className="text-muted-foreground">
           streak: <span className="text-foreground">{stats.commitStreak} days</span>
         </div>

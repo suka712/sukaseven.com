@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GridLayout } from "./GridLayout";
 import { TopTabs } from "../sidebar/top/TopTabs";
 import { LastActive } from "../sidebar/top/LastActive";
-import { LeftFileTree } from "../sidebar/left/LeftFileTree";
+import { Explorer } from "../sidebar/left/Explorer";
 import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
@@ -29,7 +29,7 @@ export const PortfolioLayout = () => {
     <GridLayout
       tabs={<TopTabs />}
       lastActive={<LastActive />}
-      leftFileTree={<LeftFileTree onFileSelect={handleFileSelect} activePath={activePath} />}
+      leftFileTree={<Explorer onFileSelect={handleFileSelect} activePath={activePath} />}
       leftLinks={<Links />}
       central={<CentralPanel contentPath={activePath} />}
       rightListening={<ListeningTo />}

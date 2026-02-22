@@ -211,13 +211,13 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
 
   return (
     <div
-      className="flex flex-col h-full font-mono cursor-text p-4"
+      className="flex flex-col h-full cursor-text p-4"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="text-xs font-semibold tracking-wider text-muted-foreground pb-2">
+      <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
         Terminal
       </div>
-      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-0.5">
+      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-0.5 font-mono">
         {history.map((entry, i) => (
           <TerminalLine
             key={i}

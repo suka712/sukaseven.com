@@ -19,7 +19,7 @@ export function PingPhone() {
   };
 
   return (
-    <div className="p-3 h-full">
+    <div className="p-4 h-full">
       <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
         Ping My Phone
       </div>

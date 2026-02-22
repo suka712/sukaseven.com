@@ -7,10 +7,10 @@ interface LeftSidebarProps {
   activePath: string | null;
 }
 
-export const LeftFileTree = ({ onFileSelect, activePath }: LeftSidebarProps) => {
+export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
   return (
-    <div className="flex flex-col h-full overflow-y-auto">
-      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+    <div className="flex p-4 flex-col h-full overflow-y-auto">
+      <div className="text-xs pb-1 font-semibold uppercase tracking-wider text-muted-foreground">
         Explorer
       </div>
       <FileTree onFileSelect={onFileSelect} activePath={activePath} />

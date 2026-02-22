@@ -10,7 +10,7 @@ interface FileTreeProps {
 
 export function FileTree({ onFileSelect, activePath }: FileTreeProps) {
   return (
-    <div className="py-1">
+    <div className="py-2">
       {fileTree.map((node) => (
         <TreeNode
           key={node.path}

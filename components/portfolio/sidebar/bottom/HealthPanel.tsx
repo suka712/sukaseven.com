@@ -15,7 +15,7 @@ export const LeftHealthPanel = () => {
 
   return (
     <div className="flex flex-col h-full overflow-y-auto p-4">
-      <div className="text-xs font-semibold tracking-wider text-muted-foreground pb-2">
+      <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
         Health
       </div>
       <div className="font-mono text-xs tracking-wider leading-loose px-3">
