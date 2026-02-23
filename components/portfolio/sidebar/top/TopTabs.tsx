@@ -5,7 +5,7 @@ import type { Tab } from "@/types/portfolio";
 
 export const TopTabs = () => {
   return (
-    <div className="flex items-center gap-1 rounded-xl border border-border bg-card overflow-x-auto px-1 py-1">
+    <div className="glow-border flex items-center gap-1 rounded-xl border border-border bg-card overflow-x-auto px-1 py-1">
       {tabs.map((tab) => (
         <TabItem key={tab.label} tab={tab} />
       ))}

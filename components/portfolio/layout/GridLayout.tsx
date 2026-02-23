@@ -82,6 +82,7 @@ export const GridLayout = ({
 
   const [leftWidth, setLeftWidth] = useState(270);
   const isResizing = useRef(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -92,9 +93,27 @@ export const GridLayout = ({
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isResizing.current) return;
-      const newWidth = e.clientX - 8;
-      setLeftWidth(Math.max(200, Math.min(450, newWidth)));
+      // Resize logic
+      if (isResizing.current) {
+        const newWidth = e.clientX - 8;
+        setLeftWidth(Math.max(200, Math.min(450, newWidth)));
+      }
+
+      // Border glow: set mouse position relative to each card
+      const cards = rootRef.current?.querySelectorAll(".glow-border");
+      if (!cards) return;
+      const RADIUS = 300;
+      for (const card of cards) {
+        const el = card as HTMLElement;
+        const rect = el.getBoundingClientRect();
+        const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+        const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const opacity = Math.max(0, 1 - dist / RADIUS);
+        el.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
+        el.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
+        el.style.setProperty("--glow-opacity", `${opacity}`);
+      }
     };
 
     const handleMouseUp = () => {
@@ -120,6 +139,7 @@ export const GridLayout = ({
   // Cols: left | center(1fr) | right
   return (
     <div
+      ref={rootRef}
       className="h-screen w-screen overflow-hidden bg-background p-2 grid gap-2"
       style={{
         gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
@@ -140,17 +160,17 @@ export const GridLayout = ({
           <div className="shrink-0">
             {uptime}
           </div>
-          <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card min-h-0">
-            {leftFileTree}
+          <div className="glow-border flex-1 rounded-xl border border-border bg-card min-h-0 hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden h-full rounded-xl">{leftFileTree}</div>
           </div>
-          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
-            {leftListening}
+          <div className="glow-border shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden rounded-xl">{leftListening}</div>
           </div>
-          <div className="shrink-0 overflow-hidden rounded-xl border border-border bg-card">
-            {leftLinks}
+          <div className="glow-border shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden rounded-xl">{leftLinks}</div>
           </div>
-          <div className="h-60 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
-            {healthPanel}
+          <div className="glow-border h-60 shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden h-full rounded-xl">{healthPanel}</div>
           </div>
           {/* Resize handle overlaid on the right edge */}
           <div
@@ -169,8 +189,8 @@ export const GridLayout = ({
       </div>
 
       {/* Central Panel (row 2, col 2) */}
-      <div className="min-h-0 overflow-hidden rounded-xl border border-border bg-card">
-        {central}
+      <div className="glow-border min-h-0 rounded-xl border border-border bg-card">
+        <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
       {/* Right Sidebar (row 2, col 3) */}
@@ -182,25 +202,25 @@ export const GridLayout = ({
         />
       ) : (
         <div className="flex flex-col gap-2 min-h-0">
-          <div className="overflow-hidden rounded-xl border border-border bg-card">
-            {rightLogin}
+          <div className="glow-border rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden rounded-xl">{rightLogin}</div>
           </div>
-          <div className="flex-1 overflow-hidden rounded-xl border border-border bg-card">
-            {rightTaskBoard}
+          <div className="glow-border flex-1 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden h-full rounded-xl">{rightTaskBoard}</div>
           </div>
-          <div className="overflow-hidden rounded-xl border border-border bg-card">
-            {rightPing}
+          <div className="glow-border rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+            <div className="overflow-hidden rounded-xl">{rightPing}</div>
           </div>
         </div>
       )}
 
       {/* Bottom Bar (row 3, cols 2-3) */}
       <div className="flex gap-2 h-60 col-span-2">
-        <div className="w-1/3 shrink-0 overflow-hidden rounded-xl border border-border bg-card">
-          {navTerminal}
+        <div className="glow-border w-1/3 shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
-        <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
-          {statsTerminal}
+        <div className="glow-border w-full rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
         {bottomGuideCollapsed ? (
           <div
@@ -216,14 +236,14 @@ export const GridLayout = ({
             </span>
           </div>
         ) : (
-          <div className="w-70 shrink-0 overflow-hidden rounded-xl border border-border bg-card relative">
+          <div className="glow-border w-70 shrink-0 rounded-xl border border-border bg-card relative  hover:shadow-lg transition-all duration-200">
             <button
               onClick={onToggleBottomGuide}
-              className="absolute top-1 right-1 text-muted-foreground hover:text-foreground transition-colors p-0.5"
+              className="absolute top-1 right-1 z-10 text-muted-foreground hover:text-foreground transition-colors p-0.5"
             >
               <ChevronRight className="size-3" />
             </button>
-            {bottomGuide}
+            <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
         )}
       </div>
