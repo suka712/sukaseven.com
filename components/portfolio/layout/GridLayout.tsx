@@ -156,16 +156,16 @@ export const GridLayout = ({
           <div className="shrink-0">
             {uptime}
           </div>
-          <div className="glow-border flex-1 rounded-xl border border-border bg-card min-h-0 hover:shadow-lg transition-all duration-200">
+          <div className="glow-border flex-1 rounded-xl bg-card min-h-0 duration-200">
             <div className="overflow-hidden h-full rounded-xl">{leftFileTree}</div>
           </div>
-          <div className="glow-border shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border shrink-0 rounded-xl bg-card duration-200">
             <div className="overflow-hidden rounded-xl">{leftListening}</div>
           </div>
-          <div className="glow-border shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border shrink-0 rounded-xl bg-card duration-200">
             <div className="overflow-hidden rounded-xl">{leftLinks}</div>
           </div>
-          <div className="glow-border h-60 shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border h-60 shrink-0 rounded-xl bg-card duration-200">
             <div className="overflow-hidden h-full rounded-xl">{healthPanel}</div>
           </div>
           {/* Resize handle overlaid on the right edge */}
@@ -185,7 +185,7 @@ export const GridLayout = ({
       </div>
 
       {/* Central Panel (row 2, col 2) */}
-      <div className="glow-border min-h-0 rounded-xl border border-border bg-card">
+      <div className="glow-border min-h-0 rounded-xl bg-card">
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
@@ -198,13 +198,13 @@ export const GridLayout = ({
         />
       ) : (
         <div className="flex flex-col gap-2 min-h-0">
-          <div className="glow-border rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border rounded-xl bg-card transition-all duration-200">
             <div className="overflow-hidden rounded-xl">{rightLogin}</div>
           </div>
-          <div className="glow-border flex-1 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border flex-1 rounded-xl bg-card  transition-all duration-200">
             <div className="overflow-hidden h-full rounded-xl">{rightTaskBoard}</div>
           </div>
-          <div className="glow-border rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+          <div className="glow-border rounded-xl bg-card  transition-all duration-200">
             <div className="overflow-hidden rounded-xl">{rightPing}</div>
           </div>
         </div>
@@ -212,13 +212,13 @@ export const GridLayout = ({
 
       {/* Bottom Bar (row 3, cols 2-3) */}
       <div className="flex gap-2 h-60 col-span-2">
-        <div className="glow-border w-1/3 shrink-0 rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+        <div className="glow-border w-1/3 shrink-0 rounded-xl bg-card transition-all duration-200">
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
-        <div className="glow-border w-full rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
+        <div className="glow-border w-full rounded-xl bg-card transition-all duration-200">
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
-        <div className="glow-border w-70 shrink-0 rounded-xl border border-border bg-card relative  hover:shadow-lg transition-all duration-200">
+        <div className="glow-border w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200">
             <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
       </div>

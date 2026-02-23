@@ -28,7 +28,7 @@ export function Uptime() {
   }, []);
 
   return (
-    <div className="glow-border flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 shrink-0 overflow-hidden">
+    <div className="glow-border flex items-center gap-3 rounded-xl bg-card px-4 py-3 shrink-0 overflow-hidden">
       {machines.map((m) => (
         <div key={m.label} className="flex items-center gap-1.5 text-sm font-mono whitespace-nowrap">
           <span className="size-2 rounded-full bg-emerald-500 shrink-0 animate-pulse shadow-[0_0_6px_theme(--color-emerald-500)]" />

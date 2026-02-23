@@ -24,7 +24,7 @@ export const LastActive = () => {
   }, [])
 
   return (
-    <div className="glow-border flex text-sm justify-center items-center rounded-xl border border-border bg-card gap-2 px-4 py-3 overflow-hidden">
+    <div className="glow-border flex text-sm justify-center items-center rounded-xl bg-card gap-2 px-4 py-3 overflow-hidden">
       <span className="size-2 shrink-0 rounded-full bg-blue-500 animate-pulse" />
       {error ? error : <>
         <span className="text-foreground whitespace-nowrap">
