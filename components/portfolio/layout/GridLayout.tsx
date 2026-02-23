@@ -155,9 +155,9 @@ export const GridLayout = ({
           {/* Resize handle overlaid on the right edge */}
           <div
             onMouseDown={handleMouseDown}
-            className="absolute top-0 -right-1.5 w-3 h-full cursor-col-resize flex items-center justify-center group z-10"
+            className="absolute -right-2.5 w-3 h-full cursor-col-resize flex items-center justify-center group z-10"
           >
-            <div className="w-0.5 h-8 rounded-full bg-transparent group-hover:bg-muted-foreground transition-colors" />
+            <div className="w-0.5 h-12 rounded-full bg-transparent group-hover:bg-accent transition-colors" />
           </div>
         </div>
       )}
@@ -216,7 +216,7 @@ export const GridLayout = ({
             </span>
           </div>
         ) : (
-          <div className="w-72 shrink-0 overflow-hidden rounded-xl border border-border bg-card relative">
+          <div className="w-70 shrink-0 overflow-hidden rounded-xl border border-border bg-card relative">
             <button
               onClick={onToggleBottomGuide}
               className="absolute top-1 right-1 text-muted-foreground hover:text-foreground transition-colors p-0.5"
