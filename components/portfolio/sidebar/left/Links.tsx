@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 const links = [
   { label: "github", url: "https://github.com/suka712" },
@@ -19,7 +19,7 @@ export function Links() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <div className="flex gap-2 mt-2">
           {links.map((link) => (
             <a
@@ -34,7 +34,7 @@ export function Links() {
             </a>
           ))}
         </div>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 const techs = [
   "Next.js",
@@ -24,7 +24,7 @@ export function TechStack() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {techs.map((t) => (
             <span
@@ -35,7 +35,7 @@ export function TechStack() {
             </span>
           ))}
         </div>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }

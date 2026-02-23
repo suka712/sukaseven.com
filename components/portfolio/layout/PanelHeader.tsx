@@ -22,11 +22,28 @@ export function PanelHeader({ title, collapsed, onToggle }: PanelHeaderProps) {
         tabIndex={-1}
       >
         {collapsed ? (
-          <ChevronDown className="size-3" />
+          <ChevronDown className="size-4" />
         ) : (
-          <ChevronUp className="size-3" />
+          <ChevronUp className="size-4" />
         )}
       </button>
+    </div>
+  );
+}
+
+export function CollapsibleContent({
+  collapsed,
+  children,
+}: {
+  collapsed: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className="grid transition-[grid-template-rows] duration-200 ease-in-out"
+      style={{ gridTemplateRows: collapsed ? "0fr" : "1fr" }}
+    >
+      <div className="overflow-hidden">{children}</div>
     </div>
   );
 }

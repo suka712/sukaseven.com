@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 export function PingPhone() {
   const [message, setMessage] = useState("");
@@ -27,7 +27,7 @@ export function PingPhone() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <div className="mt-2 flex-1">
           {status === "sent" ? (
             <div className="text-sm text-emerald-500">pinged.</div>
@@ -54,7 +54,7 @@ export function PingPhone() {
             </div>
           )}
         </div>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }

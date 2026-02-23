@@ -13,7 +13,7 @@ export function NavigationGuide() {
   return (
     <div className="p-4 h-full flex flex-col">
       <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-        Navigation Guide
+        Navigation
       </div>
       <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs font-mono">
         {shortcuts.map((s) => (

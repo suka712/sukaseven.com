@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { guestbookEntries } from "@/lib/mock-data";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 export function GuestList() {
   const [collapsed, setCollapsed] = useState(false);
@@ -14,7 +14,7 @@ export function GuestList() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <div className="mt-2 flex flex-col gap-2 overflow-y-auto max-h-40">
           {guestbookEntries.map((entry, i) => (
             <div key={i} className="text-xs">
@@ -32,7 +32,7 @@ export function GuestList() {
             </div>
           ))}
         </div>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { LogIn, LogOut, Pencil, RefreshCcw } from "lucide-react";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 type Step = "email" | "otp" | "authed";
 
@@ -101,7 +101,7 @@ export function Login() {
           collapsed={collapsed}
           onToggle={() => setCollapsed((c) => !c)}
         />
-        {!collapsed && (
+        <CollapsibleContent collapsed={collapsed}>
           <div className="flex-1 flex flex-col mt-3">
             <div className="flex-1 flex items-center gap-2">
               <Button
@@ -123,7 +123,7 @@ export function Login() {
               logout
             </Button>
           </div>
-        )}
+        </CollapsibleContent>
       </div>
     );
   }
@@ -135,7 +135,7 @@ export function Login() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 flex-1 mt-3">
           {step === "email" ? (
             <>
@@ -196,7 +196,7 @@ export function Login() {
             </>
           )}
         </form>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }

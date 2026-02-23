@@ -22,8 +22,6 @@ interface GridLayoutProps {
   bottomGuide: React.ReactNode;
   collapsedSections: Set<CollapsibleSection>;
   onToggleSection: (section: CollapsibleSection) => void;
-  bottomGuideCollapsed: boolean;
-  onToggleBottomGuide: () => void;
 }
 
 function CollapsedBar({
@@ -74,8 +72,6 @@ export const GridLayout = ({
   bottomGuide,
   collapsedSections,
   onToggleSection,
-  bottomGuideCollapsed,
-  onToggleBottomGuide,
 }: GridLayoutProps) => {
   const leftCollapsed = collapsedSections.has("left");
   const rightCollapsed = collapsedSections.has("right");
@@ -222,30 +218,9 @@ export const GridLayout = ({
         <div className="glow-border w-full rounded-xl border border-border bg-card  hover:shadow-lg transition-all duration-200">
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
-        {bottomGuideCollapsed ? (
-          <div
-            onClick={onToggleBottomGuide}
-            className="w-9 shrink-0 flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card cursor-pointer hover:bg-accent/30 transition-colors"
-          >
-            <ChevronLeft className="size-3 text-muted-foreground" />
-            <span
-              className="text-xs text-muted-foreground uppercase tracking-wider font-semibold"
-              style={{ writingMode: "vertical-rl" }}
-            >
-              Guide
-            </span>
-          </div>
-        ) : (
-          <div className="glow-border w-70 shrink-0 rounded-xl border border-border bg-card relative  hover:shadow-lg transition-all duration-200">
-            <button
-              onClick={onToggleBottomGuide}
-              className="absolute top-1 right-1 z-10 text-muted-foreground hover:text-foreground transition-colors p-0.5"
-            >
-              <ChevronRight className="size-3" />
-            </button>
+        <div className="glow-border w-70 shrink-0 rounded-xl border border-border bg-card relative  hover:shadow-lg transition-all duration-200">
             <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
-        )}
       </div>
     </div>
   );

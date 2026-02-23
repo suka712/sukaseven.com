@@ -22,7 +22,6 @@ type CollapsibleSection = "left" | "right";
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
   const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
-  const [bottomGuideCollapsed, setBottomGuideCollapsed] = useState(false);
 
   const handleFileSelect = (path: string) => {
     setActivePath(path);
@@ -44,9 +43,6 @@ export const PortfolioLayout = () => {
     });
   }, []);
 
-  const toggleBottomGuide = useCallback(() => {
-    setBottomGuideCollapsed((prev) => !prev);
-  }, []);
 
   return (
     <GridLayout
@@ -66,8 +62,6 @@ export const PortfolioLayout = () => {
       bottomGuide={<NavigationGuide />}
       collapsedSections={collapsedSections}
       onToggleSection={toggleSection}
-      bottomGuideCollapsed={bottomGuideCollapsed}
-      onToggleBottomGuide={toggleBottomGuide}
     />
   );
 };

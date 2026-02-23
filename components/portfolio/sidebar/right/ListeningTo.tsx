@@ -4,7 +4,7 @@ import { formatMsToSecond, truncateText, truncateWords } from "@/lib/format";
 import { AudioLines, Music, Pause } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { PanelHeader } from "../../layout/PanelHeader";
+import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 interface Play {
   is_playing: boolean;
@@ -69,7 +69,7 @@ export function ListeningTo() {
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
       />
-      {!collapsed && (
+      <CollapsibleContent collapsed={collapsed}>
         <div className="mt-2">
           {data ? (
             <a
@@ -129,7 +129,7 @@ export function ListeningTo() {
             </div>
           )}
         </div>
-      )}
+      </CollapsibleContent>
     </div>
   );
 }
