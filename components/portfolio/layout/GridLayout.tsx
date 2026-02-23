@@ -139,7 +139,7 @@ export const GridLayout = ({
     <div className="vignette" />
     <div
       ref={rootRef}
-      className="relative z-[2] h-screen w-screen overflow-hidden bg-background p-2 grid gap-2"
+      className="relative z-2 h-screen w-screen overflow-hidden p-2 grid gap-2"
       style={{
         gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
         gridTemplateRows: "auto 1fr auto",
@@ -162,13 +162,13 @@ export const GridLayout = ({
           <div className="glow-border card-enter flex-1 rounded-xl bg-card min-h-0 duration-200" style={{ animationDelay: "400ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{leftFileTree}</div>
           </div>
-          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "600ms" }}>
+          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "800ms" }}>
             <div className="overflow-hidden rounded-xl">{leftListening}</div>
           </div>
-          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "800ms" }}>
+          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden rounded-xl">{leftLinks}</div>
           </div>
-          <div className="glow-border card-enter h-60 shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1000ms" }}>
+          <div className="glow-border card-enter h-60 shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1600ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{healthPanel}</div>
           </div>
           {/* Resize handle overlaid on the right edge */}
@@ -188,7 +188,7 @@ export const GridLayout = ({
       </div>
 
       {/* Central Panel (row 2, col 2) */}
-      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "600ms" }}>
+      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "2000ms" }}>
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
@@ -204,10 +204,10 @@ export const GridLayout = ({
           <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
             <div className="overflow-hidden rounded-xl">{rightLogin}</div>
           </div>
-          <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "600ms" }}>
+          <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{rightTaskBoard}</div>
           </div>
-          <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
+          <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden rounded-xl">{rightPing}</div>
           </div>
         </div>
@@ -218,10 +218,10 @@ export const GridLayout = ({
         <div className="glow-border card-enter w-1/3 shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
-        <div className="glow-border card-enter w-full rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "600ms" }}>
+        <div className="glow-border card-enter w-full rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
-        <div className="glow-border card-enter w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "800ms" }}>
+        <div className="glow-border card-enter w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
       </div>
