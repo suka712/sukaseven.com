@@ -5,9 +5,9 @@ import type { FileNode } from "@/types/portfolio";
 import { ChevronRight, ChevronDown, FileText, Folder } from "lucide-react";
 
 const statusColors = {
-  live: "bg-emerald-500",
-  wip: "bg-yellow-500",
-  archived: "bg-zinc-600",
+  live: "bg-accent",
+  wip: "bg-emerald-400",
+  archived: "bg-zinc-500",
 };
 
 interface TreeNodeProps {

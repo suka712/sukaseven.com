@@ -22,7 +22,7 @@ export const LeftHealthPanel = () => {
         {healthPings.map((svc) => (
           <div key={svc.name} className="flex items-center gap-2 pt-2">
             <span
-              className={`size-1.5 rounded-full ${svc.isUp ? "bg-emerald-500 shadow-[0_0_6px_theme(--color-emerald-500)]" : "bg-red-500 shadow-[0_0_6px_theme(--color-red-500)]"
+              className={`size-2 rounded-full ${svc.isUp ? "bg-accent animate-pulse shadow-[0_0_6px_theme(--color-accent)]" : "bg-destructive shadow-[0_0_6px_theme(--color-destructive)]"
                 }`}
             />
             <span className="text-muted-foreground">{svc.name}</span>
