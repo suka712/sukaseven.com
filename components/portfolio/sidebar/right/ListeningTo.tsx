@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMsToSecond, truncateText, truncateWords } from "@/lib/format";
+import { formatMsToSecond, truncateText, truncateWords } from "@/utils/format";
 import { AudioLines, Music, Pause } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";

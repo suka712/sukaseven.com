@@ -1,6 +1,6 @@
 "use client";
 
-import { tabs } from "@/lib/mock-data";
+import { tabs } from "@/content/explorerLinks";
 import type { Tab } from "@/types/portfolio";
 
 export const TopTabs = () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { roadmapTasks } from "@/lib/mock-data";
+import { roadmapTasks } from "@/content/explorerLinks";
 
 const statusColor = {
   todo: "bg-muted-foreground",

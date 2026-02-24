@@ -1,7 +1,7 @@
 "use client";
 
-import { formatTimeAgo } from "@/lib/format";
-import { getLatestGithubEvent, GithubEvent } from "@/lib/getData";
+import { formatTimeAgo } from "@/utils/format";
+import { getLatestGithubEvent, GithubEvent } from "@/utils/getData";
 import { useEffect, useState } from "react";
 
 export const LastActive = () => {

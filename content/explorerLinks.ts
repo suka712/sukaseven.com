@@ -24,17 +24,17 @@ export const fileTree: FileNode[] = [
     type: "folder",
     children: [
       {
-        name: "caphne",
-        path: "projects/caphne",
+        name: "Caphne",
+        path: "projects/Caphne",
         type: "file",
         status: "live",
         displayExtension: ".co",
       },
       {
-        name: "katanaid",
-        path: "projects/katanaid",
+        name: "KatanaID",
+        path: "projects/KatanaID",
         type: "file",
-        status: "live",
+        status: "wip",
         displayExtension: ".com",
       },
     ],
@@ -45,8 +45,8 @@ export const fileTree: FileNode[] = [
     type: "folder",
     children: [
       {
-        name: "anyu-s3",
-        path: "tools/anyu-s3",
+        name: "anyudock",
+        path: "tools/anyu-dock",
         type: "file",
         status: "live",
         displayExtension: ".ts",
@@ -56,7 +56,7 @@ export const fileTree: FileNode[] = [
         path: "tools/tldraw",
         type: "file",
         status: "wip",
-        displayExtension: ".md",
+        displayExtension: ".ts",
       },
       {
         name: "hasaki-go",
@@ -65,6 +65,20 @@ export const fileTree: FileNode[] = [
         status: "live",
         displayExtension: ".go",
       },
+      {
+        name: "banshi-quest",
+        path: "tools/banshi-quest",
+        type: "file",
+        status: "live",
+        displayExtension: ".rs",
+      },
+      {
+        name: "hanshi-http",
+        path: "tools/hanshi-http",
+        type: "file",
+        status: "live",
+        displayExtension: ".rs",
+      }
     ],
   },
   {
@@ -73,8 +87,15 @@ export const fileTree: FileNode[] = [
     type: "folder",
     children: [
       {
-        name: "phuquocdevs-internship",
-        path: "experience/phuquocdevs-internship",
+        name: "NCCUResearch",
+        path: "experience/NCCUResearch",
+        type: "file",
+        status: "wip",
+        displayExtension: ".md",
+      },
+      {
+        name: "PQDInternship",
+        path: "experience/PQDInternship",
         type: "file",
         status: "archived",
         displayExtension: ".md",

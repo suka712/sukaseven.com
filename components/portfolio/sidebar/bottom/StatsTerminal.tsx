@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { getMockStats } from "@/lib/mock-data";
+import { getMockStats } from "@/content/explorerLinks";
 import type { StatsData } from "@/types/portfolio";
 
 export function StatsTerminal() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { fileTree } from "@/lib/mock-data";
+import { fileTree } from "@/content/explorerLinks";
 import { TreeNode } from "./TreeNode";
 
 interface FileTreeProps {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { guestbookEntries } from "@/lib/mock-data";
+import { guestbookEntries } from "@/content/explorerLinks";
 import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
 export function GuestList() {

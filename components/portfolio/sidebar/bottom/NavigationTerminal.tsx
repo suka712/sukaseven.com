@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { TerminalLine } from "./TerminalLine";
-import { fileTree } from "@/lib/mock-data";
+import { fileTree } from "@/content/explorerLinks";
 import type { FileNode } from "@/types/portfolio";
 
 interface HistoryEntry {
