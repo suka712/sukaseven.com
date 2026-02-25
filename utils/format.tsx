@@ -32,12 +32,12 @@ export const formatTimeAgo = (date: Date) => {
 export const getFileIcons = (extension: string | undefined): ReactNode => {
   switch (extension) {
     case '.go':
-      return <FaGolang className="size-4 text-cyan-400" />;
+      return <FaGolang className="size-4 text-cyan-400 shrink-0" />;
     case '.rs':
-      return <FaRust className="size-4 text-red-400" />
+      return <FaRust className="size-4 text-red-400 shrink-0" />
     case '.ts':
-      return <TbBrandTypescript className="size-4 text-blue-400"/>
+      return <TbBrandTypescript className="size-4 text-blue-400 shrink-0"/>
     default:
-      return <FaRegFileCode className="size-4 shrink-0 text-zinc-300" />;
+      return <FaRegFileCode className="size-4 text-zinc-400 shrink-0" />;
   }
 }

@@ -96,16 +96,10 @@ export function ListeningTo() {
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                {(data.track + + " — " + data.artist).length > 20 ?
-                  <div className="flex items-center text-sm text-foreground truncate gap-1">
-                    <span className="hover:underline">{truncateWords(data.track, 3)}</span>
-                    <span className="text-muted-foreground/80">{data.album && `${truncateText(data.artist, 8)}`}</span>
+                  <div className="flex items-center text-sm text-foreground gap-1">
+                    <span className="hover:underline truncate">{data.track}</span>
+                    <span className="text-muted-foreground/80 truncate">{data.artist}</span>
                   </div>
-                  :
-                  <div className="flex items-center text-sm text-foreground truncate gap-1">
-                    <span className="hover:underline">{data.track}</span>
-                    <span className="text-muted-foreground/80">{data.artist}</span>
-                  </div>}
 
                 <div className="mt-1 flex items-center w-11/12 text-[10px] gap-1">
                   <div>
