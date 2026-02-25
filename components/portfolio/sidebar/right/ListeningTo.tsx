@@ -1,7 +1,7 @@
 "use client";
 
 import { formatMsToSecond, truncateText, truncateWords } from "@/utils/format";
-import { Music, Pause } from "lucide-react";
+import { LucideMusic, Music, Pause } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
@@ -78,14 +78,17 @@ export function ListeningTo() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 group"
             >
-              <div className="relative size-10 rounded-lg overflow-hidden shrink-0">
-                <Image
-                  src={data.album_art}
-                  alt={data.album}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
+              <div className="flex justify-center items-center relative size-10 rounded-lg overflow-hidden shrink-0">
+                {
+                  data.album_art ?
+                    <Image
+                      src={data.album_art}
+                      alt={data.album}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    /> : <LucideMusic />
+                }
                 {!data.is_playing && (
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                     <Pause className="size-3 text-white" />
@@ -105,9 +108,9 @@ export function ListeningTo() {
                   </div>}
 
                 <div className="mt-1 flex items-center w-11/12 text-[10px] gap-1">
-                <div>
-                  {formatMsToSecond(progress) + "\u00A0"}<span className="text-muted-foreground">/{"\u00A0" + formatMsToSecond(data.duration_ms)}</span>
-                </div>
+                  <div>
+                    {formatMsToSecond(progress) + "\u00A0"}<span className="text-muted-foreground">/{"\u00A0" + formatMsToSecond(data.duration_ms)}</span>
+                  </div>
                   <div className="flex-1 h-0.5 rounded-full bg-accent-foreground/20 overflow-hidden">
                     <div
                       className="h-full bg-blue-500 rounded-full"
