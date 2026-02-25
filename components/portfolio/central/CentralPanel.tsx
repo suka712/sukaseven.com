@@ -43,7 +43,7 @@ export function CentralPanel({ contentPath }: CentralPanelProps) {
   if (loading) {
     return (
       <div className="flex h-full items-center justify-center text-muted-foreground">
-        <span className="animate-pulse">loading...</span>
+        <span className="animate-pulse-quick">loading...</span>
       </div>
     );
   }

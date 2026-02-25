@@ -124,6 +124,10 @@
   --sidebar-ring: oklch(0.65 0.19 255);
 }
 
+@theme {
+  --animate-pulse-quick: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

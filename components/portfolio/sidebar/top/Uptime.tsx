@@ -31,7 +31,7 @@ export function Uptime() {
     <div className="glow-border flex items-center gap-3 rounded-xl bg-card px-4 py-3 shrink-0 overflow-hidden">
       {machines.map((m) => (
         <div key={m.label} className="flex items-center gap-1.5 text-sm font-mono whitespace-nowrap">
-          <span className="size-2 rounded-full bg-accent shrink-0 animate-pulse shadow-[0_0_6px_theme(--color-accent)]" />
+          <span className="size-2 rounded-full bg-accent shrink-0 animate-pulse-quick shadow-[0_0_6px_theme(--color-accent)]" />
           <span className="text-muted-foreground">{m.label}</span>
           <span className="text-foreground">{formatUptime(m.startSeconds + elapsed)}</span>
         </div>
