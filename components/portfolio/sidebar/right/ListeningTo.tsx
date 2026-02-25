@@ -43,7 +43,7 @@ const usePlayProgress = (data: Play | null) => {
 
 export function ListeningTo() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
-  const UPDATE_INTERVAL = 30_000
+  const UPDATE_INTERVAL = 60_000
 
   const [data, setData] = useState<Play | null>(null)
   const [collapsed, setCollapsed] = useState(false)
