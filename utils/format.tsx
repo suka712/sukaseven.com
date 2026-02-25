@@ -1,3 +1,9 @@
+import { FileText, LucideFile } from "lucide-react";
+import { ReactNode } from "react";
+import { BiLogoGoLang } from "react-icons/bi";
+import { FaFileCode, FaGolang, FaRegFileCode, FaRust } from "react-icons/fa6";
+import { TbBrandRust, TbBrandTypescript } from "react-icons/tb";
+
 export const formatMsToSecond = (ms: number) => {
   const s = Math.floor(ms / 1000);
   const m = Math.floor(s / 60);
@@ -22,3 +28,16 @@ export const formatTimeAgo = (date: Date) => {
   if (seconds < 31536000) return `${Math.floor(seconds / 2592000)} months ago`;
   return `${Math.floor(seconds / 31536000)} years ago`;
 };
+
+export const getFileIcons = (extension: string | undefined): ReactNode => {
+  switch (extension) {
+    case '.go':
+      return <FaGolang className="size-4 text-cyan-400" />;
+    case '.rs':
+      return <FaRust className="size-4 text-red-400" />
+    case '.ts':
+      return <TbBrandTypescript className="size-4 text-blue-400"/>
+    default:
+      return <FaRegFileCode className="size-4 shrink-0 text-zinc-300" />;
+  }
+}

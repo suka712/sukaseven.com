@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FileNode } from "@/types/portfolio";
 import { ChevronRight, ChevronDown, FileText, Folder } from "lucide-react";
+import { getFileIcons } from "@/utils/format";
 
 const statusColors = {
   live: "bg-accent",
@@ -52,7 +53,7 @@ export function TreeNode({ node, depth, onFileSelect, activePath }: TreeNodeProp
         {isFolder ? (
           <Folder className="size-4 shrink-0 text-muted-foreground" />
         ) : (
-          <FileText className="size-4 shrink-0 text-muted-foreground" />
+          getFileIcons(node.displayExtension)
         )}
 
         <span className="truncate">
