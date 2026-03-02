@@ -20,7 +20,7 @@ export function StatsTerminal() {
       <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
         Stats
       </div>
-      <div className="flex-1 font-mono overflow-y-auto px-3 py-2 space-y-2 text-xs">
+      <div className="flex-1 font-mono overflow-y-auto scrollbar-panel px-3 py-2 space-y-2 text-xs">
         <div className="text-muted-foreground">
           streak: <span className="text-foreground">{stats.commitStreak} days</span>
         </div>
