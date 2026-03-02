@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
 import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
+import { FaGithub, FaLinkedinIn, FaXTwitter, FaTiktok } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
-const links = [
-  { label: "github", url: "https://github.com/suka712" },
-  { label: "katanaid", url: "https://katanaid.com" },
+const links: { label: string; icon: IconType; url: string }[] = [
+  { label: "GitHub",   icon: FaGithub,     url: "https://github.com/suka712" },
+  { label: "LinkedIn", icon: FaLinkedinIn, url: "https://linkedin.com/in/username" },
+  { label: "X",        icon: FaXTwitter,   url: "https://x.com/username" },
+  { label: "TikTok",   icon: FaTiktok,     url: "https://tiktok.com/@username" },
 ];
 
 export function Links() {
@@ -20,17 +23,17 @@ export function Links() {
         onToggle={() => setCollapsed((c) => !c)}
       />
       <CollapsibleContent collapsed={collapsed}>
-        <div className="flex gap-2 mt-2">
-          {links.map((link) => (
+        <div className="grid grid-cols-2 gap-2 mt-2">
+          {links.map(({ label, icon: Icon, url }) => (
             <a
-              key={link.label}
-              href={link.url}
+              key={label}
+              href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors group"
+              className="flex flex-col items-center gap-1.5 rounded-lg py-3 text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
             >
-              {link.label}
-              <ExternalLink className="size-3 opacity-0 group-hover:opacity-50 transition-opacity" />
+              <Icon className="size-5" />
+              <span className="text-xs font-mono">{label}</span>
             </a>
           ))}
         </div>

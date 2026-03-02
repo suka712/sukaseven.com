@@ -36,7 +36,7 @@ export function TreeNode({ node, depth, onFileSelect, activePath }: TreeNodeProp
     <div>
       <button
         onClick={handleClick}
-        className={`flex w-full items-center gap-1 py-0.5 pr-2 text-sm hover:bg-accent/50 transition-colors ${
+        className={`flex w-full items-center gap-1 py-0.5 pr-2 text-sm text-left hover:bg-accent/50 transition-colors ${
           isActive ? "bg-accent/70 text-foreground" : "text-muted-foreground"
         }`}
         style={{ paddingLeft: `${depth * 12 + 8}px` }}
@@ -57,7 +57,7 @@ export function TreeNode({ node, depth, onFileSelect, activePath }: TreeNodeProp
           getFileIcons(node.displayExtension)
         )}
 
-        <span className="truncate">
+        <span className="truncate min-w-0 flex-1">
           {node.name}
           {node.displayExtension && (
             <span className="text-muted-foreground">{node.displayExtension}</span>
