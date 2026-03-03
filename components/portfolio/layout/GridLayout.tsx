@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 type CollapsibleSection = "left" | "right";
 
 interface GridLayoutProps {
-  uptime: React.ReactNode;
+  osStats: React.ReactNode;
   tabs: React.ReactNode;
   lastActive: React.ReactNode;
   leftFileTree: React.ReactNode;
@@ -56,7 +56,7 @@ function CollapsedBar({
 }
 
 export const GridLayout = ({
-  uptime,
+  osStats: wakatime,
   tabs,
   lastActive,
   leftFileTree,
@@ -157,7 +157,7 @@ export const GridLayout = ({
       ) : (
         <div className="row-span-3 relative flex flex-col gap-2 min-h-0">
           <div className="shrink-0">
-            {uptime}
+            {wakatime}
           </div>
           <div className="glow-border card-enter flex-1 rounded-xl bg-card min-h-0 duration-200" style={{ animationDelay: "400ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{leftFileTree}</div>
