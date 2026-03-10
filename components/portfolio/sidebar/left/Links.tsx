@@ -7,9 +7,9 @@ import type { IconType } from "react-icons";
 
 const links: { label: string; icon: IconType; url: string }[] = [
   { label: "GitHub",   icon: FaGithub,     url: "https://github.com/suka712" },
-  { label: "LinkedIn", icon: FaLinkedinIn, url: "https://linkedin.com/in/username" },
-  { label: "X",        icon: FaXTwitter,   url: "https://x.com/username" },
-  { label: "TikTok",   icon: FaTiktok,     url: "https://tiktok.com/@username" },
+  { label: "LinkedIn", icon: FaLinkedinIn, url: "https://linkedin.com/in/khiem712" },
+  { label: "X",        icon: FaXTwitter,   url: "https://x.com/sukasvn" },
+  { label: "TikTok",   icon: FaTiktok,     url: "https://tiktok.com/@secondkhiem" },
 ];
 
 export function Links() {
