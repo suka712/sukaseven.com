@@ -51,14 +51,14 @@ export const LeftHealthPanel = () => {
           Health
         </div>
         {checkedAt && (
-          <span className="text-[10px] font-mono text-muted-foreground/50">
-            checked {checkedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
+          <span className="text-xs font-mono text-muted-foreground/50 truncate">
+            Checked {checkedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
           </span>
         )}
       </div>
       <div className="flex-1 font-mono text-xs tracking-wider leading-loose px-3 overflow-y-auto scrollbar-panel">
         {services.map((svc) => (
-          <div key={svc.name} className="flex items-center gap-2 pt-2">
+          <div key={svc.name} className="flex items-center gap-2 pt-2 truncate">
             {svc.status === "pending" ? (
               <span className="size-2 rounded-full bg-muted-foreground/40 animate-pulse-quick shrink-0" />
             ) : svc.status === "up" && (svc.latency ?? 0) > 500 ? (

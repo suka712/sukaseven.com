@@ -36,8 +36,8 @@ export function StatsTerminal() {
           Stats
         </div>
         {github?.lastPushedRepo && (
-          <span className="text-[10px] font-mono text-muted-foreground/50">
-            last:{" "}
+          <span className="text-xs font-mono text-muted-foreground/50">
+            last contribution:{" "}
             <span className="text-emerald-400/70">{github.lastPushedRepo}</span>
           </span>
         )}
