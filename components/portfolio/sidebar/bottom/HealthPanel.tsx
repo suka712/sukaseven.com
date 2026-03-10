@@ -16,6 +16,7 @@ const initial: ServiceState[] = MONITORED_SERVICES.map(({ name }) => ({
 
 export const LeftHealthPanel = () => {
   const [services, setServices] = useState<ServiceState[]>(initial);
+  const [checkedAt, setCheckedAt] = useState<Date | null>(null);
 
   useEffect(() => {
     setServices(initial.map((s) => ({ ...s })));
@@ -35,6 +36,7 @@ export const LeftHealthPanel = () => {
             : s
         )
       );
+      setCheckedAt(new Date());
     };
 
     es.onerror = () => es.close();
@@ -44,14 +46,23 @@ export const LeftHealthPanel = () => {
 
   return (
     <div className="flex flex-col h-full p-4">
-      <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
-        Health
+      <div className="flex items-center justify-between pb-2">
+        <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground">
+          Health
+        </div>
+        {checkedAt && (
+          <span className="text-[10px] font-mono text-muted-foreground/50">
+            checked {checkedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
+          </span>
+        )}
       </div>
       <div className="flex-1 font-mono text-xs tracking-wider leading-loose px-3 overflow-y-auto scrollbar-panel">
         {services.map((svc) => (
           <div key={svc.name} className="flex items-center gap-2 pt-2">
             {svc.status === "pending" ? (
               <span className="size-2 rounded-full bg-muted-foreground/40 animate-pulse-quick shrink-0" />
+            ) : svc.status === "up" && (svc.latency ?? 0) > 500 ? (
+              <span className="size-2 rounded-full bg-yellow-400 animate-pulse shadow-[0_0_6px_theme(--color-yellow-400)] shrink-0" />
             ) : svc.status === "up" ? (
               <span className="size-2 rounded-full bg-accent animate-pulse-quick shadow-[0_0_6px_theme(--color-accent)] shrink-0" />
             ) : (
