@@ -217,7 +217,7 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
       <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
         Terminal
       </div>
-      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-0.5 font-mono">
+      <div className="flex-1 overflow-y-auto scrollbar-panel px-3 py-2 space-y-0.5 font-mono">
         {history.map((entry, i) => (
           <TerminalLine
             key={i}

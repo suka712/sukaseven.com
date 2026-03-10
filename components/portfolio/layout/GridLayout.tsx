@@ -15,6 +15,7 @@ interface GridLayoutProps {
   central: React.ReactNode;
   rightLogin: React.ReactNode;
   rightTaskBoard: React.ReactNode;
+  rightWeather: React.ReactNode;
   rightPing: React.ReactNode;
   navTerminal: React.ReactNode;
   healthPanel: React.ReactNode;
@@ -65,6 +66,7 @@ export const GridLayout = ({
   central,
   rightLogin,
   rightTaskBoard,
+  rightWeather,
   rightPing,
   navTerminal,
   healthPanel,
@@ -206,6 +208,9 @@ export const GridLayout = ({
           </div>
           <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{rightTaskBoard}</div>
+          </div>
+          <div className="glow-border card-enter shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1000ms" }}>
+            <div className="overflow-hidden rounded-xl">{rightWeather}</div>
           </div>
           <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden rounded-xl">{rightPing}</div>

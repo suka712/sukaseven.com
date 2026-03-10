@@ -15,6 +15,7 @@ import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
 import { NavigationGuide } from "../sidebar/bottom/NavigationGuide";
 import { Login } from "../sidebar/right/Login";
+import { WeatherPanel } from "../sidebar/right/WeatherPanel";
 import { OsStats } from "../sidebar/top/OsStats";
 
 type CollapsibleSection = "left" | "right";
@@ -55,6 +56,7 @@ export const PortfolioLayout = () => {
       central={<CentralPanel contentPath={activePath} />}
       rightLogin={<Login />}
       rightTaskBoard={<TaskBoard />}
+      rightWeather={<WeatherPanel />}
       rightPing={<PingPhone />}
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}
       healthPanel={<LeftHealthPanel />}
