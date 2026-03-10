@@ -9,7 +9,7 @@ import { Links } from "../sidebar/left/Links";
 import { CentralPanel } from "../central/CentralPanel";
 import { ListeningTo } from "../sidebar/right/ListeningTo";
 import { PingPhone } from "../sidebar/right/PingPhone";
-import { TaskBoard } from "../sidebar/right/TaskBoard";
+import { ActivityFeed } from "../sidebar/right/ActivityFeed";
 import { LeftHealthPanel } from "../sidebar/bottom/HealthPanel";
 import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
 import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
@@ -66,7 +66,7 @@ export const PortfolioLayout = () => {
       leftLinks={<Links />}
       central={<CentralPanel contentPath={activePath} />}
       rightLogin={<Login />}
-      rightTaskBoard={<TaskBoard />}
+      rightTaskBoard={<ActivityFeed />}
       rightWeather={<WeatherPanel />}
       rightPing={<PingPhone />}
       navTerminal={<NavigationTerminal onFileSelect={handleFileSelect} onPing={handlePing} />}

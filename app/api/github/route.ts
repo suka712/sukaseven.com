@@ -8,6 +8,8 @@ interface RawEvent {
   repo: { name: string };
   payload: {
     commits?: Array<{ sha: string; message: string }>;
+    head?: string;
+    ref?: string;
   };
   created_at: string;
 }
@@ -73,20 +75,31 @@ export async function GET() {
       contribRes.ok ? contribRes.json() : {},
     ]);
 
-    // Recent commits
+    // Recent commits — payload.commits is absent for unauthenticated requests,
+    // so fall back to the push event itself using head SHA and branch ref.
     const recentCommits: GitHubCommit[] = [];
     for (const event of events) {
       if (event.type !== "PushEvent") continue;
-      for (const commit of event.payload.commits ?? []) {
-        if (recentCommits.length >= 5) break;
+      if (recentCommits.length >= 5) break;
+
+      const commits = event.payload.commits ?? [];
+      if (commits.length > 0) {
         recentCommits.push({
           repo: event.repo.name.split("/")[1],
-          message: commit.message.split("\n")[0].slice(0, 80),
+          message: commits[0].message.split("\n")[0].slice(0, 80),
           timestamp: event.created_at,
-          sha: commit.sha.slice(0, 7),
+          sha: commits[0].sha.slice(0, 7),
+        });
+      } else {
+        const branch = event.payload.ref?.split("/").pop() ?? "main";
+        const sha = (event.payload.head ?? "").slice(0, 7);
+        recentCommits.push({
+          repo: event.repo.name.split("/")[1],
+          message: `pushed to ${branch}`,
+          timestamp: event.created_at,
+          sha,
         });
       }
-      if (recentCommits.length >= 5) break;
     }
 
     const lastPush = events.find((e) => e.type === "PushEvent");
