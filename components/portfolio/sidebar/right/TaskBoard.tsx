@@ -10,11 +10,11 @@ const statusColor = {
 
 export function TaskBoard() {
   return (
-    <div className="p-4">
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+    <div className="p-4 h-full flex flex-col">
+      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground shrink-0">
         Roadmap
       </div>
-      <div className="mt-2 flex flex-col gap-1.5">
+      <div className="mt-2 flex-1 overflow-y-auto scrollbar-panel flex flex-col gap-1.5">
         {roadmapTasks.map((t, i) => (
           <div key={i} className="flex items-start gap-2 text-xs font-mono">
             <span

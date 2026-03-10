@@ -52,8 +52,3 @@ export interface RoadmapTask {
   status: "todo" | "in-progress" | "done";
 }
 
-export interface GuestbookEntry {
-  name: string;
-  message: string;
-  timestamp: string;
-}

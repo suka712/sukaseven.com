@@ -1,4 +1,4 @@
-import type { Tab, FileNode, StatsData, RoadmapTask, GuestbookEntry } from "@/types/portfolio";
+import type { Tab, FileNode, StatsData, RoadmapTask } from "@/types/portfolio";
 
 export const tabs: Tab[] = [
   { label: "sukaseven", url: "/", isActive: true, isExternal: false },
@@ -165,8 +165,3 @@ export const roadmapTasks: RoadmapTask[] = [
   { project: "caphne", task: "Export to PDF", status: "todo" },
 ];
 
-export const guestbookEntries: GuestbookEntry[] = [
-  { name: "alex@dev.io", message: "clean portfolio, love the terminal vibe", timestamp: "2025-02-20T14:30:00Z" },
-  { name: "jenny", message: "the ping phone feature is hilarious", timestamp: "2025-02-18T09:15:00Z" },
-  { name: "kai.m", message: "sick layout. what stack is this?", timestamp: "2025-02-15T22:45:00Z" },
-];

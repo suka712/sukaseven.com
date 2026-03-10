@@ -79,8 +79,17 @@ export const GridLayout = ({
   const rightCollapsed = collapsedSections.has("right");
 
   const [leftWidth, setLeftWidth] = useState(270);
+  const [viewportWidth, setViewportWidth] = useState(1440);
   const isResizing = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Track viewport width for responsive behavior
+  useEffect(() => {
+    const update = () => setViewportWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,7 +103,7 @@ export const GridLayout = ({
       // Resize logic
       if (isResizing.current) {
         const newWidth = e.clientX - 8;
-        setLeftWidth(Math.max(200, Math.min(450, newWidth)));
+        setLeftWidth(Math.max(180, Math.min(450, newWidth)));
       }
 
       // Border glow: set mouse position relative to each card
@@ -129,12 +138,19 @@ export const GridLayout = ({
     };
   }, []);
 
-  const leftCol = leftCollapsed ? "36px" : `${leftWidth}px`;
-  const rightCol = rightCollapsed ? "36px" : "280px";
+  const isMobile = viewportWidth < 640;
 
-  // 3-row, 3-col grid. Left sidebar spans all 3 rows.
-  // Rows: top(auto) | middle(1fr) | bottom(auto)
-  // Cols: left | center(1fr) | right
+  // On mobile, collapse sidebar columns to 0px so the central panel fills the width.
+  // On larger screens, clamp the right sidebar so it shrinks gracefully on smaller laptops.
+  const leftCol = isMobile ? "0px" : leftCollapsed ? "36px" : `${leftWidth}px`;
+  const rightCol = isMobile ? "0px" : rightCollapsed ? "36px" : "clamp(220px, 19vw, 280px)";
+
+  // Bottom bar height: shorter on small viewports
+  const bottomBarHeight = viewportWidth >= 1024 ? "h-60" : viewportWidth >= 640 ? "h-52" : "h-44";
+
+  // Left health panel height: proportional to bottom bar
+  const healthPanelHeight = viewportWidth >= 1024 ? "h-60" : viewportWidth >= 640 ? "h-52" : "h-44";
+
   return (
     <>
     <div className="ambient-blobs"><span /></div>
@@ -147,9 +163,9 @@ export const GridLayout = ({
         gridTemplateRows: "auto 1fr auto",
       }}
     >
-      {/* Left Sidebar — spans all 3 rows */}
+      {/* Left Sidebar — spans all 3 rows. Hidden on mobile via 0px column. */}
       {leftCollapsed ? (
-        <div className="row-span-3">
+        <div className={`row-span-3 ${isMobile ? "invisible" : ""}`}>
           <CollapsedBar
             section="left"
             label="Explorer"
@@ -170,7 +186,7 @@ export const GridLayout = ({
           <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden rounded-xl">{leftLinks}</div>
           </div>
-          <div className="glow-border card-enter h-60 shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1600ms" }}>
+          <div className={`glow-border card-enter shrink-0 rounded-xl bg-card duration-200 ${healthPanelHeight}`} style={{ animationDelay: "1600ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{healthPanel}</div>
           </div>
           {/* Resize handle overlaid on the right edge */}
@@ -186,7 +202,7 @@ export const GridLayout = ({
       {/* Top Bar: Tabs + Last Active (row 1, cols 2-3) */}
       <div className="h-11 flex gap-2 col-span-2">
         <div className="w-full">{tabs}</div>
-        <div>{lastActive}</div>
+        <div className="hidden sm:block">{lastActive}</div>
       </div>
 
       {/* Central Panel (row 2, col 2) */}
@@ -194,41 +210,45 @@ export const GridLayout = ({
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
-      {/* Right Sidebar (row 2, col 3) */}
+      {/* Right Sidebar (row 2, col 3). Hidden on mobile via 0px column. */}
       {rightCollapsed ? (
-        <CollapsedBar
-          section="right"
-          label="Sidebar"
-          onExpand={() => onToggleSection("right")}
-        />
+        <div className={isMobile ? "invisible" : ""}>
+          <CollapsedBar
+            section="right"
+            label="Sidebar"
+            onExpand={() => onToggleSection("right")}
+          />
+        </div>
       ) : (
-        <div className="flex flex-col gap-2 min-h-0">
-          <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
+        <div className="flex flex-col gap-2 min-h-0 overflow-hidden">
+          <div className="glow-border card-enter shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
             <div className="overflow-hidden rounded-xl">{rightLogin}</div>
           </div>
-          <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
+          <div className="glow-border card-enter flex-1 min-h-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{rightTaskBoard}</div>
           </div>
           <div className="glow-border card-enter shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1000ms" }}>
             <div className="overflow-hidden rounded-xl">{rightWeather}</div>
           </div>
-          <div className="glow-border card-enter rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1200ms" }}>
+          <div className="glow-border card-enter shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden rounded-xl">{rightPing}</div>
           </div>
         </div>
       )}
 
       {/* Bottom Bar (row 3, cols 2-3) */}
-      <div className="flex gap-2 h-60 col-span-2">
+      <div className={`flex gap-2 col-span-2 ${bottomBarHeight}`}>
         <div className="glow-border card-enter w-1/3 shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
-        <div className="glow-border card-enter w-full rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
+        <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
-        <div className="glow-border card-enter w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "1200ms" }}>
+        {viewportWidth >= 1024 && (
+          <div className="glow-border card-enter w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "1200ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
+        )}
       </div>
     </div>
     <div className="noise-overlay" />

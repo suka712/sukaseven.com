@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { GridLayout } from "./GridLayout";
 import { TopTabs } from "../sidebar/top/TopTabs";
 import { LastActive } from "../sidebar/top/LastActive";
@@ -23,6 +23,17 @@ type CollapsibleSection = "left" | "right";
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>(null);
   const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
+
+  // Auto-collapse sidebars on initial mount based on viewport width.
+  // Right sidebar collapses at < 1280px (common laptop width).
+  // Left sidebar collapses at < 768px (tablet and below).
+  useEffect(() => {
+    const w = window.innerWidth;
+    const initial = new Set<CollapsibleSection>();
+    if (w < 1280) initial.add("right");
+    if (w < 768) initial.add("left");
+    if (initial.size > 0) setCollapsedSections(initial);
+  }, []);
 
   const handleFileSelect = (path: string) => {
     setActivePath(path);

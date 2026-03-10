@@ -93,7 +93,7 @@ export function WeatherPanel() {
         <span className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
           Chiayi, Taiwan
         </span>
-        <span className="text-muted-foreground/60 tabular-nums">{time}</span>
+        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">Now {time}</span>
       </div>
 
       {error ? (
@@ -114,7 +114,7 @@ export function WeatherPanel() {
           </div>
 
           {/* Secondary stats */}
-          <div className="flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-muted-foreground">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <Thermometer className="size-3" />
               feels {weather.feelsLike}°
@@ -134,7 +134,7 @@ export function WeatherPanel() {
           {/* Dumb stats */}
           <div className="space-y-1">
             {dumbStats(weather).map(({ label, value }) => (
-              <div key={label} className="flex items-center justify-between text-[10px]">
+              <div key={label} className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground/60">{label}</span>
                 <span className="text-foreground/70">{value}</span>
               </div>
