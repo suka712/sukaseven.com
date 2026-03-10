@@ -188,7 +188,7 @@ export const GridLayout = ({
       </div>
 
       {/* Central Panel (row 2, col 2) */}
-      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "2000ms" }}>
+      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "400ms" }}>
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 

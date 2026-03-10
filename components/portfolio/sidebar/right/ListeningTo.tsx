@@ -107,7 +107,7 @@ export function ListeningTo() {
                   </div>
                   <div className="flex-1 h-0.5 rounded-full bg-accent-foreground/20 overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 rounded-full"
+                      className="h-full bg-primary rounded-full"
                       style={{ width: `${(progress / data.duration_ms) * 100}%` }}
                     />
                   </div>

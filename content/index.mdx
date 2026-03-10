@@ -6,21 +6,25 @@ status: "live"
 
 ## hey, i'm khiem
 
-this is my workstation. not a portfolio template — a living dashboard that grows as i ship.
+full-stack engineer based in taiwan. i build identity systems, real-time infrastructure, and the occasional dev tool that scratches my own itch.
 
-### currently building
+this isn't a resume — it's a war room. everything you see is wired to real data: commits, service health, what i'm currently listening to.
 
-- **katanaid** — identity & auth platform
-- **caphne** — real-time collaboration tool
-- **anyu** — s3-compatible file service
-- **hasaki-go** — high-performance API framework in Go
+### what's shipping
 
-### how this works
+- **katanaid** — auth platform built on go + postgres. oauth2, sessions, the whole thing.
+- **caphne** — real-time collaboration. websockets, operational transforms, shared cursors.
+- **anyu** — s3-compatible file service. presigned urls, multipart, the works.
+- **hasaki-go** — cli tool that writes your git commit messages using gemini.
 
-click around the file tree on the left to explore projects, tools, and experience. each entry is a devlog — what it is, why i built it, how it works, and what broke along the way.
+### how to navigate
 
-the terminal at the bottom accepts commands. try `help` to see what's available.
+use the file tree on the left — each entry opens a devlog in this panel. or use the terminal at the bottom. try `ls projects` or `cat projects/Caphne` to start.
 
-### stack
+keyboard shortcuts are in the bottom-right corner.
 
-this site: next.js, tailwind, mdx. backend: go, postgres, railway. everything ships fast or doesn't ship at all.
+### stack, briefly
+
+**frontend:** next.js, typescript, tailwind
+**backend:** go, postgres, redis, docker
+**infra:** railway, cloudflare, github actions

@@ -9,7 +9,7 @@ interface LeftSidebarProps {
 
 export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
   return (
-    <div className="flex p-4 flex-col h-full overflow-y-auto overflow-x-hidden">
+    <div className="flex p-4 flex-col h-full overflow-y-auto overflow-x-hidden scrollbar-panel">
       <div className="text-xs pb-1 font-semibold uppercase tracking-wider text-muted-foreground">
         Explorer
       </div>

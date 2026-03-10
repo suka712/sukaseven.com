@@ -4,7 +4,7 @@ import { roadmapTasks } from "@/content/explorerLinks";
 
 const statusColor = {
   todo: "bg-muted-foreground",
-  "in-progress": "bg-blue-500",
+  "in-progress": "bg-accent",
   done: "bg-emerald-500",
 };
 
