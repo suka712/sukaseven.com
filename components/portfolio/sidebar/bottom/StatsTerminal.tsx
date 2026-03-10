@@ -64,6 +64,7 @@ export function StatsTerminal() {
                   <div key={l.name} className="flex items-center gap-1.5">
                     {getLanguageIcon(l.name)}
                     <span className="text-muted-foreground">{l.name}</span>
+                    <span className="text-foreground/40">{l.percent}%</span>
                   </div>
                 ))}
               </div>
