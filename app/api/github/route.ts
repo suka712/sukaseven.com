@@ -37,23 +37,43 @@ function calculateStreak(events: RawEvent[]): number {
 
 export async function GET() {
   try {
-    const res = await fetch(
-      `https://api.github.com/users/${USERNAME}/events?per_page=100`,
-      {
-        headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 60 },
-      }
-    );
+    const ghHeaders = { Accept: "application/vnd.github+json" };
 
-    if (!res.ok) {
-      return NextResponse.json(
-        { error: `GitHub API: ${res.status}` },
-        { status: 502 }
-      );
+    const [eventsRes, profileRes, reposRes, contribRes] = await Promise.all([
+      fetch(`https://api.github.com/users/${USERNAME}/events?per_page=100`, {
+        headers: ghHeaders,
+        next: { revalidate: 60 },
+      }),
+      fetch(`https://api.github.com/users/${USERNAME}`, {
+        headers: ghHeaders,
+        next: { revalidate: 3600 },
+      }),
+      fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100`, {
+        headers: ghHeaders,
+        next: { revalidate: 3600 },
+      }),
+      fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`, {
+        next: { revalidate: 3600 },
+      }),
+    ]);
+
+    if (!eventsRes.ok) {
+      return NextResponse.json({ error: `GitHub API: ${eventsRes.status}` }, { status: 502 });
     }
 
-    const events: RawEvent[] = await res.json();
+    const [events, profile, repos, contribData]: [
+      RawEvent[],
+      Record<string, number>,
+      Array<{ stargazers_count: number }>,
+      { total?: Record<string, number> },
+    ] = await Promise.all([
+      eventsRes.json(),
+      profileRes.ok ? profileRes.json() : {},
+      reposRes.ok ? reposRes.json() : [],
+      contribRes.ok ? contribRes.json() : {},
+    ]);
 
+    // Recent commits
     const recentCommits: GitHubCommit[] = [];
     for (const event of events) {
       if (event.type !== "PushEvent") continue;
@@ -70,20 +90,21 @@ export async function GET() {
     }
 
     const lastPush = events.find((e) => e.type === "PushEvent");
-    const lastPushedRepo = lastPush?.repo.name.split("/")[1] ?? "";
-    const lastPushedAt = lastPush?.created_at ?? new Date().toISOString();
-    const commitStreak = calculateStreak(events);
+    const currentYear = new Date().getFullYear().toString();
 
     return NextResponse.json({
-      commitStreak,
-      lastPushedRepo,
-      lastPushedAt,
+      commitStreak: calculateStreak(events),
+      lastPushedRepo: lastPush?.repo.name.split("/")[1] ?? "",
+      lastPushedAt: lastPush?.created_at ?? new Date().toISOString(),
       recentCommits,
+      followers: profile.followers ?? 0,
+      publicRepos: profile.public_repos ?? 0,
+      totalStars: Array.isArray(repos)
+        ? repos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0)
+        : 0,
+      contributionsThisYear: contribData.total?.[currentYear] ?? 0,
     });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch GitHub stats" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch GitHub stats" }, { status: 500 });
   }
 }

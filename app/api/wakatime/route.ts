@@ -17,22 +17,26 @@ export async function GET() {
 
   const today = new Date().toISOString().split("T")[0];
   const encoded = Buffer.from(apiKey).toString("base64");
+  const headers = { Authorization: `Basic ${encoded}` };
 
   try {
-    const res = await fetch(
-      `https://wakatime.com/api/v1/users/current/summaries?start=${today}&end=${today}`,
-      {
-        headers: { Authorization: `Basic ${encoded}` },
-        next: { revalidate: 300 },
-      }
-    );
+    const [summaryRes, allTimeRes] = await Promise.all([
+      fetch(
+        `https://wakatime.com/api/v1/users/current/summaries?start=${today}&end=${today}`,
+        { headers, next: { revalidate: 300 } }
+      ),
+      fetch(
+        `https://wakatime.com/api/v1/users/current/stats/all_time`,
+        { headers, next: { revalidate: 86400 } }
+      ),
+    ]);
 
-    if (!res.ok) {
-      return NextResponse.json({ error: "upstream error" }, { status: res.status });
+    if (!summaryRes.ok) {
+      return NextResponse.json({ error: "upstream error" }, { status: summaryRes.status });
     }
 
-    const data = await res.json();
-    const summary = data.data?.[0];
+    const summaryData = await summaryRes.json();
+    const summary = summaryData.data?.[0];
 
     if (!summary) {
       return NextResponse.json({ error: "no data" }, { status: 404 });
@@ -40,9 +44,9 @@ export async function GET() {
 
     const totalSeconds: number = summary.grand_total?.total_seconds ?? 0;
 
-    const languages: { name: string; percent: number; total_seconds: number }[] =
+    const todayLangs: { name: string; percent: number; total_seconds: number }[] =
       summary.languages ?? [];
-    const topLang = [...languages].sort((a, b) => b.total_seconds - a.total_seconds)[0] ?? null;
+    const topLang = [...todayLangs].sort((a, b) => b.total_seconds - a.total_seconds)[0] ?? null;
 
     const operatingSystems: { name: string; total_seconds: number }[] =
       summary.operating_systems ?? [];
@@ -51,6 +55,19 @@ export async function GET() {
       .sort((a, b) => b.total_seconds - a.total_seconds)
       .map((o) => ({ name: o.name, text: formatDuration(o.total_seconds) }));
 
+    // Lifetime language stats
+    let lifetimeLanguages: { name: string; percent: number; text: string }[] = [];
+    if (allTimeRes.ok) {
+      const allTimeData = await allTimeRes.json();
+      const langs: { name: string; percent: number; total_seconds: number; text: string }[] =
+        allTimeData.data?.languages ?? [];
+      lifetimeLanguages = langs
+        .filter((l) => l.percent >= 1)
+        .sort((a, b) => b.total_seconds - a.total_seconds)
+        .slice(0, 5)
+        .map((l) => ({ name: l.name, percent: Math.round(l.percent), text: l.text }));
+    }
+
     return NextResponse.json({
       total_seconds: totalSeconds,
       text: formatDuration(totalSeconds),
@@ -58,6 +75,7 @@ export async function GET() {
         ? { name: topLang.name, percent: Math.round(topLang.percent) }
         : null,
       os,
+      lifetimeLanguages,
     });
   } catch {
     return NextResponse.json({ error: "fetch failed" }, { status: 500 });

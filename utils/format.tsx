@@ -1,8 +1,8 @@
-import { FileText, LucideFile } from "lucide-react";
+import { FileText, LucideFile, Terminal } from "lucide-react";
 import { ReactNode } from "react";
 import { BiLogoGoLang } from "react-icons/bi";
-import { FaFileCode, FaGolang, FaRegFileCode, FaRust } from "react-icons/fa6";
-import { TbBrandRust, TbBrandTypescript } from "react-icons/tb";
+import { FaCss3, FaGolang, FaHtml5, FaJava, FaJs, FaMarkdown, FaPython, FaRegFileCode, FaRust } from "react-icons/fa6";
+import { TbBrandCpp, TbBrandKotlin, TbBrandReact, TbBrandRust, TbBrandSwift, TbBrandTypescript, TbBrandVue, TbSql } from "react-icons/tb";
 
 export const formatMsToSecond = (ms: number) => {
   const s = Math.floor(ms / 1000);
@@ -39,5 +39,51 @@ export const getFileIcons = (extension: string | undefined): ReactNode => {
       return <TbBrandTypescript className="size-4 text-blue-400 shrink-0"/>
     default:
       return <FaRegFileCode className="size-4 text-zinc-400 shrink-0" />;
+  }
+}
+
+export const getLanguageIcon = (language: string): ReactNode => {
+  switch (language.toLowerCase()) {
+    case 'go':
+      return <FaGolang className="size-3.5 text-cyan-400 shrink-0" />;
+    case 'rust':
+      return <TbBrandRust className="size-3.5 text-red-400 shrink-0" />;
+    case 'typescript':
+      return <TbBrandTypescript className="size-3.5 text-blue-400 shrink-0" />;
+    case 'javascript':
+      return <FaJs className="size-3.5 text-yellow-300 shrink-0" />;
+    case 'python':
+      return <FaPython className="size-3.5 text-yellow-400 shrink-0" />;
+    case 'java':
+      return <FaJava className="size-3.5 text-orange-400 shrink-0" />;
+    case 'kotlin':
+      return <TbBrandKotlin className="size-3.5 text-purple-400 shrink-0" />;
+    case 'swift':
+      return <TbBrandSwift className="size-3.5 text-orange-400 shrink-0" />;
+    case 'c++':
+    case 'cpp':
+      return <TbBrandCpp className="size-3.5 text-blue-500 shrink-0" />;
+    case 'html':
+      return <FaHtml5 className="size-3.5 text-orange-500 shrink-0" />;
+    case 'css':
+      return <FaCss3 className="size-3.5 text-blue-400 shrink-0" />;
+    case 'vue':
+      return <TbBrandVue className="size-3.5 text-emerald-400 shrink-0" />;
+    case 'jsx':
+    case 'tsx':
+    case 'react':
+      return <TbBrandReact className="size-3.5 text-cyan-400 shrink-0" />;
+    case 'sql':
+      return <TbSql className="size-3.5 text-amber-400 shrink-0" />;
+    case 'markdown':
+    case 'mdx':
+      return <FaMarkdown className="size-3.5 text-zinc-400 shrink-0" />;
+    case 'bash':
+    case 'sh':
+    case 'shell':
+    case 'zsh':
+      return <Terminal className="size-3.5 text-zinc-400 shrink-0" />;
+    default:
+      return <FaRegFileCode className="size-3.5 text-zinc-500 shrink-0" />;
   }
 }
