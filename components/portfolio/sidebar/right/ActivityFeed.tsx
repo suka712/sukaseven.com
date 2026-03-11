@@ -141,7 +141,6 @@ function ActivityRow({ item }: { item: ActivityItem }) {
           </span>
         </div>
         <p className="text-foreground/65 mt-0.5 truncate group-hover:underline">{item.track}</p>
-        <p className="text-muted-foreground/40 text-[10px] truncate">{item.artist}</p>
       </div>
     </a>
   );
