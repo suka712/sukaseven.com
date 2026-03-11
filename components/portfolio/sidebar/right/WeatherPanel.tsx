@@ -93,9 +93,8 @@ export function WeatherPanel() {
         <span className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
           Chiayi, Taiwan
         </span>
-        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">Now: <span className="text-accent">{time}</span></span>
-      </div>
-
+        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">现在: <span className="text-accent">{time}</span></span>      </div>
+        
       {error ? (
         <span className="text-destructive/60 text-xs">weather unavailable</span>
       ) : !weather ? (
