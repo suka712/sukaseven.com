@@ -26,7 +26,7 @@ export const formatTimeAgo = (date: Date) => {
   if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
   if (seconds < 2592000) return `${Math.floor(seconds / 86400)} days ago`;
   if (seconds < 31536000) return `${Math.floor(seconds / 2592000)} months ago`;
-  return `${Math.floor(seconds / 31536000)} years ago`;
+  return `A while ago`;
 };
 
 export const getFileIcons = (extension: string | undefined): ReactNode => {

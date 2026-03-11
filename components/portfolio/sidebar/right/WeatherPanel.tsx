@@ -40,20 +40,20 @@ function dumbStats(w: Weather) {
 
   return [
     {
-      label: "scooter",
-      value: isStormy || windy ? "stay home" : isRaining ? "risky" : "go for it",
+      label: "Bike",
+      value: isStormy || windy ? "待在家" : isRaining ? "有风险" : "去吧",
     },
     {
       label: "AC",
-      value: hotAF ? "full blast" : w.temp >= 28 ? "on" : "off",
+      value: hotAF ? "全速" : w.temp >= 28 ? "开" : "关",
     },
     {
-      label: "umbrella",
-      value: isRaining || isStormy ? "yes bro" : w.humidity > 80 ? "maybe" : "nah",
+      label: "Umbrella",
+      value: isRaining || isStormy ? "是" : w.humidity > 80 ? "也许" : "不",
     },
     {
-      label: "boba run",
-      value: "always",
+      label: "Boba",
+      value: "总是",
     },
   ];
 }
@@ -93,11 +93,11 @@ export function WeatherPanel() {
         <span className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
           Chiayi, Taiwan
         </span>
-        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">Now {time}</span>
+        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">Now: <span className="text-accent">{time}</span></span>
       </div>
 
       {error ? (
-        <span className="text-destructive/60 text-[10px]">weather unavailable</span>
+        <span className="text-destructive/60 text-xs">weather unavailable</span>
       ) : !weather ? (
         <span className="text-muted-foreground/50 animate-pulse-quick">fetching...</span>
       ) : (
@@ -117,7 +117,7 @@ export function WeatherPanel() {
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <Thermometer className="size-3" />
-              feels {weather.feelsLike}°
+              感觉 {weather.feelsLike}°
             </span>
             <span className="flex items-center gap-1">
               <Droplets className="size-3" />

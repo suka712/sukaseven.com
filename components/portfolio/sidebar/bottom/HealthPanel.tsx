@@ -52,7 +52,7 @@ export const LeftHealthPanel = () => {
         </div>
         {checkedAt && (
           <span className="text-xs font-mono text-muted-foreground/50 truncate">
-            Checked {checkedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
+            Checked: <span className="text-accent">{checkedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
           </span>
         )}
       </div>
