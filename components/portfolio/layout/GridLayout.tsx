@@ -238,7 +238,7 @@ export const GridLayout = ({
 
       {/* Bottom Bar (row 3, cols 2-3) */}
       <div className={`flex gap-2 col-span-2 ${bottomBarHeight}`}>
-        <div className="glow-border card-enter w-1/3 shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
+        <div className="glow-border card-enter w-1/3 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "400ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
         <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "800ms" }}>
