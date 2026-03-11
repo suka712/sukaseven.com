@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GitCommit, Music2 } from "lucide-react";
+import { Code, GitCommit, Music2 } from "lucide-react";
 import { formatTimeAgo } from "@/utils/format";
 
 type CommitItem = {
@@ -23,14 +23,14 @@ type SpotifyItem = {
 
 type ActivityItem = CommitItem | SpotifyItem;
 
-export function ActivityFeed() {
+export const ActivityFeed = () => {
   const [items, setItems] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     Promise.all([
-      fetch("/api/github").then((r) => (r.ok ? r.json() : null)),
+    fetch("/api/github").then((r) => (r.ok ? r.json() : null)),
       fetch(`${API_URL}/play`).then((r) => (r.ok ? r.json() : null)),
     ])
       .then(([gh, spotify]) => {
@@ -84,8 +84,8 @@ export function ActivityFeed() {
           <span className="text-xs text-muted-foreground/40 font-mono">no activity</span>
         ) : (
           <div className="relative pl-3 flex flex-col gap-3">
-            {/* Timeline rail */}
-            <div className="absolute left-0 top-1 bottom-1 w-px bg-border" />
+
+            <div className="absolute left-1.5 top-1 bottom-1 w-px bg-border" />
 
             {items.map((item, i) => (
               <ActivityRow key={i} item={item} />
@@ -101,11 +101,11 @@ function ActivityRow({ item }: { item: ActivityItem }) {
   if (item.kind === "commit") {
     return (
       <div className="flex gap-2 text-xs font-mono min-w-0">
-        <div className="absolute -left-[3px] mt-0.5 size-1.5 rounded-full bg-accent shrink-0" />
+        <div className="absolute left-1 mt-1.5 size-1.5 rounded-full bg-accent shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 min-w-0">
-            <GitCommit className="size-3 text-accent/60 shrink-0" />
-            <span className="text-accent/70 shrink-0 max-w-[80px] truncate">{item.repo}</span>
+            <Code className="size-3 ml-1 mt-0.5 text-accent/60 shrink-0" />
+            <span className="text-accent/70 shrink-0 max-w-20 truncate">{item.repo}</span>
             <span className="text-muted-foreground/30 shrink-0">·</span>
             <span className="text-muted-foreground/40 text-[10px] shrink-0 whitespace-nowrap">
               {formatTimeAgo(new Date(item.timestamp))}
@@ -128,10 +128,10 @@ function ActivityRow({ item }: { item: ActivityItem }) {
       rel="noopener noreferrer"
       className="flex gap-2 text-xs font-mono min-w-0 group"
     >
-      <div className="absolute -left-[3px] mt-0.5 size-1.5 rounded-full bg-emerald-500/70 shrink-0" />
+      <div className="absolute left-1 mt-1.5 size-1.5 rounded-full bg-emerald-500/70 shrink-0" />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5 min-w-0">
-          <Music2 className="size-3 text-emerald-400/60 shrink-0" />
+          <Music2 className="size-3 ml-1 mt-0.5 text-emerald-400/60 shrink-0" />
           <span className="text-emerald-400/70 shrink-0">
             {item.is_playing ? "listening" : "played"}
           </span>
