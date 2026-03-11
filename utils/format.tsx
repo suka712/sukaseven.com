@@ -34,7 +34,7 @@ export const getFileIcons = (extension: string | undefined): ReactNode => {
     case '.go':
       return <FaGolang className="size-4 text-cyan-400 shrink-0" />;
     case '.rs':
-      return <FaRust className="size-4 text-red-400 shrink-0" />
+      return <FaRust className="size-4 text-red-500/90 shrink-0" />
     case '.ts':
       return <TbBrandTypescript className="size-4 text-blue-400 shrink-0"/>
     default:

@@ -111,7 +111,7 @@ function ActivityRow({ item }: { item: ActivityItem }) {
               {formatTimeAgo(new Date(item.timestamp))}
             </span>
           </div>
-          <p className="text-foreground/65 mt-0.5 leading-snug line-clamp-2 break-words">
+          <p className="text-foreground/65 mt-0.5 leading-snug line-clamp-2 wrap-break-word">
             {item.message}
           </p>
         </div>
