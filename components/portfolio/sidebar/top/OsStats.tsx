@@ -26,7 +26,7 @@ export function OsStats() {
   }, []);
 
   return (
-    <div className="glow-border flex flex-col gap-2 rounded-xl bg-card px-4 py-3 shrink-0 overflow-hidden font-mono text-sm">
+    <div className="h-11 glow-border flex flex-col justify-center gap-2 rounded-xl bg-card px-4 py-3 shrink-0 overflow-hidden font-mono text-sm">
       {error ? (
         <span className="text-destructive/70 text-xs">wakatime module errored out</span>
       ) : !data ? (
