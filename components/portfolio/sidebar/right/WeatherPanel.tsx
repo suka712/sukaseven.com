@@ -18,7 +18,7 @@ interface Weather {
 }
 
 function windDir(deg: number) {
-  const dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const dirs = ["↑↑", "↗↗", "→→", "↘↘", "↓↓", "↙↙", "←←", "↖↖"];
   return dirs[Math.round(deg / 45) % 8];
 }
 
