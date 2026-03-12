@@ -12,7 +12,7 @@ const links: { label: string; icon: IconType; url: string }[] = [
   { label: "TikTok",   icon: FaTiktok,     url: "https://tiktok.com/@secondkhiem" },
 ];
 
-export function Links() {
+export const Links = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -23,7 +23,7 @@ export function Links() {
         onToggle={() => setCollapsed((c) => !c)}
       />
       <CollapsibleContent collapsed={collapsed}>
-        <div className="flex items-center gap-1 mt-2">
+        <div className="flex items-center justify-between mt-2 w-full">
           {links.map(({ label, icon: Icon, url }) => (
             <a
               key={label}

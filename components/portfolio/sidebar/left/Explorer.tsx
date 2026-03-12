@@ -9,7 +9,7 @@ interface LeftSidebarProps {
 
 export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full px-3 pb-2">
       <div className="px-4 pt-4 pb-1 shrink-0">
         <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Explorer

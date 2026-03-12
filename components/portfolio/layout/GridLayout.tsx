@@ -184,22 +184,22 @@ export const GridLayout = ({
         </div>
       ) : (
         <div className="row-span-3 relative flex flex-col gap-2 min-h-0">
-          <div className="shrink-0">
+          <div>
             {wakatime}
           </div>
-          <div className="glow-border card-enter flex-1 rounded-xl bg-card min-h-0 duration-200" style={{ animationDelay: "1000ms" }}>
+          <div className="glow-border card-enter flex-1 rounded-xl bg-card min-h-0 duration-200 shrink-0" style={{ animationDelay: "1000ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{leftFileTree}</div>
           </div>
-          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "1800ms" }}>
+          <div className="glow-border card-enter rounded-xl bg-card duration-200" style={{ animationDelay: "1800ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{leftDiff}</div>
           </div>
-          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "2600ms" }}>
+          <div className="glow-border card-enter rounded-xl bg-card duration-200" style={{ animationDelay: "2600ms" }}>
             <div className="overflow-hidden rounded-xl">{leftListening}</div>
           </div>
-          <div className="glow-border card-enter shrink-0 rounded-xl bg-card duration-200" style={{ animationDelay: "3000ms" }}>
+          <div className="glow-border card-enter rounded-xl bg-card duration-200" style={{ animationDelay: "3000ms" }}>
             <div className="overflow-hidden rounded-xl">{leftLinks}</div>
           </div>
-          <div className={`glow-border card-enter shrink-0 rounded-xl bg-card duration-200 ${healthPanelHeight}`} style={{ animationDelay: "4000ms" }}>
+          <div className={`glow-border card-enter rounded-xl bg-card duration-200 ${healthPanelHeight}`} style={{ animationDelay: "4000ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{healthPanel}</div>
           </div>
           {/* Resize handle overlaid on the right edge */}

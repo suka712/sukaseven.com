@@ -56,12 +56,12 @@ export function LastDiff() {
         ) : (
           <div className="mt-2 flex flex-col min-h-0">
             {/* Stats row */}
-            <div className="flex items-center gap-2 font-mono text-[10px] mb-1.5">
+            <div className="flex items-center gap-2 font-mono text-xs mb-1.5">
               <span className="text-emerald-400">+{data.file.additions}</span>
-              <span className="text-destructive/70">−{data.file.deletions}</span>
-              <span className="text-muted-foreground/30">·</span>
-              <span className="text-muted-foreground/40 truncate">{data.file.fullPath}</span>
-              <span className="text-muted-foreground/25 ml-auto shrink-0">{data.sha}</span>
+              <span className="text-destructive/70">-{data.file.deletions}</span>
+              <span className="text-muted-foreground">·</span>
+              <span className="text-muted-foreground truncate">{data.file.fullPath}</span>
+              <span className="text-muted-foreground ml-auto shrink-0">{data.sha}</span>
             </div>
 
             {/* Diff lines */}
@@ -78,7 +78,7 @@ export function LastDiff() {
             </div>
 
             {/* Footer */}
-            <div className="pt-1.5 mt-1 border-t border-border/40 text-[10px] font-mono text-muted-foreground/30">
+            <div className="pt-1.5 mt-1 border-t border-border/40 text-xs font-mono text-muted-foreground">
               {formatTimeAgo(new Date(data.timestamp))}
             </div>
           </div>
