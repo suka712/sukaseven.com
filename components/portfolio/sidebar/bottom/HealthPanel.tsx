@@ -64,7 +64,7 @@ export const LeftHealthPanel = () => {
             ) : svc.status === "up" && (svc.latency ?? 0) > 500 ? (
               <span className="size-2 rounded-full bg-yellow-400 animate-pulse shadow-[0_0_6px_theme(--color-yellow-400)] shrink-0" />
             ) : svc.status === "up" ? (
-              <span className="size-2 rounded-full bg-accent animate-pulse-quick shadow-[0_0_6px_theme(--color-accent)] shrink-0" />
+              <span className="size-2 rounded-full bg-accent live-dot shrink-0" />
             ) : (
               <span className="size-2 rounded-full bg-destructive shadow-[0_0_6px_theme(--color-destructive)] shrink-0" />
             )}

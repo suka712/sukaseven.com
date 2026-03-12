@@ -85,7 +85,7 @@ export const ActivityFeed = () => {
         ) : (
           <div className="relative pl-3 flex flex-col gap-3">
 
-            <div className="absolute left-1.5 top-1 bottom-1 w-px bg-border" />
+            <div className="absolute left-1.5 top-1 bottom-1 w-px timeline-flow" />
 
             {items.map((item, i) => (
               <ActivityRow key={i} item={item} />

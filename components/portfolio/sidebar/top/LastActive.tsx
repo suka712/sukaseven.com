@@ -25,7 +25,7 @@ export const LastActive = () => {
 
   return (
     <div className="glow-border flex text-sm justify-center items-center rounded-xl bg-card gap-2 px-4 py-3 overflow-hidden">
-      <span className="size-2 shrink-0 rounded-full bg-accent shadow-[0_0_6px_theme(--color-accent)] animate-pulse-quick" />
+      <span className="size-2 shrink-0 rounded-full bg-accent live-dot" />
       {error ? error : <>
         <span className="text-foreground whitespace-nowrap">
           {isLoading || !event ? 'Hold on...' : `[${formatTimeAgo(event.time)}]`}

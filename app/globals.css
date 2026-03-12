@@ -128,6 +128,56 @@
   --animate-pulse-quick: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Expanding ring pulse — makes live indicators feel like active signals */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 var(--ring), 0 0 6px var(--ring);
+  }
+  70% {
+    box-shadow: 0 0 0 5px oklch(0.65 0.19 255 / 0), 0 0 10px var(--ring);
+  }
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.65 0.19 255 / 0), 0 0 6px var(--ring);
+  }
+}
+
+.live-dot {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Data stream — traveling highlight on timeline connectors */
+@keyframes data-flow {
+  0% { background-position: 0 -100%; }
+  100% { background-position: 0 200%; }
+}
+
+.timeline-flow {
+  background: linear-gradient(
+    to bottom,
+    var(--border) 0%,
+    var(--border) 42%,
+    var(--accent) 50%,
+    var(--border) 58%,
+    var(--border) 100%
+  );
+  background-size: 100% 300%;
+  animation: data-flow 3s linear infinite;
+}
+
+/* Cursor ambient light — large soft glow that follows the mouse on the background */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    700px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    oklch(0.65 0.19 255 / 0.05) 0%,
+    transparent 70%
+  );
+  transition: background 0.1s ease;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -225,6 +275,11 @@
   33% { transform: translate(20px, 40px) scale(0.9); }
   66% { transform: translate(-35px, -25px) scale(1.1); }
 }
+@keyframes blob-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-30px, -40px) scale(1.08); }
+  70% { transform: translate(20px, 30px) scale(0.92); }
+}
 
 .ambient-blobs {
   position: fixed;
@@ -245,34 +300,47 @@
 }
 
 .ambient-blobs::before {
-  width: 600px;
-  height: 600px;
+  width: 650px;
+  height: 650px;
   top: -10%;
   left: 15%;
   background: oklch(0.55 0.18 255);
-  opacity: 0.06;
+  opacity: 0.10;
   animation: blob-drift-1 25s ease-in-out infinite;
 }
 
 .ambient-blobs::after {
-  width: 500px;
-  height: 500px;
+  width: 520px;
+  height: 520px;
   top: 50%;
   right: 10%;
   background: oklch(0.55 0.18 300);
-  opacity: 0.05;
+  opacity: 0.08;
   animation: blob-drift-2 30s ease-in-out infinite;
 }
 
-.ambient-blobs span {
+.ambient-blobs span:nth-child(1) {
   display: block;
-  width: 550px;
-  height: 550px;
+  width: 580px;
+  height: 580px;
   bottom: -5%;
   left: 40%;
   background: oklch(0.6 0.15 170);
-  opacity: 0.07;
+  opacity: 0.11;
   animation: blob-drift-3 20s ease-in-out infinite;
+}
+
+/* 4th blob: warm amber bottom-left for depth contrast */
+.ambient-blobs span:nth-child(2) {
+  display: block;
+  width: 480px;
+  height: 480px;
+  bottom: 10%;
+  left: -5%;
+  background: oklch(0.65 0.14 50);
+  opacity: 0.06;
+  animation: blob-drift-4 27s ease-in-out infinite;
+  animation-delay: -8s;
 }
 
 /* Vignette */

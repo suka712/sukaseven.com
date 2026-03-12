@@ -35,7 +35,7 @@ export function OsStats() {
         <div className="flex items-center gap-3">
           {data.os.map((o) => (
             <div key={o.name} className="flex items-center gap-1.5 whitespace-nowrap">
-              <span className="size-2 rounded-full bg-accent shrink-0 animate-pulse-quick shadow-[0_0_6px_theme(--color-accent)]" />
+              <span className="size-2 rounded-full bg-accent shrink-0 live-dot" />
               <span className="text-muted-foreground">{OS_LABELS[o.name] ?? o.name}</span>
               <span className="text-foreground">{o.text}</span>
             </div>

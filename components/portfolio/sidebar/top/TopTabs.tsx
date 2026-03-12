@@ -21,7 +21,7 @@ const TabItem = ({ tab }: { tab: Tab }) => {
   if (tab.isActive) {
     return (
       <div className="flex items-center gap-1.5 rounded-lg bg-accent/60 px-4 py-1.5 text-sm text-foreground">
-        <span className="size-2 rounded-full bg-accent shadow-accent" />
+        <span className="size-2 rounded-full bg-accent live-dot" />
         {tab.label}
       </div>
     );

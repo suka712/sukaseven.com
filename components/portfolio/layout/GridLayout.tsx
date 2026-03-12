@@ -82,6 +82,7 @@ export const GridLayout = ({
   const [viewportWidth, setViewportWidth] = useState(1440);
   const isResizing = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const cursorGlowRef = useRef<HTMLDivElement>(null);
 
   // Track viewport width for responsive behavior
   useEffect(() => {
@@ -104,6 +105,12 @@ export const GridLayout = ({
       if (isResizing.current) {
         const newWidth = e.clientX - 8;
         setLeftWidth(Math.max(180, Math.min(450, newWidth)));
+      }
+
+      // Cursor ambient glow on background
+      if (cursorGlowRef.current) {
+        cursorGlowRef.current.style.setProperty("--cursor-x", `${e.clientX}px`);
+        cursorGlowRef.current.style.setProperty("--cursor-y", `${e.clientY}px`);
       }
 
       // Border glow: set mouse position relative to each card
@@ -153,8 +160,9 @@ export const GridLayout = ({
 
   return (
     <>
-    <div className="ambient-blobs"><span /></div>
+    <div className="ambient-blobs"><span /><span /></div>
     <div className="vignette" />
+    <div className="cursor-glow" ref={cursorGlowRef} />
     <div
       ref={rootRef}
       className="relative z-2 h-screen w-screen overflow-hidden p-2 grid gap-2"
@@ -206,7 +214,7 @@ export const GridLayout = ({
       </div>
 
       {/* Central Panel (row 2, col 2) */}
-      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "400ms" }}>
+      <div className="glow-border card-enter min-h-0 rounded-xl bg-card" style={{ animationDelay: "2000ms" }}>
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
