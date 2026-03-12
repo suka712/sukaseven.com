@@ -51,10 +51,6 @@ function dumbStats(w: Weather) {
       label: "Umbrella",
       value: isRaining || isStormy ? "是" : w.humidity > 80 ? "也许" : "不",
     },
-    {
-      label: "Boba",
-      value: "总是",
-    },
   ];
 }
 
@@ -104,7 +100,7 @@ export function WeatherPanel() {
           {/* Main temp + condition */}
           <div className="flex items-center gap-2">
             <WeatherIcon code={weather.code} className="size-5 text-accent shrink-0" />
-            <span className="text-2xl font-semibold text-foreground tabular-nums">
+            <span className="text-xl font-semibold text-foreground tabular-nums">
               {weather.temp}°
             </span>
             <span className="text-muted-foreground capitalize leading-tight">

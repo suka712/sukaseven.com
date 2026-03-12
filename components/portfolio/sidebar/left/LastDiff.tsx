@@ -33,23 +33,24 @@ function DiffPreview({ data }: { data: LastDiffData }) {
     <div className="mt-2 space-y-2.5">
       {/* Stats + ratio bar */}
       <div className="flex items-center gap-2 font-mono text-xs justify-between">
-        <div className="flex gap-2">
-          <div className="text-accent">+{data.file.additions}</div>
-          <div className="text-destructive/60">-{data.file.deletions}</div>
+        <div className="gap-2">
+          <span className="text-accent">+{data.file.additions}</span>
+          <span className="text-accent-foreground/60">/</span>
+          <span className="text-destructive">-{data.file.deletions}</span>
         </div>
         <div className="flex gap-0.5 ml-1">
           {Array.from({ length: greenCount }).map((_, i) => (
             <div key={i} className={i === 0 ? "rounded-l-full h-1 w-4 bg-accent" : "h-1 w-4 bg-accent"} />
           ))}
           {Array.from({ length: redCount }).map((_, i) => (
-            <div key={i} className={i === Array.from({ length: redCount }).length - 1 ? "rounded-r-full h-1 w-4 bg-destructive/35" : "h-1 w-4 bg-destructive/35"} />
+            <div key={i} className={i === Array.from({ length: redCount }).length - 1 ? "rounded-r-full h-1 w-4 bg-destructive" : "h-1 w-4 bg-destructive"} />
           ))}
         </div>
       </div>
 
       {/* Added lines preview */}
       {addedLines.length > 0 && (
-        <div className="space-y-1 font-mono text-[10px] text-muted-foreground/55 leading-relaxed">
+        <div className="space-y-1 font-mono text-[10px] text-muted-foreground/70 leading-relaxed">
           {addedLines.map((line, i) => (
             <div key={i} className="truncate">{line}</div>
           ))}
@@ -79,12 +80,9 @@ export const LastDiff = () => {
 
   const title = data
     ? <span className="flex items-center gap-2 overflow-hidden truncate">
-        Latest
-        <span className="font-mono normal-case tracking-normal text-muted-foreground/50 truncate">
-          {data.file.name}
-        </span>
+        Last changed
       </span>
-    : "Last Diff";
+    : "Last changed";
 
   return (
     <div className="p-4 h-full flex flex-col min-h-0">
@@ -95,7 +93,7 @@ export const LastDiff = () => {
       />
       <CollapsibleContent collapsed={collapsed}>
         {!loaded ? (
-          <div className="mt-2 text-xs text-muted-foreground/50 font-mono animate-pulse-quick">
+          <div className="mt-2 text-xs text-muted-foreground/20 font-mono animate-pulse-quick">
             fetching...
           </div>
         ) : !data ? (
