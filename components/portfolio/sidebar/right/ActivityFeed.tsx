@@ -81,7 +81,7 @@ export const ActivityFeed = () => {
             fetching...
           </span>
         ) : items.length === 0 ? (
-          <span className="text-xs text-muted-foreground/40 font-mono">no activity</span>
+          <span className="text-xs text-muted-foreground/60 font-mono">no activity</span>
         ) : (
           <div className="relative pl-3 flex flex-col gap-3">
 
@@ -100,7 +100,7 @@ export const ActivityFeed = () => {
 function ActivityRow({ item }: { item: ActivityItem }) {
   if (item.kind === "commit") {
     return (
-      <div className="flex gap-2 text-xs font-mono min-w-0">
+      <div className="flex gap-2 text-xs font-mono min-w-0 rounded px-1 -mx-1 hover:bg-accent/5 transition-colors">
         <div className="absolute left-1 mt-1.5 size-1.5 rounded-full bg-accent shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 min-w-0">
@@ -111,7 +111,7 @@ function ActivityRow({ item }: { item: ActivityItem }) {
               {formatTimeAgo(new Date(item.timestamp))}
             </span>
           </div>
-          <p className="text-foreground/65 mt-0.5 leading-snug line-clamp-2 wrap-break-word">
+          <p className="text-foreground/60 mt-0.5 leading-snug line-clamp-2 wrap-break-word">
             {item.message}
           </p>
         </div>
@@ -140,7 +140,7 @@ function ActivityRow({ item }: { item: ActivityItem }) {
             {formatTimeAgo(new Date(tsMs))}
           </span>
         </div>
-        <p className="text-foreground/65 mt-0.5 truncate group-hover:underline">{item.track}</p>
+        <p className="text-foreground/60 mt-0.5 truncate group-hover:underline">{item.track}</p>
       </div>
     </a>
   );

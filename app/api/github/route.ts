@@ -105,6 +105,59 @@ export async function GET() {
     const lastPush = events.find((e) => e.type === "PushEvent");
     const currentYear = new Date().getFullYear().toString();
 
+    // Fetch diff for the most recent commit
+    let lastDiff: {
+      repo: string;
+      sha: string;
+      timestamp: string;
+      file: {
+        name: string;
+        fullPath: string;
+        additions: number;
+        deletions: number;
+        patch: string;
+      };
+    } | null = null;
+
+    if (lastPush) {
+      const commits = lastPush.payload.commits ?? [];
+      const sha = commits[0]?.sha ?? lastPush.payload.head ?? "";
+      if (sha) {
+        try {
+          const commitRes = await fetch(
+            `https://api.github.com/repos/${lastPush.repo.name}/commits/${sha}`,
+            { headers: ghHeaders, next: { revalidate: 300 } }
+          );
+          if (commitRes.ok) {
+            const commitData = await commitRes.json();
+            // Pick the file with the most changes that has a patch
+            const files: Array<{ filename: string; additions: number; deletions: number; patch?: string }> =
+              commitData.files ?? [];
+            const primary = files
+              .filter((f) => f.patch)
+              .sort((a, b) => (b.additions + b.deletions) - (a.additions + a.deletions))[0];
+
+            if (primary) {
+              lastDiff = {
+                repo: lastPush.repo.name.split("/")[1],
+                sha: sha.slice(0, 7),
+                timestamp: lastPush.created_at,
+                file: {
+                  name: primary.filename.split("/").pop() ?? primary.filename,
+                  fullPath: primary.filename,
+                  additions: primary.additions,
+                  deletions: primary.deletions,
+                  patch: (primary.patch ?? "").split("\n").slice(0, 60).join("\n"),
+                },
+              };
+            }
+          }
+        } catch {
+          // non-fatal
+        }
+      }
+    }
+
     return NextResponse.json({
       commitStreak: calculateStreak(events),
       lastPushedRepo: lastPush?.repo.name.split("/")[1] ?? "",
@@ -116,6 +169,7 @@ export async function GET() {
         ? repos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0)
         : 0,
       contributionsThisYear: contribData.total?.[currentYear] ?? 0,
+      lastDiff,
     });
   } catch {
     return NextResponse.json({ error: "Failed to fetch GitHub stats" }, { status: 500 });

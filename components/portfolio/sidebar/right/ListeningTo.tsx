@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMsToSecond, truncateText, truncateWords } from "@/utils/format";
+import { formatMsToSecond } from "@/utils/format";
 import { LucideMusic, Music, Pause } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -96,9 +96,10 @@ export function ListeningTo() {
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                  <div className="flex items-center text-sm text-foreground gap-1">
+                  <div className="flex items-center text-sm text-foreground gap-1 min-w-0">
                     <span className="hover:underline truncate">{data.track}</span>
-                    <span className="text-muted-foreground/80 truncate">{data.artist}</span>
+                    <span className="text-muted-foreground/40 shrink-0">·</span>
+                    <span className="text-muted-foreground/70 truncate">{data.artist}</span>
                   </div>
 
                 <div className="mt-1 flex items-center w-11/12 text-[10px] gap-1">

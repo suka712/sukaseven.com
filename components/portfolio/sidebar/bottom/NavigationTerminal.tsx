@@ -226,14 +226,14 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
           />
         ))}
         <div className="flex gap-2 text-xs">
-          <span className="text-accent shrink-0" style={{ textShadow: "0 0 8px rgb(96 165 250 / 0.6)" }}>{promptText}</span>
+          <span className="text-accent shrink-0" style={{ textShadow: "0 0 8px oklch(0.65 0.19 255 / 0.6)" }}>{promptText}</span>
           <input
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent text-foreground outline-none caret-accent"
-            style={{ textShadow: "0 0 6px rgb(16 185 129 / 0.3)" }}
+            style={{ textShadow: "0 0 6px oklch(0.65 0.19 255 / 0.3)" }}
             spellCheck={false}
             autoFocus
           />

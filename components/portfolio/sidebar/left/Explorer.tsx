@@ -9,11 +9,15 @@ interface LeftSidebarProps {
 
 export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
   return (
-    <div className="flex p-4 flex-col h-full overflow-y-auto overflow-x-hidden scrollbar-panel">
-      <div className="text-xs pb-1 font-semibold uppercase tracking-wider text-muted-foreground">
-        Explorer
+    <div className="flex flex-col h-full">
+      <div className="px-4 pt-4 pb-1 shrink-0">
+        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Explorer
+        </div>
       </div>
-      <FileTree onFileSelect={onFileSelect} activePath={activePath} />
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-panel pb-3">
+        <FileTree onFileSelect={onFileSelect} activePath={activePath} />
+      </div>
     </div>
   );
 };

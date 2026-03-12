@@ -26,7 +26,7 @@ export const LastActive = () => {
   return (
     <div className="glow-border flex text-sm justify-center items-center rounded-xl bg-card gap-2 px-4 py-3 overflow-hidden">
       <span className="size-2 shrink-0 rounded-full bg-accent live-dot" />
-      {error ? error : <>
+      {error ? <span className="text-destructive/70 text-xs font-mono">github api unavailable</span> : <>
         <span className="text-foreground whitespace-nowrap">
           {isLoading || !event ? 'Hold on...' : `[${formatTimeAgo(event.time)}]`}
         </span>

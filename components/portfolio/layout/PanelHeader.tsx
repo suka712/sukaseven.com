@@ -20,11 +20,12 @@ export function PanelHeader({ title, collapsed, onToggle }: PanelHeaderProps) {
       <button
         className="text-muted-foreground hover:text-foreground transition-colors p-0.5"
         tabIndex={-1}
+        onClick={(e) => { e.stopPropagation(); onToggle(); }}
       >
         {collapsed ? (
-          <ChevronDown className="size-4" />
+          <ChevronDown className="size-3.5" />
         ) : (
-          <ChevronUp className="size-4" />
+          <ChevronUp className="size-3.5" />
         )}
       </button>
     </div>

@@ -23,17 +23,17 @@ export function Links() {
         onToggle={() => setCollapsed((c) => !c)}
       />
       <CollapsibleContent collapsed={collapsed}>
-        <div className="grid grid-cols-2 gap-2 mt-2">
+        <div className="flex items-center gap-1 mt-2">
           {links.map(({ label, icon: Icon, url }) => (
             <a
               key={label}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-1.5 rounded-lg py-3 text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
+              title={label}
+              className="flex items-center justify-center size-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
             >
-              <Icon className="size-5" />
-              <span className="text-xs font-mono">{label}</span>
+              <Icon className="size-4" />
             </a>
           ))}
         </div>

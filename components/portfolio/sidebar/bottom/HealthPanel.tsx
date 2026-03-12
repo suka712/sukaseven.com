@@ -58,15 +58,15 @@ export const LeftHealthPanel = () => {
       </div>
       <div className="flex-1 font-mono text-xs tracking-wider leading-loose px-3 overflow-y-auto scrollbar-panel">
         {services.map((svc) => (
-          <div key={svc.name} className="flex items-center gap-2 pt-2 truncate">
+          <div key={svc.name} className="flex items-center gap-2 pt-2 truncate rounded hover:bg-accent/5 transition-colors px-1 -mx-1">
             {svc.status === "pending" ? (
-              <span className="size-2 rounded-full bg-muted-foreground/40 animate-pulse-quick shrink-0" />
+              <span className="size-2 rounded-full bg-muted-foreground/30 animate-pulse shrink-0" />
             ) : svc.status === "up" && (svc.latency ?? 0) > 500 ? (
-              <span className="size-2 rounded-full bg-yellow-400 animate-pulse shadow-[0_0_6px_theme(--color-yellow-400)] shrink-0" />
+              <span className="size-2 rounded-full bg-yellow-400 live-dot shrink-0" style={{ ["--ring" as string]: "oklch(0.85 0.15 95)" }} />
             ) : svc.status === "up" ? (
               <span className="size-2 rounded-full bg-accent live-dot shrink-0" />
             ) : (
-              <span className="size-2 rounded-full bg-destructive shadow-[0_0_6px_theme(--color-destructive)] shrink-0" />
+              <span className="size-2 rounded-full bg-destructive animate-pulse shrink-0" style={{ boxShadow: "0 0 6px oklch(0.65 0.2 25 / 0.6)" }} />
             )}
             <span
               className={

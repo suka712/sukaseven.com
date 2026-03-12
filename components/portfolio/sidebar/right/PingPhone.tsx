@@ -30,7 +30,7 @@ export function PingPhone() {
       <CollapsibleContent collapsed={collapsed}>
         <div className="mt-2 flex-1">
           {status === "sent" ? (
-            <div className="text-sm text-emerald-500">pinged.</div>
+            <div className="text-xs text-accent font-mono">pinged.</div>
           ) : status === "cooldown" ? (
             <div className="text-xs text-muted-foreground">
               cooldown — try again in a bit

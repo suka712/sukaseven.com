@@ -17,6 +17,7 @@ import { NavigationGuide } from "../sidebar/bottom/NavigationGuide";
 import { Login } from "../sidebar/right/Login";
 import { WeatherPanel } from "../sidebar/right/WeatherPanel";
 import { OsStats } from "../sidebar/top/OsStats";
+import { LastDiff } from "../sidebar/left/LastDiff";
 
 type CollapsibleSection = "left" | "right";
 
@@ -62,6 +63,7 @@ export const PortfolioLayout = () => {
       tabs={<TopTabs />}
       lastActive={<LastActive />}
       leftFileTree={<Explorer onFileSelect={handleFileSelect} activePath={activePath} />}
+      leftDiff={<LastDiff />}
       leftListening={<ListeningTo />}
       leftLinks={<Links />}
       central={<CentralPanel contentPath={activePath} />}
