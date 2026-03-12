@@ -13,23 +13,25 @@ const OS_LABELS: Record<string, string> = {
 
 export function OsStats() {
   const [data, setData] = useState<WakatimeData | null>(null);
-  const [error, setError] = useState(false);
+
+  const defaultOs = [
+    { name: "Linux", text: "0m" },
+    { name: "Mac", text: "0m" },
+  ];
 
   useEffect(() => {
     fetch("/api/wakatime")
       .then((r) => r.json())
       .then((d) => {
-        if (d.error || !d.os?.length) setError(true);
+        if (d.error || !d.os?.length) setData({ os: defaultOs });
         else setData(d);
       })
-      .catch(() => setError(true));
+      .catch(() => setData({ os: defaultOs }));
   }, []);
 
   return (
     <div className="h-11 glow-border flex flex-col justify-center gap-2 rounded-xl bg-card px-4 py-3 shrink-0 overflow-hidden font-mono text-sm">
-      {error ? (
-        <span className="text-destructive/70 text-xs">wakatime module errored out</span>
-      ) : !data ? (
+      {!data ? (
         <span className="text-muted-foreground text-xs">loading...</span>
       ) : (
         <div className="flex items-center gap-3">
