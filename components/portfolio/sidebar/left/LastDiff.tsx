@@ -64,7 +64,7 @@ function DiffPreview({ data }: { data: LastDiffData }) {
   );
 }
 
-export function LastDiff() {
+export const LastDiff = () => {
   const [data, setData] = useState<LastDiffData | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -78,9 +78,9 @@ export function LastDiff() {
   }, []);
 
   const title = data
-    ? <span className="flex items-center gap-2">
-        Last Diff
-        <span className="font-mono normal-case tracking-normal text-muted-foreground/50">
+    ? <span className="flex items-center gap-2 overflow-hidden truncate">
+        Latest
+        <span className="font-mono normal-case tracking-normal text-muted-foreground/50 truncate">
           {data.file.name}
         </span>
       </span>
