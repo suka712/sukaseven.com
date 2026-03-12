@@ -17,6 +17,53 @@ interface LastDiffData {
   };
 }
 
+function DiffPreview({ data }: { data: LastDiffData }) {
+  const addedLines = data.file.patch
+    .split("\n")
+    .filter((l) => l.startsWith("+") && !l.startsWith("+++"))
+    .map((l) => l.slice(1))
+    .filter((l) => l.trim())
+    .slice(0, 5);
+
+  const total = data.file.additions + data.file.deletions;
+  const greenCount = total > 0 ? Math.round((data.file.additions / total) * 5) : 0;
+  const redCount = 5 - greenCount;
+
+  return (
+    <div className="mt-2 space-y-2.5">
+      {/* Stats + ratio bar */}
+      <div className="flex items-center gap-2 font-mono text-xs justify-between">
+        <div className="flex gap-2">
+          <div className="text-accent">+{data.file.additions}</div>
+          <div className="text-destructive/60">-{data.file.deletions}</div>
+        </div>
+        <div className="flex gap-0.5 ml-1">
+          {Array.from({ length: greenCount }).map((_, i) => (
+            <div key={i} className={i === 0 ? "rounded-l-full h-1 w-4 bg-accent" : "h-1 w-4 bg-accent"} />
+          ))}
+          {Array.from({ length: redCount }).map((_, i) => (
+            <div key={i} className={i === Array.from({ length: redCount }).length - 1 ? "rounded-r-full h-1 w-4 bg-destructive/35" : "h-1 w-4 bg-destructive/35"} />
+          ))}
+        </div>
+      </div>
+
+      {/* Added lines preview */}
+      {addedLines.length > 0 && (
+        <div className="space-y-1 font-mono text-[10px] text-muted-foreground/55 leading-relaxed">
+          {addedLines.map((line, i) => (
+            <div key={i} className="truncate">{line}</div>
+          ))}
+        </div>
+      )}
+
+      {/* Footer */}
+      <div className="text-[10px] font-mono text-muted-foreground/30 truncate">
+        {data.file.fullPath} · {formatTimeAgo(new Date(data.timestamp))}
+      </div>
+    </div>
+  );
+}
+
 export function LastDiff() {
   const [data, setData] = useState<LastDiffData | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -54,34 +101,7 @@ export function LastDiff() {
         ) : !data ? (
           <div className="mt-2 text-xs text-muted-foreground/40 font-mono">no diff available</div>
         ) : (
-          <div className="mt-2 flex flex-col min-h-0">
-            {/* Stats row */}
-            <div className="flex items-center gap-2 font-mono text-xs mb-1.5">
-              <span className="text-emerald-400">+{data.file.additions}</span>
-              <span className="text-destructive/70">-{data.file.deletions}</span>
-              <span className="text-muted-foreground">·</span>
-              <span className="text-muted-foreground truncate">{data.file.fullPath}</span>
-              <span className="text-muted-foreground ml-auto shrink-0">{data.sha}</span>
-            </div>
-
-            {/* Diff lines */}
-            <div className="overflow-y-auto scrollbar-panel font-mono text-[10px] leading-relaxed max-h-28">
-              {data.file.patch.split("\n").map((line, i) => {
-                if (line.startsWith("@@"))
-                  return <div key={i} className="text-accent/50 bg-accent/5 px-1 py-px truncate">{line}</div>;
-                if (line.startsWith("+"))
-                  return <div key={i} className="text-emerald-400/80 bg-emerald-900/10 px-1 truncate whitespace-pre">{line}</div>;
-                if (line.startsWith("-"))
-                  return <div key={i} className="text-destructive/70 bg-destructive/5 px-1 truncate whitespace-pre">{line}</div>;
-                return <div key={i} className="text-muted-foreground/40 px-1 truncate whitespace-pre">{line}</div>;
-              })}
-            </div>
-
-            {/* Footer */}
-            <div className="pt-1.5 mt-1 border-t border-border/40 text-xs font-mono text-muted-foreground">
-              {formatTimeAgo(new Date(data.timestamp))}
-            </div>
-          </div>
+          <DiffPreview data={data} />
         )}
       </CollapsibleContent>
     </div>
