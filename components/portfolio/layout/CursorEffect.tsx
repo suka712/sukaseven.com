@@ -13,7 +13,7 @@ export function CursorEffect() {
   const ringRef = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: -200, y: -200 });
   const ring = useRef({ x: -200, y: -200 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const rippleId = useRef(0);
 
@@ -68,14 +68,14 @@ export function CursorEffect() {
         ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-99999 size-2 rounded-full bg-accent"
         style={{
-          boxShadow: "0 0 6px oklch(0.65 0.19 255 / 1), 0 0 4px oklch(0.65 0.19 255 / 0.5)",
+          boxShadow: "0 0 0px oklch(0.65 0.19 255 / 1), 0 0 0px oklch(0.65 0.19 255 / 0.5)",
           willChange: "transform",
         }}
       />
       {/* Ring — lags behind */}
       <div
         ref={ringRef}
-        className="cursor-ring fixed top-0 left-0 pointer-events-none z-[99998] size-5 rounded-full border border-accent/40"
+        className="cursor-ring fixed top-0 left-0 pointer-events-none z-[99998] size-7 rounded-full border border-accent/40"
         style={{
           boxShadow: "0 0 8px oklch(0.65 0.19 255 / 0.2)",
           willChange: "transform",
