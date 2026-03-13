@@ -205,7 +205,7 @@ export const GridLayout = ({
           {/* Resize handle overlaid on the right edge */}
           <div
             onMouseDown={handleMouseDown}
-            className="absolute -right-2.5 w-3 h-full cursor-col-resize flex items-center justify-center group z-10"
+            className="absolute -right-3 w-3 h-full cursor-col-resize flex items-center justify-center group z-10"
           >
             <div className="w-0.5 h-14 rounded-full bg-transparent group-hover:bg-accent transition-colors" />
           </div>

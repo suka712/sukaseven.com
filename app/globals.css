@@ -283,7 +283,7 @@
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    200px circle at var(--glow-x) var(--glow-y),
+    300px circle at var(--glow-x) var(--glow-y),
     var(--accent) 0%,
     transparent 100%
   );
