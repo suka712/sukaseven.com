@@ -40,7 +40,7 @@ function CollapsedBar({
   return (
     <div
       onClick={onExpand}
-      className="w-9 flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card cursor-pointer hover:bg-accent/30 transition-colors"
+      className="w-9 flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card cursor-pointer hover:bg-accent/30 transition-colors"
     >
       {isLeft ? (
         <ChevronRight className="size-3 text-muted-foreground" />
@@ -167,7 +167,7 @@ export const GridLayout = ({
     <div className="cursor-glow" ref={cursorGlowRef} />
     <div
       ref={rootRef}
-      className="relative z-2 h-screen w-screen overflow-hidden p-2 grid gap-2"
+      className="relative z-2 h-screen w-screen overflow-hidden p-2 grid gap-3"
       style={{
         gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
         gridTemplateRows: "auto 1fr auto",
@@ -183,7 +183,7 @@ export const GridLayout = ({
           />
         </div>
       ) : (
-        <div className="row-span-3 relative flex flex-col gap-2 min-h-0">
+        <div className="row-span-3 relative flex flex-col gap-3 min-h-0">
           <div>
             {wakatime}
           </div>
@@ -213,7 +213,7 @@ export const GridLayout = ({
       )}
 
       {/* Top Bar: Tabs + Last Active (row 1, cols 2-3) */}
-      <div className="h-11 flex gap-2 col-span-2">
+      <div className="h-11 flex gap-4 col-span-2">
         <div className="w-full">{tabs}</div>
         <div className="hidden sm:block">{lastActive}</div>
       </div>
@@ -233,7 +233,7 @@ export const GridLayout = ({
           />
         </div>
       ) : (
-        <div className="flex flex-col gap-2 min-h-0 overflow-hidden">
+        <div className="flex flex-col gap-3 min-h-0 overflow-hidden">
           <div className="glow-border card-enter shrink-0 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1000ms" }}>
             <div className="overflow-hidden rounded-xl">{rightLogin}</div>
           </div>
@@ -250,7 +250,7 @@ export const GridLayout = ({
       )}
 
       {/* Bottom Bar (row 3, cols 2-3) */}
-      <div className={`flex gap-2 col-span-2 ${bottomBarHeight}`}>
+      <div className={`flex gap-3 col-span-2 ${bottomBarHeight}`}>
         <div className="glow-border card-enter w-1/3 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1000ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
