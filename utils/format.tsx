@@ -1,6 +1,5 @@
-import { FileText, LucideFile, Terminal } from "lucide-react";
+import { Terminal } from "lucide-react";
 import { ReactNode } from "react";
-import { BiLogoGoLang } from "react-icons/bi";
 import { FaCss3, FaGolang, FaHtml5, FaJava, FaJs, FaMarkdown, FaPython, FaRegFileCode, FaRust } from "react-icons/fa6";
 import { TbBrandCpp, TbBrandKotlin, TbBrandReact, TbBrandRust, TbBrandSwift, TbBrandTypescript, TbBrandVue, TbFileText, TbNotes, TbSql } from "react-icons/tb";
 
