@@ -22,7 +22,7 @@ import { LastDiff } from "../sidebar/left/LastDiff";
 type CollapsibleSection = "left" | "right";
 
 export const PortfolioLayout = () => {
-  const [activePath, setActivePath] = useState<string | null>(null);
+  const [activePath, setActivePath] = useState<string | null>("index");
   const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
 
   // Auto-collapse sidebars on initial mount based on viewport width.

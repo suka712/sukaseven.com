@@ -2,7 +2,7 @@ import { FileText, LucideFile, Terminal } from "lucide-react";
 import { ReactNode } from "react";
 import { BiLogoGoLang } from "react-icons/bi";
 import { FaCss3, FaGolang, FaHtml5, FaJava, FaJs, FaMarkdown, FaPython, FaRegFileCode, FaRust } from "react-icons/fa6";
-import { TbBrandCpp, TbBrandKotlin, TbBrandReact, TbBrandRust, TbBrandSwift, TbBrandTypescript, TbBrandVue, TbSql } from "react-icons/tb";
+import { TbBrandCpp, TbBrandKotlin, TbBrandReact, TbBrandRust, TbBrandSwift, TbBrandTypescript, TbBrandVue, TbFileText, TbNotes, TbSql } from "react-icons/tb";
 
 export const formatMsToSecond = (ms: number) => {
   const s = Math.floor(ms / 1000);
@@ -37,6 +37,10 @@ export const getFileIcons = (extension: string | undefined): ReactNode => {
       return <FaRust className="size-4 text-red-400 shrink-0" />
     case '.ts':
       return <TbBrandTypescript className="size-4 text-blue-400 shrink-0"/>
+    case '.md':
+      return <TbFileText className="size-4 text-zinc-400 shrink-0" />
+    case '.mdx':
+      return <TbNotes className="size-4 text-zinc-400 shrink-0" />
     default:
       return <FaRegFileCode className="size-4 text-zinc-400 shrink-0" />;
   }

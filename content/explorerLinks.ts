@@ -19,6 +19,12 @@ export const tabs: Tab[] = [
 
 export const fileTree: FileNode[] = [
   {
+    name: "index",
+    path: "index",
+    type: "file",
+    displayExtension: ".mdx",
+  },
+  {
     name: "projects",
     path: "projects",
     type: "folder",
