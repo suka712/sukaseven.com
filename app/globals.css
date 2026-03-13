@@ -128,6 +128,39 @@
   --animate-pulse-quick: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: terminal-blink 1.1s step-start infinite;
+}
+
+/* Custom cursor */
+
+@keyframes cursor-ripple {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(3);   opacity: 0;   }
+}
+
+.cursor-ripple {
+  animation: cursor-ripple 0.7s ease-out forwards;
+}
+
+.cursor-ring {
+  transition: width 150ms ease, height 150ms ease, opacity 150ms ease;
+}
+
+.cursor-ring-hover {
+  width: 48px;
+  height: 48px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border-color: oklch(0.65 0.19 255 / 0.7);
+  box-shadow: 0 0 12px oklch(0.65 0.19 255 / 0.4) !important;
+}
+
 /* Expanding ring pulse — makes live indicators feel like active signals */
 @keyframes pulse-ring {
   0% {
@@ -181,6 +214,12 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
   }
 
   body {

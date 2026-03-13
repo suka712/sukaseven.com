@@ -68,6 +68,8 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
   const [cwd, setCwd] = useState("");
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [cmdHistoryIdx, setCmdHistoryIdx] = useState(-1);
+  const [cursorPos, setCursorPos] = useState(0);
+  const [isFocused, setIsFocused] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -85,6 +87,7 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
 
     setCmdHistory((h) => [...h, trimmed]);
     setCmdHistoryIdx(-1);
+    setCursorPos(0);
     setHistory((h) => [...h, { prompt: "$", content: trimmed }]);
 
     const [cmd, ...args] = trimmed.split(/\s+/);
@@ -193,6 +196,7 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
           : Math.max(0, cmdHistoryIdx - 1);
       setCmdHistoryIdx(newIdx);
       setInput(cmdHistory[newIdx]);
+      setCursorPos(cmdHistory[newIdx].length);
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
       if (cmdHistoryIdx === -1) return;
@@ -200,9 +204,11 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
       if (newIdx >= cmdHistory.length) {
         setCmdHistoryIdx(-1);
         setInput("");
+        setCursorPos(0);
       } else {
         setCmdHistoryIdx(newIdx);
         setInput(cmdHistory[newIdx]);
+        setCursorPos(cmdHistory[newIdx].length);
       }
     }
   };
@@ -227,16 +233,39 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
         ))}
         <div className="flex gap-2 text-xs">
           <span className="text-accent shrink-0" style={{ textShadow: "0 0 8px oklch(0.65 0.19 255 / 0.6)" }}>{promptText}</span>
-          <input
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent text-foreground outline-none caret-accent"
-            style={{ textShadow: "0 0 6px oklch(0.65 0.19 255 / 0.3)" }}
-            spellCheck={false}
-            autoFocus
-          />
+          <div className="flex-1 relative min-w-0">
+            <input
+              ref={inputRef}
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setCursorPos(e.target.selectionStart ?? e.target.value.length);
+              }}
+              onKeyDown={handleKeyDown}
+              onSelect={(e) => setCursorPos(e.currentTarget.selectionStart ?? input.length)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              className="absolute inset-0 opacity-0 w-full cursor-text"
+              spellCheck={false}
+              autoFocus
+            />
+            <span
+              className="pointer-events-none text-foreground whitespace-pre"
+              style={{ textShadow: "0 0 6px oklch(0.65 0.19 255 / 0.3)" }}
+            >{input.slice(0, cursorPos)}</span>
+            <span
+              className={`pointer-events-none ${isFocused ? "terminal-cursor" : "opacity-40"}`}
+              style={{
+                backgroundColor: "var(--accent)",
+                color: "var(--accent-foreground)",
+                boxShadow: isFocused ? "0 0 8px oklch(0.65 0.19 255 / 0.8)" : "none",
+              }}
+            >{input[cursorPos] ?? "\u00A0"}</span>
+            <span
+              className="pointer-events-none text-foreground whitespace-pre"
+              style={{ textShadow: "0 0 6px oklch(0.65 0.19 255 / 0.3)" }}
+            >{input.slice(cursorPos + 1)}</span>
+          </div>
         </div>
         <div ref={bottomRef} />
       </div>
