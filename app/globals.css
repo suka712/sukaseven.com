@@ -214,7 +214,7 @@
 /* Responsive zoom — mirrors browser zoom-out behavior.
    width/min-height make html render larger; zoom scales it back to fill the viewport.
    w-full/h-full in the layout inherits from html, so it fills correctly. */
-@media (max-width: 2559px) {
+/* @media (max-width: 2559px) {
   html { zoom: 0.88; width: calc(100vw / 0.88); min-height: calc(100vh / 0.88); }
 }
 @media (max-width: 1919px) {
@@ -225,7 +225,7 @@
 }
 @media (max-width: 1399px) {
   html { zoom: 0.7; width: calc(100vw / 0.7); min-height: calc(100vh / 0.7); }
-}
+} */
 
 @layer base {
   * {
