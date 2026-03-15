@@ -167,7 +167,7 @@ export const GridLayout = ({
     <div className="cursor-glow" ref={cursorGlowRef} />
     <div
       ref={rootRef}
-      className="relative z-2 h-screen w-screen overflow-hidden p-2 grid gap-3"
+      className="relative z-2 h-full w-full overflow-hidden p-2 grid gap-3"
       style={{
         gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
         gridTemplateRows: "auto 1fr auto",
