@@ -13,7 +13,7 @@ const links: { label: string; icon: IconType; url: string }[] = [
 ];
 
 export const Links = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <div className="p-4 flex flex-col">
