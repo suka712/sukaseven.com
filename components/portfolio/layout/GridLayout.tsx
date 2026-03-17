@@ -258,7 +258,7 @@ export const GridLayout = ({
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
         {viewportWidth >= 1024 && (
-          <div className="glow-border card-enter w-70 shrink-0 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "3000ms" }}>
+          <div className="glow-border card-enter w-80 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "3000ms" }}>
             <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
           </div>
         )}
