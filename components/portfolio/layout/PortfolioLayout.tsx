@@ -2,22 +2,22 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { GridLayout } from "./GridLayout";
-import { TopTabs } from "../sidebar/top/TopTabs";
-import { LastActive } from "../sidebar/top/LastActive";
-import { Explorer } from "../sidebar/left/Explorer";
-import { Links } from "../sidebar/left/Links";
-import { CentralPanel } from "../central/CentralPanel";
-import { ListeningTo } from "../sidebar/right/ListeningTo";
-import { PingPhone } from "../sidebar/right/PingPhone";
-import { ActivityFeed } from "../sidebar/right/ActivityFeed";
-import { LeftHealthPanel } from "../sidebar/bottom/HealthPanel";
-import { NavigationTerminal } from "../sidebar/bottom/NavigationTerminal";
-import { StatsTerminal } from "../sidebar/bottom/StatsTerminal";
-import { NavigationGuide } from "../sidebar/bottom/NavigationGuide";
-import { Login } from "../sidebar/right/Login";
-import { WeatherPanel } from "../sidebar/right/WeatherPanel";
-import { OsStats } from "../sidebar/top/OsStats";
-import { LastDiff } from "../sidebar/left/LastDiff";
+import { TopTabs } from "../panels/top/TopTabs";
+import { LastActive } from "../panels/top/LastActive";
+import { Explorer } from "../panels/left/Explorer";
+import { Links } from "../panels/left/Links";
+import { CentralPanel } from "../panels/central/CentralPanel";
+import { ListeningTo } from "../panels/right/ListeningTo";
+import { PingPhone } from "../panels/right/PingPhone";
+import { ActivityFeed } from "../panels/right/ActivityFeed";
+import { LeftHealthPanel } from "../panels/bottom/HealthPanel";
+import { NavigationTerminal } from "../panels/bottom/NavigationTerminal";
+import { StatsTerminal } from "../panels/bottom/StatsTerminal";
+import { NavigationGuide } from "../panels/bottom/NavigationGuide";
+import { Login } from "../panels/right/Login";
+import { WeatherPanel } from "../panels/right/WeatherPanel";
+import { OsStats } from "../panels/top/OsStats";
+import { LastDiff } from "../panels/left/LastDiff";
 
 type CollapsibleSection = "left" | "right";
 

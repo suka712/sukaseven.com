@@ -8,7 +8,7 @@ interface Ripple {
   y: number;
 }
 
-export function CursorEffect() {
+export const CursorEffect = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: -200, y: -200 });
