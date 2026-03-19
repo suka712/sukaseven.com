@@ -249,20 +249,24 @@ export const GridLayout = ({
         </div>
       )}
 
-      {/* Bottom Bar (row 3, cols 2-3) */}
-      <div className={`flex gap-3 col-span-2 ${bottomBarHeight}`}>
+      {/* Bottom Bar (row 3, col 2) */}
+      <div className={`flex gap-3 ${bottomBarHeight}`}>
         <div className="glow-border card-enter w-1/3 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "1000ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{navTerminal}</div>
         </div>
         <div className="glow-border card-enter flex-1 rounded-xl bg-card transition-all duration-200" style={{ animationDelay: "2000ms" }}>
           <div className="overflow-hidden h-full rounded-xl">{statsTerminal}</div>
         </div>
-        {viewportWidth >= 1024 && (
-          <div className="glow-border card-enter w-80 rounded-xl bg-card relative transition-all duration-200" style={{ animationDelay: "3000ms" }}>
-            <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
-          </div>
-        )}
       </div>
+
+      {/* Bottom Guide (row 3, col 3) — aligns with right sidebar */}
+      {viewportWidth >= 1024 && !rightCollapsed ? (
+        <div className={`glow-border card-enter rounded-xl bg-card transition-all duration-200 ${bottomBarHeight}`} style={{ animationDelay: "3000ms" }}>
+          <div className="overflow-hidden h-full rounded-xl">{bottomGuide}</div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
     <div className="noise-overlay" />
     </>
