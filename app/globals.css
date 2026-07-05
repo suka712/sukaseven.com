@@ -51,8 +51,9 @@
   --background: #f0f4f8;
   --foreground: #0f1729;
 
-  --card: #ffffff;
+  --card: rgb(255 255 255 / 75%);
   --card-foreground: #0f1729;
+  --scrollbar-thumb: oklch(0 0 0 / 15%);
 
   --popover: #ffffff;
   --popover-foreground: #0f1729;
@@ -93,8 +94,9 @@
 .dark {
   --background: oklch(0.13 0.008 260);
   --foreground: oklch(0.93 0.005 260);
-  --card: oklch(0.18 0.01 260);
+  --card: oklch(0.18 0.01 260 / 70%);
   --card-foreground: oklch(0.93 0.005 260);
+  --scrollbar-thumb: oklch(1 0 0 / 15%);
   --popover: oklch(0.18 0.01 260);
   --popover-foreground: oklch(0.93 0.005 260);
   --primary: oklch(0.65 0.19 255);
@@ -122,6 +124,34 @@
   --sidebar-accent-foreground: oklch(0.93 0.005 260);
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.65 0.19 255);
+}
+
+/* ── Switchable panel surface ─────────────────────────────────
+   Toggled via [data-surface] on <html> (see SurfaceToggle).
+   Every panel uses .panel-surface, so both the tint and the
+   backing --background flow from whichever theme is active. */
+:root {
+  /* Fallback = translucent theme. */
+  --panel: oklch(0 0 0 / 0.45);
+}
+
+/* Translucent theme: deep blue backdrop with airy smoked glass. The
+   background stays clearly bluer/lighter than the smoked panels so the
+   cards don't blend into it. */
+html[data-surface="glass"] {
+  --background: oklch(0.16 0.06 262);
+  --panel: oklch(0 0 0 / 0.45);
+}
+
+/* Less-translucent theme: normal neutral-dark backdrop, and a more
+   opaque panel so it reads as a near-solid card rather than glass. */
+html[data-surface="solid"] {
+  --background: oklch(0.15 0.006 260);
+  --panel: oklch(0 0 0 / 0.72);
+}
+
+.panel-surface {
+  background-color: var(--panel);
 }
 
 @theme {
@@ -264,7 +294,7 @@
 /* Thin shadcn-themed scrollbar */
 .scrollbar-panel {
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 .scrollbar-panel::-webkit-scrollbar {
@@ -276,7 +306,7 @@
 }
 
 .scrollbar-panel::-webkit-scrollbar-thumb {
-  background-color: var(--border);
+  background-color: var(--scrollbar-thumb);
   border-radius: 9999px;
 }
 
@@ -290,11 +320,13 @@
   --glow-x: -999px;
   --glow-y: -999px;
   --glow-opacity: 0;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   box-shadow:
-    inset 0 1px 0 0 oklch(1 0 0 / 0.07),
-    0 1px 2px oklch(0 0 0 / 0.25),
-    0 4px 8px oklch(0 0 0 / 0.15),
-    0 12px 24px oklch(0 0 0 / 0.10);
+    inset 0 1px 0 0 oklch(1 0 0 / 0.1),
+    inset 0 0 0 1px oklch(1 0 0 / 0.05),
+    0 2px 4px oklch(0 0 0 / 0.35),
+    0 6px 14px oklch(0 0 0 / 0.22);
 }
 
 .glow-border::before {
@@ -321,23 +353,23 @@
 /* Ambient gradient blobs */
 @keyframes blob-drift-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+  33% { transform: translate(40px, -60px) scale(1.08); }
+  66% { transform: translate(-30px, 30px) scale(0.92); }
 }
 @keyframes blob-drift-2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-40px, 30px) scale(0.95); }
-  66% { transform: translate(25px, -35px) scale(1.05); }
+  33% { transform: translate(-50px, 40px) scale(0.95); }
+  66% { transform: translate(30px, -45px) scale(1.05); }
 }
 @keyframes blob-drift-3 {
   0%, 100% { transform: translate(0, 0) scale(1.05); }
-  33% { transform: translate(20px, 40px) scale(0.9); }
-  66% { transform: translate(-35px, -25px) scale(1.1); }
+  33% { transform: translate(30px, 50px) scale(0.92); }
+  66% { transform: translate(-45px, -30px) scale(1.08); }
 }
 @keyframes blob-drift-4 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  40% { transform: translate(-30px, -40px) scale(1.08); }
-  70% { transform: translate(20px, 30px) scale(0.92); }
+  40% { transform: translate(-40px, -50px) scale(1.06); }
+  70% { transform: translate(30px, 40px) scale(0.94); }
 }
 
 .ambient-blobs {
@@ -354,7 +386,7 @@
   content: "";
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(110px);
   will-change: transform;
 }
 
@@ -363,9 +395,9 @@
   height: 650px;
   top: -10%;
   left: 15%;
-  background: oklch(0.55 0.18 255);
-  opacity: 0.10;
-  animation: blob-drift-1 25s ease-in-out infinite;
+  background: oklch(0.6 0.2 265);
+  opacity: 0.18;
+  animation: blob-drift-1 55s ease-in-out infinite;
 }
 
 .ambient-blobs::after {
@@ -373,9 +405,9 @@
   height: 520px;
   top: 50%;
   right: 10%;
-  background: oklch(0.55 0.18 300);
-  opacity: 0.08;
-  animation: blob-drift-2 30s ease-in-out infinite;
+  background: oklch(0.58 0.22 300);
+  opacity: 0.15;
+  animation: blob-drift-2 65s ease-in-out infinite;
 }
 
 .ambient-blobs span:nth-child(1) {
@@ -384,9 +416,9 @@
   height: 580px;
   bottom: -5%;
   left: 40%;
-  background: oklch(0.6 0.15 170);
-  opacity: 0.11;
-  animation: blob-drift-3 20s ease-in-out infinite;
+  background: oklch(0.62 0.16 220);
+  opacity: 0.16;
+  animation: blob-drift-3 48s ease-in-out infinite;
 }
 
 /* 4th blob: warm amber bottom-left for depth contrast */
@@ -396,9 +428,9 @@
   height: 480px;
   bottom: 10%;
   left: -5%;
-  background: oklch(0.65 0.14 50);
-  opacity: 0.06;
-  animation: blob-drift-4 27s ease-in-out infinite;
+  background: oklch(0.6 0.19 285);
+  opacity: 0.13;
+  animation: blob-drift-4 58s ease-in-out infinite;
   animation-delay: -8s;
 }
 

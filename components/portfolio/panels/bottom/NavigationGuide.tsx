@@ -12,7 +12,8 @@ const shortcuts = [
 export function NavigationGuide() {
   return (
     <div className="p-4 h-full flex flex-col">
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+      <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90 mb-1.5">
+        <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
         Navigation
       </div>
       <div className="flex flex-col gap-1 text-xs font-mono">

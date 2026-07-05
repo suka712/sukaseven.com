@@ -220,7 +220,8 @@ export function NavigationTerminal({ onFileSelect, onPing }: NavigationTerminalP
       className="flex flex-col h-full cursor-text p-4"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground pb-2">
+      <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90 mb-1.5">
+        <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
         Terminal
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-panel px-3 py-2 space-y-0.5 font-mono">

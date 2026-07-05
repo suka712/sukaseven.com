@@ -8,7 +8,7 @@ import { FaRegFolder, FaRegFolderOpen } from "react-icons/fa";
 
 const statusDot: Record<string, string> = {
   live: "bg-accent live-dot",
-  wip: "bg-emerald-400",
+  wip: "bg-amber-400",
   archived: "bg-zinc-500/70",
 };
 

@@ -31,8 +31,9 @@ export function StatsTerminal() {
 
   return (
     <div className="flex flex-col h-full p-4">
-      <div className="flex items-center justify-between pb-2">
-        <div className="text-xs uppercase font-semibold tracking-wider text-muted-foreground">
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90">
+          <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
           Stats
         </div>
         {github?.lastPushedRepo && (

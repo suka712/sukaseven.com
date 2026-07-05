@@ -11,7 +11,8 @@ export const Explorer = ({ onFileSelect, activePath }: LeftSidebarProps) => {
   return (
     <div className="flex flex-col h-full pr-3 pb-2">
       <div className="px-4 pt-4 pb-1 shrink-0">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90 mb-1">
+          <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
           Explorer
         </div>
       </div>

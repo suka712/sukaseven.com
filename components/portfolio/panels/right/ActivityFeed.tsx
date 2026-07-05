@@ -70,7 +70,8 @@ export const ActivityFeed = () => {
 
   return (
     <div className="p-4 h-full flex flex-col min-h-0">
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground shrink-0 pb-2">
+      <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90 shrink-0 mb-1.5">
+        <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
         Activity
       </div>
 

@@ -11,10 +11,11 @@ interface PanelHeaderProps {
 export function PanelHeader({ title, collapsed, onToggle }: PanelHeaderProps) {
   return (
     <div
-      className="flex items-center justify-between cursor-pointer select-none"
+      className="flex items-center justify-between cursor-pointer select-none mb-2"
       onClick={onToggle}
     >
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90">
+        <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
         {title}
       </div>
       <button

@@ -85,11 +85,15 @@ export function WeatherPanel() {
   return (
     <div className="p-4 flex flex-col gap-3 text-xs">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <span className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
-          Chiayi County, Taiwan
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90">
+          <span className="size-1.5 bg-accent/80 rounded-full animate-pulse" />
+          Chiayi County, TW
+        </div>
+        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">
+          现在: <span className="text-accent">{time}</span>
         </span>
-        <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">现在: <span className="text-accent">{time}</span></span>      </div>
+      </div>
         
       {error ? (
         <span className="text-destructive/60 text-xs">weather unavailable</span>
@@ -124,14 +128,14 @@ export function WeatherPanel() {
             </span>
           </div>
 
-          <hr className="border-border" />
+          <hr className="border-border/40" />
 
-          {/* Dumb stats */}
-          <div className="space-y-1">
+          {/* Telemetry stats grid */}
+          <div className="grid grid-cols-3 gap-2">
             {dumbStats(weather).map(({ label, value }) => (
-              <div key={label} className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground/60">{label}</span>
-                <span className="text-foreground/70">{value}</span>
+              <div key={label} className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-accent/5 border border-accent/10 font-mono text-[10px]">
+                <span className="text-muted-foreground/50 uppercase tracking-widest text-[9px] mb-0.5">{label}</span>
+                <span className="text-accent font-semibold text-center truncate w-full">{value}</span>
               </div>
             ))}
           </div>

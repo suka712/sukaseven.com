@@ -24,10 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark text-sm">
+    <html lang="en" className="dark text-sm" data-surface="glass" suppressHydrationWarning>
       <body
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var s=localStorage.getItem('surface');if(s==='solid'||s==='glass'){document.documentElement.setAttribute('data-surface',s)}}catch(e){}`,
+          }}
+        />
         {children}
         <CursorEffect />
       </body>
