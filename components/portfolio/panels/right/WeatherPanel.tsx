@@ -87,7 +87,7 @@ export function WeatherPanel() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
-          Chiayi, Taiwan
+          Chiayi County, Taiwan
         </span>
         <span className="text-muted-foreground/60 text-xs tabular-nums font-mono">现在: <span className="text-accent">{time}</span></span>      </div>
         

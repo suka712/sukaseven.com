@@ -3,28 +3,21 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
-import { LogIn, LogOut, Pencil, RefreshCcw } from "lucide-react";
+import { LogIn, LogOut } from "lucide-react";
 import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
 
-type Step = "email" | "otp" | "authed";
+type Step = "login" | "authed";
 
 export function Login() {
-  const [step, setStep] = useState<Step>("email");
+  const [step, setStep] = useState<Step>("login");
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
+  const [passcode, setPasscode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [collapsed, setCollapsed] = useState(false);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   useEffect(() => {
-    fetch(`${API_URL}/auth/session`, { credentials: "include" })
+    fetch("/api/auth/session")
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
@@ -35,54 +28,46 @@ export function Login() {
           setStep("authed");
         }
       })
-      .catch(() => setStep("email"));
-  }, [API_URL]);
+      .catch(() => setStep("login"));
+  }, []);
 
-  const sendOtp = async () => {
+  const login = async () => {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`${API_URL}/auth/email`, {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, passcode }),
       });
-      if (!res.ok) throw new Error("Failed to send OTP");
-      setStep("otp");
+      if (!res.ok) throw new Error("Invalid credentials");
+      const data = await res.json();
+      if (data.email) setEmail(data.email);
+      setPasscode("");
+      setStep("authed");
     } catch {
-      setError("couldn't send OTP");
+      setError("invalid credentials");
+      setPasscode("");
     } finally {
       setLoading(false);
     }
   };
 
-  const verifyOtp = async () => {
+  const logout = async () => {
     setLoading(true);
-    setError("");
     try {
-      const res = await fetch(`${API_URL}/auth/otp`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp }),
-      });
-      if (!res.ok) throw new Error("Invalid OTP");
-      const data = await res.json();
-      if (data.email) setEmail(data.email);
-      setStep("authed");
-    } catch {
-      setError("invalid OTP");
-      setOtp("");
+      await fetch("/api/auth/logout", { method: "POST" });
     } finally {
+      setEmail("");
+      setPasscode("");
+      setStep("login");
       setLoading(false);
     }
   };
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
-    if (step === "email") sendOtp();
-    else if (step === "otp") verifyOtp();
+    login();
   };
 
   const headerTitle = step === "authed" ? email : (
@@ -117,6 +102,8 @@ export function Login() {
             </div>
             <Button
               size="sm" variant="outline"
+              onClick={logout}
+              disabled={loading}
               className="h-7 text-xs gap-1.5 w-full mt-2"
             >
               <LogOut className="size-3" />
@@ -137,64 +124,34 @@ export function Login() {
       />
       <CollapsibleContent collapsed={collapsed}>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 flex-1 mt-3">
-          {step === "email" ? (
-            <>
-              <Input
-                placeholder="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 text-xs w-full"
-              />
-              <div className="flex items-center gap-1">
-                <Button
-                  type="submit"
-                  size="sm"
-                  variant="outline"
-                  disabled={loading}
-                  className="h-7 text-xs gap-1.5 flex-1"
-                >
-                  <LogIn className="size-3" />
-                  {loading ? "..." : "send OTP"}
-                </Button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex-1 flex items-center w-full gap-1">
-                <InputOTP maxLength={6} value={otp} onChange={setOtp}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
-                <Button type="button" size="sm"
-                  variant="outline" onClick={sendOtp}
-                  disabled={loading} className="h-7 w-7 p-0 shrink-0"
-                >
-                  <RefreshCcw className="size-3" />
-                </Button>
-                <Button type="button" size="sm" variant="outline"
-                  onClick={() => { setStep("email"); setOtp(""); setError(""); }}
-                  className="h-7 w-7 p-0 shrink-0">
-                  <Pencil className="size-3" />
-                </Button>
-              </div>
-              <div className="flex items-center gap-1">
-                <Button type="submit" size="sm" variant="outline"
-                  disabled={loading} className="h-7 text-xs gap-1.5 flex-1"
-                >
-                  <LogIn className="size-3" />
-                  {loading ? "..." : "verify"}
-                </Button>
-              </div>
-            </>
-          )}
+          <Input
+            placeholder="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 text-xs w-full"
+          />
+          <Input
+            placeholder="passcode"
+            type="password"
+            value={passcode}
+            onChange={(e) => setPasscode(e.target.value)}
+            required
+            className="flex-1 text-xs w-full"
+          />
+          <div className="flex items-center gap-1">
+            <Button
+              type="submit"
+              size="sm"
+              variant="outline"
+              disabled={loading}
+              className="h-7 text-xs gap-1.5 flex-1"
+            >
+              <LogIn className="size-3" />
+              {loading ? "..." : "login"}
+            </Button>
+          </div>
         </form>
       </CollapsibleContent>
     </div>

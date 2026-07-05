@@ -26,12 +26,11 @@ type ActivityItem = CommitItem | SpotifyItem;
 export const ActivityFeed = () => {
   const [items, setItems] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     Promise.all([
     fetch("/api/github").then((r) => (r.ok ? r.json() : null)),
-      fetch(`${API_URL}/play`).then((r) => (r.ok ? r.json() : null)),
+      fetch(`/api/play`).then((r) => (r.ok ? r.json() : null)),
     ])
       .then(([gh, spotify]) => {
         const result: ActivityItem[] = [];

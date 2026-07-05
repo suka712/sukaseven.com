@@ -42,7 +42,6 @@ const usePlayProgress = (data: Play | null) => {
 };
 
 export function ListeningTo() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
   const UPDATE_INTERVAL = 60_000
 
   const [data, setData] = useState<Play | null>(null)
@@ -51,7 +50,7 @@ export function ListeningTo() {
 
   useEffect(() => {
     const fetchNowPlaying = () => {
-      fetch(`${API_URL}/play`)
+      fetch(`/api/play`)
         .then((res) => (res.ok ? res.json() : null))
         .then(setData)
         .catch(() => setData(null));
