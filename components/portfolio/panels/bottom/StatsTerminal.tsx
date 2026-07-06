@@ -55,7 +55,7 @@ export function StatsTerminal() {
               fontSize={9}
               colorScheme="dark"
               theme={{
-                dark: ["#1e2030", "#1e3a5f", "#1d5494", "#1d70c9", "#4d9ff5"],
+                dark: ["#141a5500", "#1e3a5f", "#1d5494", "#1d70c9", "#4d9ff5"],
               }}
             />
 

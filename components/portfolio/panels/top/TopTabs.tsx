@@ -5,12 +5,12 @@ import type { Tab } from "@/types/portfolio";
 
 export const TopTabs = () => {
   return (
-    <div className="glow-border flex items-center gap-1 rounded-xl panel-surface overflow-x-auto px-1 py-1">
+    <div className="glow-border flex items-center gap-1 rounded-xl panel-surface overflow-x-auto px-2 py-1">
       {tabs.map((tab) => (
         <TabItem key={tab.label} tab={tab} />
       ))}
 
-      <button className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <button className="px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
         ...
       </button>
     </div>
@@ -20,7 +20,7 @@ export const TopTabs = () => {
 const TabItem = ({ tab }: { tab: Tab }) => {
   if (tab.isActive) {
     return (
-      <div className="flex items-center gap-1.5 rounded-lg bg-accent/60 px-4 py-1.5 text-sm text-foreground">
+      <div className="flex items-center gap-1.5 rounded-lg bg-accent/60 px-5 py-1 text-sm text-foreground">
         <span className="size-2 rounded-full bg-accent live-dot" />
         {tab.label}
       </div>
