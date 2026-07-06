@@ -11,7 +11,7 @@ interface PanelHeaderProps {
 export function PanelHeader({ title, collapsed, onToggle }: PanelHeaderProps) {
   return (
     <div
-      className="flex items-center justify-between cursor-pointer select-none mb-2"
+      className="flex items-center justify-between cursor-pointer select-none"
       onClick={onToggle}
     >
       <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground/90">
