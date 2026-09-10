@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Khiêm — Developer & English Tutor",
-  description: "Developer portfolio and English tutoring by Khiêm",
+  title: "sukaseven",
+  description: "khiem's link tree",
 };
 
 export const viewport: Viewport = {
