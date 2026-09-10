@@ -58,7 +58,7 @@ export function LandingPage() {
           >
             Email
           </a>{" "}
-          (5p mình rep).
+          (khiem@sukaseven.com).
         </p>
       </div>
     </main>
