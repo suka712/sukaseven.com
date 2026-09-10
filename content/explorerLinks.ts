@@ -1,7 +1,7 @@
 import type { Tab, FileNode, StatsData, RoadmapTask } from "@/types/portfolio";
 
 export const tabs: Tab[] = [
-  { label: "sukaseven", url: "/", isActive: true, isExternal: false },
+  { label: "sukaseven", url: "/dev", isActive: true, isExternal: false },
   { label: "katanaid", url: "https://katanaid.com", isExternal: true },
   { label: "caphne", url: "https://caphne.co", isExternal: true },
   { label: "anyu", url: "https://anyu.sukaseven.com", isExternal: true },

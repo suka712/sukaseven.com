@@ -18,16 +18,20 @@ import { Login } from "../panels/right/Login";
 import { WeatherPanel } from "../panels/right/WeatherPanel";
 import { OsStats } from "../panels/top/OsStats";
 import { LastDiff } from "../panels/left/LastDiff";
+import type { MobileTab } from "./MobileLayout";
 
 type CollapsibleSection = "left" | "right";
 
 export const PortfolioLayout = () => {
   const [activePath, setActivePath] = useState<string | null>("index");
   const [collapsedSections, setCollapsedSections] = useState<Set<CollapsibleSection>>(new Set());
+  const [mobileTab, setMobileTab] = useState<MobileTab>("home");
 
-  const handleFileSelect = (path: string) => {
+  const handleFileSelect = useCallback((path: string) => {
     setActivePath(path);
-  };
+    // Auto-switch to home tab on mobile so the user sees the content
+    setMobileTab("home");
+  }, []);
 
   const handlePing = () => {
     // Mock ping - would POST to backend in production
@@ -45,6 +49,9 @@ export const PortfolioLayout = () => {
     });
   }, []);
 
+  const handleMobileTabChange = useCallback((tab: MobileTab) => {
+    setMobileTab(tab);
+  }, []);
 
   return (
     <GridLayout
@@ -66,6 +73,8 @@ export const PortfolioLayout = () => {
       bottomGuide={<NavigationGuide />}
       collapsedSections={collapsedSections}
       onToggleSection={toggleSection}
+      mobileTab={mobileTab}
+      onMobileTabChange={handleMobileTabChange}
     />
   );
 };

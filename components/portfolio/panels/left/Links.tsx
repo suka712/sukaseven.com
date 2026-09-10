@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PanelHeader, CollapsibleContent } from "../../layout/PanelHeader";
-import { FaGithub, FaLinkedinIn, FaXTwitter, FaTiktok } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn, FaXTwitter, FaTiktok, FaInstagram } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 const links: { label: string; icon: IconType; url: string }[] = [
@@ -10,6 +10,7 @@ const links: { label: string; icon: IconType; url: string }[] = [
   { label: "LinkedIn", icon: FaLinkedinIn, url: "https://linkedin.com/in/khiem712" },
   { label: "X",        icon: FaXTwitter,   url: "https://x.com/sukasvn" },
   { label: "TikTok",   icon: FaTiktok,     url: "https://tiktok.com/@secondkhiem" },
+  { label: "Instagram", icon: FaInstagram, url: "https://instagram.com/secondkhiem" },
 ];
 
 export const Links = () => {

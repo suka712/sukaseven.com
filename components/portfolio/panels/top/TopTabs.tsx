@@ -1,11 +1,22 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { tabs } from "@/content/explorerLinks";
 import type { Tab } from "@/types/portfolio";
 
 export const TopTabs = () => {
   return (
     <div className="glow-border flex items-center gap-1 rounded-xl panel-surface overflow-x-auto px-2 py-1">
+      <Link
+        href="/"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-accent/20 rounded-lg transition-colors shrink-0"
+        title="Về trang chủ"
+      >
+        <ArrowLeft className="size-3.5" />
+        <span>home</span>
+      </Link>
+      <span className="text-muted-foreground/30 text-xs px-0.5 select-none shrink-0">·</span>
       {tabs.map((tab) => (
         <TabItem key={tab.label} tab={tab} />
       ))}
@@ -15,7 +26,7 @@ export const TopTabs = () => {
       </button>
     </div>
   );
-}
+};
 
 const TabItem = ({ tab }: { tab: Tab }) => {
   if (tab.isActive) {

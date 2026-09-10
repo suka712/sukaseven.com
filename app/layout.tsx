@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { CursorEffect } from "@/components/portfolio/layout/CursorEffect";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -14,8 +13,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "sukaseven.com",
-  description: "lab dashboard / war room",
+  title: "Khiêm — Developer & English Tutor",
+  description: "Developer portfolio and English tutoring by Khiêm",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -24,17 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark text-sm" data-surface="glass" suppressHydrationWarning>
+    <html lang="vi" className="text-sm" suppressHydrationWarning>
       <body
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var s=localStorage.getItem('surface');if(s==='solid'||s==='glass'){document.documentElement.setAttribute('data-surface',s)}}catch(e){}`,
-          }}
-        />
         {children}
-        <CursorEffect />
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { SurfaceToggle } from "./SurfaceToggle";
+import { MobileLayout, type MobileTab } from "./MobileLayout";
 
 type CollapsibleSection = "left" | "right";
 
@@ -25,6 +25,8 @@ interface GridLayoutProps {
   bottomGuide: React.ReactNode;
   collapsedSections: Set<CollapsibleSection>;
   onToggleSection: (section: CollapsibleSection) => void;
+  mobileTab: MobileTab;
+  onMobileTabChange: (tab: MobileTab) => void;
 }
 
 function CollapsedBar({
@@ -77,6 +79,8 @@ export const GridLayout = ({
   bottomGuide,
   collapsedSections,
   onToggleSection,
+  mobileTab,
+  onMobileTabChange,
 }: GridLayoutProps) => {
   const leftCollapsed = collapsedSections.has("left");
   const rightCollapsed = collapsedSections.has("right");
@@ -84,8 +88,6 @@ export const GridLayout = ({
   const [leftWidth, setLeftWidth] = useState(270);
   const [viewportWidth, setViewportWidth] = useState(1440);
   const isResizing = useRef(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const cursorGlowRef = useRef<HTMLDivElement>(null);
 
   // Track viewport width for responsive behavior
   useEffect(() => {
@@ -104,32 +106,9 @@ export const GridLayout = ({
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Resize logic
       if (isResizing.current) {
         const newWidth = e.clientX - 8;
         setLeftWidth(Math.max(180, Math.min(450, newWidth)));
-      }
-
-      // Cursor ambient glow on background
-      if (cursorGlowRef.current) {
-        cursorGlowRef.current.style.setProperty("--cursor-x", `${e.clientX}px`);
-        cursorGlowRef.current.style.setProperty("--cursor-y", `${e.clientY}px`);
-      }
-
-      // Border glow: set mouse position relative to each card
-      const cards = rootRef.current?.querySelectorAll(".glow-border");
-      if (!cards) return;
-      const RADIUS = 300;
-      for (const card of cards) {
-        const el = card as HTMLElement;
-        const rect = el.getBoundingClientRect();
-        const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-        const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const opacity = Math.max(0, 1 - dist / RADIUS);
-        el.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
-        el.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
-        el.style.setProperty("--glow-opacity", `${opacity}`);
       }
     };
 
@@ -150,33 +129,53 @@ export const GridLayout = ({
 
   const isMobile = viewportWidth < 640;
 
-  // On mobile, collapse sidebar columns to 0px so the central panel fills the width.
   // On larger screens, clamp the right sidebar so it shrinks gracefully on smaller laptops.
-  const leftCol = isMobile ? "0px" : leftCollapsed ? "36px" : `${leftWidth}px`;
-  const rightCol = isMobile ? "0px" : rightCollapsed ? "36px" : "clamp(220px, 19vw, 280px)";
+  const leftCol = leftCollapsed ? "36px" : `${leftWidth}px`;
+  const rightCol = rightCollapsed ? "36px" : "clamp(220px, 19vw, 280px)";
 
   // Bottom bar height: shorter on small viewports
-  const bottomBarHeight = viewportWidth >= 1024 ? "h-60" : viewportWidth >= 640 ? "h-52" : "h-44";
+  const bottomBarHeight = viewportWidth >= 1024 ? "h-60" : "h-52";
 
   // Left health panel height: proportional to bottom bar
-  const healthPanelHeight = viewportWidth >= 1024 ? "h-60" : viewportWidth >= 640 ? "h-52" : "h-44";
+  const healthPanelHeight = viewportWidth >= 1024 ? "h-60" : "h-52";
 
+  // ─── Mobile layout ───────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <div className="h-full w-full overflow-hidden">
+        <MobileLayout
+          tabs={tabs}
+          central={central}
+          leftFileTree={leftFileTree}
+          leftListening={leftListening}
+          leftLinks={leftLinks}
+          leftDiff={leftDiff}
+          rightLogin={rightLogin}
+          rightTaskBoard={rightTaskBoard}
+          rightWeather={rightWeather}
+          rightPing={rightPing}
+          healthPanel={healthPanel}
+          statsTerminal={statsTerminal}
+          osStats={wakatime}
+          activeTab={mobileTab}
+          onTabChange={onMobileTabChange}
+        />
+      </div>
+    );
+  }
+
+  // ─── Desktop layout ──────────────────────────────────────────
   return (
-    <>
-    <div className="ambient-blobs"><span /><span /></div>
-    <div className="vignette" />
-    <div className="cursor-glow" ref={cursorGlowRef} />
     <div
-      ref={rootRef}
-      className="relative z-2 h-full w-full overflow-hidden p-2 grid gap-3"
+      className="h-full w-full overflow-hidden p-2 grid gap-3"
       style={{
         gridTemplateColumns: `${leftCol} 1fr ${rightCol}`,
         gridTemplateRows: "auto 1fr auto",
       }}
     >
-      {/* Left Sidebar — spans all 3 rows. Hidden on mobile via 0px column. */}
+      {/* Left Sidebar — spans all 3 rows */}
       {leftCollapsed ? (
-        <div className={`row-span-3 ${isMobile ? "invisible" : ""}`}>
+        <div className="row-span-3">
           <CollapsedBar
             section="left"
             label="Explorer"
@@ -217,9 +216,8 @@ export const GridLayout = ({
       <div className="h-11 flex gap-4 col-span-2">
         <div className="w-full flex items-center gap-3 min-w-0">
           <div className="min-w-0 flex-1">{tabs}</div>
-          <SurfaceToggle />
         </div>
-        <div className="hidden sm:block">{lastActive}</div>
+        <div>{lastActive}</div>
       </div>
 
       {/* Central Panel (row 2, col 2) */}
@@ -227,9 +225,9 @@ export const GridLayout = ({
         <div className="overflow-hidden h-full rounded-xl">{central}</div>
       </div>
 
-      {/* Right Sidebar (row 2, col 3). Hidden on mobile via 0px column. */}
+      {/* Right Sidebar (row 2, col 3) */}
       {rightCollapsed ? (
-        <div className={isMobile ? "invisible" : ""}>
+        <div>
           <CollapsedBar
             section="right"
             label="Sidebar"
@@ -272,7 +270,5 @@ export const GridLayout = ({
         <div />
       )}
     </div>
-    <div className="noise-overlay" />
-    </>
   );
 };

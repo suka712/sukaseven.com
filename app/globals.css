@@ -46,69 +46,71 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+/* ── Warm Light theme (landing page & default) ──────────────── */
 :root {
-  --radius: 0.700rem;
-  --background: #f0f4f8;
-  --foreground: #0f1729;
+  --radius: 0.75rem;
+  --background: #faf7f2;
+  --foreground: #1c1917;
 
-  --card: rgb(255 255 255 / 75%);
-  --card-foreground: #0f1729;
-  --scrollbar-thumb: oklch(0 0 0 / 15%);
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --scrollbar-thumb: oklch(0.25 0.01 50 / 12%);
 
   --popover: #ffffff;
-  --popover-foreground: #0f1729;
+  --popover-foreground: #1c1917;
 
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
+  --primary: #1c1917;
+  --primary-foreground: #faf7f2;
 
-  --secondary: #e2e8f0;
-  --secondary-foreground: #0f1729;
+  --secondary: #f2ede5;
+  --secondary-foreground: #1c1917;
 
-  --muted: #e8edf4;
-  --muted-foreground: #64748b;
+  --muted: #f2ede5;
+  --muted-foreground: #78716c;
 
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
+  --accent: #292524;
+  --accent-foreground: #faf7f2;
 
   --destructive: #dc2626;
 
-  --border: #cbd5e1;
-  --input: #cbd5e1;
-  --ring: #3b82f6;
+  --border: #e7e2da;
+  --input: #e7e2da;
+  --ring: #a8a29e;
 
-  --chart-1: #2563eb;
-  --chart-2: #0891b2;
-  --chart-3: #6366f1;
-  --chart-4: #0ea5e9;
-  --chart-5: #8b5cf6;
-  --sidebar: #e8edf4;
-  --sidebar-foreground: #0f1729;
-  --sidebar-primary: #2563eb;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #dbeafe;
-  --sidebar-accent-foreground: #0f1729;
-  --sidebar-border: #cbd5e1;
-  --sidebar-ring: #3b82f6;
+  --chart-1: #b45309;
+  --chart-2: #0f766e;
+  --chart-3: #4338ca;
+  --chart-4: #0284c7;
+  --chart-5: #7c3aed;
+  --sidebar: #f2ede5;
+  --sidebar-foreground: #1c1917;
+  --sidebar-primary: #1c1917;
+  --sidebar-primary-foreground: #faf7f2;
+  --sidebar-accent: #e7e2da;
+  --sidebar-accent-foreground: #1c1917;
+  --sidebar-border: #e7e2da;
+  --sidebar-ring: #a8a29e;
 }
 
+/* ── Dark theme (dev portfolio) ─────────────────────────────── */
 .dark {
-  --background: oklch(0.13 0.008 260);
+  --background: oklch(0.14 0.006 255);
   --foreground: oklch(0.93 0.005 260);
-  --card: oklch(0.18 0.01 260 / 70%);
+  --card: oklch(0.18 0.01 255 / 92%);
   --card-foreground: oklch(0.93 0.005 260);
   --scrollbar-thumb: oklch(1 0 0 / 15%);
-  --popover: oklch(0.18 0.01 260);
+  --popover: oklch(0.18 0.01 255);
   --popover-foreground: oklch(0.93 0.005 260);
   --primary: oklch(0.65 0.19 255);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.25 0.012 260);
+  --secondary: oklch(0.25 0.012 255);
   --secondary-foreground: oklch(0.9 0.005 260);
-  --muted: oklch(0.23 0.012 260);
-  --muted-foreground: oklch(0.6 0.02 260);
+  --muted: oklch(0.23 0.012 255);
+  --muted-foreground: oklch(0.65 0.02 260);
   --accent: oklch(0.65 0.19 255);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.65 0.2 25);
-  --border: oklch(1 0 0 / 8%);
+  --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.65 0.19 255);
   --chart-1: oklch(0.65 0.19 255);
@@ -116,46 +118,29 @@
   --chart-3: oklch(0.65 0.18 280);
   --chart-4: oklch(0.72 0.15 210);
   --chart-5: oklch(0.62 0.2 300);
-  --sidebar: oklch(0.18 0.01 260);
+  --sidebar: oklch(0.18 0.01 255);
   --sidebar-foreground: oklch(0.93 0.005 260);
   --sidebar-primary: oklch(0.65 0.19 255);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.25 0.012 260);
+  --sidebar-accent: oklch(0.25 0.012 255);
   --sidebar-accent-foreground: oklch(0.93 0.005 260);
-  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.65 0.19 255);
 }
 
-/* ── Switchable panel surface ─────────────────────────────────
-   Toggled via [data-surface] on <html> (see SurfaceToggle).
-   Every panel uses .panel-surface, so both the tint and the
-   backing --background flow from whichever theme is active. */
-:root {
-  /* Fallback = translucent theme. */
-  --panel: oklch(0 0 0 / 0.45);
-}
-
-/* Translucent theme: deep blue backdrop with airy smoked glass. The
-   background stays clearly bluer/lighter than the smoked panels so the
-   cards don't blend into it. */
-html[data-surface="glass"] {
-  --background: oklch(0.16 0.06 262);
-  --panel: oklch(0 0 0 / 0.45);
-}
-
-/* Less-translucent theme: normal neutral-dark backdrop, and a more
-   opaque panel so it reads as a near-solid card rather than glass. */
-html[data-surface="solid"] {
-  --background: oklch(0.15 0.006 260);
-  --panel: oklch(0 0 0 / 0.72);
-}
-
 .panel-surface {
-  background-color: var(--panel);
+  background-color: var(--card);
 }
 
 @theme {
   --animate-pulse-quick: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(14deg); }
+  50% { transform: rotate(-8deg); }
+  75% { transform: rotate(14deg); }
 }
 
 @keyframes terminal-blink {
@@ -167,45 +152,66 @@ html[data-surface="solid"] {
   animation: terminal-blink 1.1s step-start infinite;
 }
 
-/* Custom cursor */
-
-@keyframes cursor-ripple {
-  0%   { transform: scale(1);   opacity: 0.7; }
-  100% { transform: scale(3);   opacity: 0;   }
-}
-
-.cursor-ripple {
-  animation: cursor-ripple 0.7s ease-out forwards;
-}
-
-.cursor-ring {
-  transition: width 150ms ease, height 150ms ease, opacity 150ms ease;
-}
-
-.cursor-ring-hover {
-  width: 48px;
-  height: 48px;
-  margin-left: -8px;
-  margin-top: -8px;
-  border-color: oklch(0.65 0.19 255 / 0.7);
-  box-shadow: 0 0 12px oklch(0.65 0.19 255 / 0.4) !important;
-}
-
-/* Expanding ring pulse — makes live indicators feel like active signals */
+/* Live indicator pulse — lightweight opacity-only animation */
 @keyframes pulse-ring {
-  0% {
-    box-shadow: 0 0 0 0 var(--ring), 0 0 6px var(--ring);
-  }
-  70% {
-    box-shadow: 0 0 0 5px oklch(0.65 0.19 255 / 0), 0 0 10px var(--ring);
-  }
-  100% {
-    box-shadow: 0 0 0 0 oklch(0.65 0.19 255 / 0), 0 0 6px var(--ring);
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 .live-dot {
   animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Subtle staggered entry animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Slow letter paragraph fade-in */
+@keyframes fade-in-letter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-letter {
+  animation: fade-in-letter 1s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.delay-75 {
+  animation-delay: 75ms;
+}
+
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-225 {
+  animation-delay: 225ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-375 {
+  animation-delay: 375ms;
 }
 
 /* Data stream — traveling highlight on timeline connectors */
@@ -227,45 +233,9 @@ html[data-surface="solid"] {
   animation: data-flow 3s linear infinite;
 }
 
-/* Cursor ambient light — large soft glow that follows the mouse on the background */
-.cursor-glow {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    700px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
-    oklch(0.65 0.19 255 / 0.05) 0%,
-    transparent 70%
-  );
-  transition: background 0.1s ease;
-}
-
-/* Responsive zoom — mirrors browser zoom-out behavior.
-   width/min-height make html render larger; zoom scales it back to fill the viewport.
-   w-full/h-full in the layout inherits from html, so it fills correctly. */
-/* @media (max-width: 2559px) {
-  html { zoom: 0.88; width: calc(100vw / 0.88); min-height: calc(100vh / 0.88); }
-}
-@media (max-width: 1919px) {
-  html { zoom: 0.82; width: calc(100vw / 0.82); min-height: calc(100vh / 0.82); }
-}
-@media (max-width: 1599px) {
-  html { zoom: 0.75; width: calc(100vw / 0.75); min-height: calc(100vh / 0.75); }
-}
-@media (max-width: 1399px) {
-  html { zoom: 0.7; width: calc(100vw / 0.7); min-height: calc(100vh / 0.7); }
-} */
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
-
-  @media (pointer: fine) {
-    *, *::before, *::after {
-      cursor: none !important;
-    }
   }
 
   html, body {
@@ -274,8 +244,6 @@ html[data-surface="solid"] {
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle, currentColor 0.5px, transparent 0.5px);
-    background-size: 24px 24px;
     color: var(--foreground);
   }
 
@@ -283,6 +251,7 @@ html[data-surface="solid"] {
   body {
     --dot-opacity: 0.04;
     background-image: radial-gradient(circle, rgb(128 128 128 / var(--dot-opacity)) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
   }
 
   .dark body {
@@ -314,146 +283,11 @@ html[data-surface="solid"] {
   background-color: var(--muted-foreground);
 }
 
-/* Mouse-proximity border glow */
+/* Clean card border */
 .glow-border {
   position: relative;
-  --glow-x: -999px;
-  --glow-y: -999px;
-  --glow-opacity: 0;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow:
-    inset 0 1px 0 0 oklch(1 0 0 / 0.1),
-    inset 0 0 0 1px oklch(1 0 0 / 0.05),
-    0 2px 4px oklch(0 0 0 / 0.35),
-    0 6px 14px oklch(0 0 0 / 0.22);
-}
-
-.glow-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    300px circle at var(--glow-x) var(--glow-y),
-    var(--accent) 0%,
-    transparent 100%
-  );
-  opacity: var(--glow-opacity);
-  pointer-events: none;
-  z-index: 1;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1px;
-}
-
-/* MDX prose styling */
-/* Ambient gradient blobs */
-@keyframes blob-drift-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -60px) scale(1.08); }
-  66% { transform: translate(-30px, 30px) scale(0.92); }
-}
-@keyframes blob-drift-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-50px, 40px) scale(0.95); }
-  66% { transform: translate(30px, -45px) scale(1.05); }
-}
-@keyframes blob-drift-3 {
-  0%, 100% { transform: translate(0, 0) scale(1.05); }
-  33% { transform: translate(30px, 50px) scale(0.92); }
-  66% { transform: translate(-45px, -30px) scale(1.08); }
-}
-@keyframes blob-drift-4 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40% { transform: translate(-40px, -50px) scale(1.06); }
-  70% { transform: translate(30px, 40px) scale(0.94); }
-}
-
-.ambient-blobs {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.ambient-blobs::before,
-.ambient-blobs::after,
-.ambient-blobs span {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
-  will-change: transform;
-}
-
-.ambient-blobs::before {
-  width: 650px;
-  height: 650px;
-  top: -10%;
-  left: 15%;
-  background: oklch(0.6 0.2 265);
-  opacity: 0.18;
-  animation: blob-drift-1 55s ease-in-out infinite;
-}
-
-.ambient-blobs::after {
-  width: 520px;
-  height: 520px;
-  top: 50%;
-  right: 10%;
-  background: oklch(0.58 0.22 300);
-  opacity: 0.15;
-  animation: blob-drift-2 65s ease-in-out infinite;
-}
-
-.ambient-blobs span:nth-child(1) {
-  display: block;
-  width: 580px;
-  height: 580px;
-  bottom: -5%;
-  left: 40%;
-  background: oklch(0.62 0.16 220);
-  opacity: 0.16;
-  animation: blob-drift-3 48s ease-in-out infinite;
-}
-
-/* 4th blob: warm amber bottom-left for depth contrast */
-.ambient-blobs span:nth-child(2) {
-  display: block;
-  width: 480px;
-  height: 480px;
-  bottom: 10%;
-  left: -5%;
-  background: oklch(0.6 0.19 285);
-  opacity: 0.13;
-  animation: blob-drift-4 58s ease-in-out infinite;
-  animation-delay: -8s;
-}
-
-/* Vignette */
-.vignette {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, oklch(0 0 0 / 0.35) 100%);
-}
-
-/* Noise texture overlay */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.8;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.12), 0 4px 8px oklch(0 0 0 / 0.08);
 }
 
 /* Card entrance animation */
@@ -519,4 +353,31 @@ html[data-surface="solid"] {
 
 .prose-custom hr {
   @apply border-border my-4;
+}
+
+/* ── Mobile layout ───────────────────────────────────────────── */
+
+/* Safe-area padding for bottom nav on notched phones */
+.mobile-nav-safe-area {
+  padding-bottom: max(0.25rem, env(safe-area-inset-bottom));
+}
+
+/* Bottom nav gets a subtle top border */
+.mobile-bottom-nav {
+  border-top: 1px solid var(--border);
+}
+
+/* Smooth momentum scrolling on mobile scroll containers */
+.mobile-scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Safe-area top padding on mobile */
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 639px) {
+    body {
+      padding-top: env(safe-area-inset-top);
+    }
+  }
 }
